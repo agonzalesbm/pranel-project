@@ -1,6 +1,7 @@
 <script>
     export let source = ''
     export let title = 'default'
+    export let price = ''
 </script>
 <div class="category_container card m-3">
     <a href="#"
@@ -9,11 +10,8 @@
             class="card-img-top"
             title={title}
             height="275"
-        /></a
-    >
-    <div class="price__label">
-        <span>50000$</span>
-    </div>
+        /></a>
+        <span>{price}</span>
     <button class="btn">+</button>
 </div>
 
