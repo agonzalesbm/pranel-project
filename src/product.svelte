@@ -1,22 +1,22 @@
 <script>
-    export let source = ''
-    export let title = 'default'
-    export let price = ''
+    import ProductImage from "./ProductImage.svelte";
+
+    export let handBag = "";
+    export let handBagPerson = "";
+    export let title = "default";
+    export let price = "";
 </script>
+
 <div class="category_container card m-3">
-    <a href="#"
-        ><img
-            src={source}
-            class="card-img-top"
-            title={title}
-            height="275"
-        /></a>
-        <span>{price}</span>
+    <a href="#">
+        <ProductImage {handBag} {handBagPerson}/>
+    </a>
+    <span>{price}</span>
     <button class="btn">+</button>
 </div>
 
 <style>
-    .btn{
+    .btn {
         background-color: #ffded7;
         max-width: 40px;
         margin-left: 45%;

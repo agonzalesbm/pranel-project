@@ -2,28 +2,46 @@
     import "bootstrap";
     import "bootstrap/dist/css/bootstrap.min.css";
     import Product from "./product.svelte";
+
+    let pathBag = "src/img/handbag/handbag-";
+    let pathJewerly = "src/img/jewelry/jewelry-";
+    const array = [
+        {
+            handBag: pathBag + "1.jpg",
+            handBagPerson: pathBag + "1-person.jpg",
+        },
+        {
+            handBag: pathBag + "2.jpg",
+            handBagPerson: pathBag + "2-person.jpg",
+        },
+        {
+            handBag: pathBag + "3.jpg",
+            handBagPerson: pathBag + "3-person.jpg",
+        },
+        {
+            handBag: pathJewerly + "5.jpg",
+            handBagPerson: pathJewerly + "5p.jpg",
+        },
+    ];
 </script>
 
-<div class="container-fluid text-center">
-    <div class="row">
-        <div class="col">
-            <Product source="src\img\handbag\handbag-5-person.jpeg" title='bolso1' price='50000$'/>
-        </div>
-        <div class="col">
-            <Product source="src\img\handbag\handbag-3.jpg" title='bolso2' price='5000$'/>
-        </div>
-        <div class="col">
-            <Product source="src\img\handbag\handbag-2.jpg" title='bolso3' price='200$'/>
-        </div>
-        <div class="col">
-            <Product source="src\img\handbag\handbag-1-2.jpg" title='bolso4' price='2000$'/>
-        </div>
+<div class="container ml-5 text-center">
+    <div class="row justify-content-center">
+        {#each array as element}
+            <div class="col-md-3">
+                <Product
+                    handBag = {element.handBag}
+                    handBagPerson = {element.handBagPerson}
+                    title="bolso1"
+                    price="50000$"
+                />
+            </div>
+        {/each}
     </div>
 </div>
 
 <style>
-    .col-md-3{
+    .col-md-3 {
         width: 18rem;
     }
-    
 </style>
