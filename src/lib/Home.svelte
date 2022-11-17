@@ -1,14 +1,10 @@
 <script>
+    import "bootstrap";
+    import "bootstrap/dist/css/bootstrap.min.css";
 </script>
 
-<main>
+<div>
     <!-- Bootstrap -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-        crossorigin="anonymous"
-    />
     <div id="carouselCover" class="carousel slide" data-bs-ride="true">
         <div class="carousel-indicators">
             <button
@@ -34,23 +30,29 @@
         </div>
 
         <div class="carousel-inner">
-            <div class="carousel-item active" style="background-image: linear-gradient(rgba(33, 29, 29, 0.763), rgba(0, 0, 0, 0.8)), url('/cover/bag-dramatic.svg');">
+            <div
+                class="carousel-item active"
+                style="background-image: linear-gradient(rgba(33, 29, 29, 0.763), rgba(0, 0, 0, 0.8));"
+            >
                 <img
-                    src="/cover/bag-dramatic.svg"
+                    src="/src/img/jewelry/jewelry-1.jpg"
                     class="d-block w-100"
                     alt="Bags"
                 />
 
-                <button class="svg-wrapper" >
+                <button class="svg-wrapper">
                     <svg height="90" width="600">
                         <rect class="shape" height="73" width="280" />
                     </svg>
                     <div class="slide-title">See more Bags</div>
                 </button>
             </div>
-            <div class="carousel-item " style="background-image: linear-gradient(rgba(33, 29, 29, 0.763), rgba(0, 0, 0, 0.8)), url('/cover/woman-ring.svg');">
+            <div
+                class="carousel-item "
+                style="background-image: linear-gradient(rgba(33, 29, 29, 0.763), rgba(0, 0, 0, 0.8));"
+            >
                 <img
-                    src="/cover/woman-ring.svg"
+                    src="/src/img/jewelry/jewelry-1.jpg"
                     class="d-block w-100"
                     alt="Ring"
                 />
@@ -61,9 +63,12 @@
                     <div class="slide-title">See more Rings</div>
                 </div>
             </div>
-            <div class="carousel-item " style="background-image: linear-gradient(rgba(33, 29, 29, 0.763), rgba(0, 0, 0, 0.8)), url('/cover/zapatos-drama.svg');">
+            <div
+                class="carousel-item "
+                style="background-image: linear-gradient(rgba(33, 29, 29, 0.763), rgba(0, 0, 0, 0.8));"
+            >
                 <img
-                    src="/cover/zapatos-drama.svg"
+                    src="/src/img/jewelry/jewelry-1.jpg"
                     class="d-block w-100"
                     alt="Shoes"
                 />
@@ -96,14 +101,7 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-
-    <!-- Bootstrap JS -->
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"
-    ></script>
-</main>
+</div>
 
 <style>
     div img {
@@ -120,7 +118,7 @@
 
     div:hover img {
         opacity: 1;
-        transform: scale(1.30);
+        transform: scale(1.3);
         cursor: pointer;
         clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
     }
@@ -170,9 +168,9 @@
     }
 
     .carousel-item {
-        background-position:center;
-        background-repeat:no-repeat;
-        background-size:cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
         background-attachment: fixed;
     }
 </style>

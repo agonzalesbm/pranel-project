@@ -84,7 +84,6 @@
     .footer{
         display: inline-block;
         padding: 5px 0;
-        position:absolute;
         bottom:0;
         width:100%;
         margin: 0;
