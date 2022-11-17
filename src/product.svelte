@@ -19,7 +19,7 @@
     .btn{
         background-color: #ffded7;
         max-width: 40px;
-        margin-left: 40%;
-        border-radius: 50%;
+        margin-left: 45%;
+        border-radius: 40%;
     }
 </style>
