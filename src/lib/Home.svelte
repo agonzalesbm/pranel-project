@@ -125,13 +125,13 @@
 
     .svg-wrapper {
         top: 50vh;
-        left: 33%;
+        left: 40vh;
         position: absolute;
         margin: 0 auto;
-        width: 310px;
-        height: 100px;
+        width: 20em;
+        height: 7em;
         background-color: rgba(255, 222, 215, 0.8);
-        padding: 14px;
+        padding: 1.2em;
         display: flex;
         justify-self: center;
         border-width: 0px;
@@ -150,7 +150,7 @@
 
     .slide-title {
         font-family: "Gill Sans MT";
-        font-size: 32px;
+        font-size: 2em;
         line-height: 32px;
         letter-spacing: 1px;
         color: black;
@@ -162,7 +162,7 @@
 
     div:hover .shape {
         inset: 0;
-        stroke-width: 5px;
+        stroke-width: 0.5em;
         stroke-dasharray: 760;
         stroke-dashoffset: 0;
     }
