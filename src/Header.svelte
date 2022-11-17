@@ -46,15 +46,16 @@
     }
     .wrapper {
         width: 100%;
-        max-width: 100%;
+        max-width: 1500px;
         margin: auto;
         overflow: hidden;
         max-height: 150px;
     }
     header .logoHeader {
+        margin-left: 10px;
         color: white;
         font-size: 50px;
-        line-height:200px;
+        line-height:150px;
         float: left;
     }
 
