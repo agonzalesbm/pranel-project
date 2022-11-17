@@ -3,10 +3,14 @@
   import Counter from './lib/Counter.svelte'
   import Footer from './footer_sec/FooterBody.svelte'
   import Header from './Header.svelte';
+  import Home from './lib/Home.svelte'
 </script>
 
-<main>
+<main>  
   <Header />
+  <div class="carusel">
+    <Home />
+  </div>
   <Footer />
 </main>
 
