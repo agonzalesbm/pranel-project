@@ -1,3 +1,6 @@
+<script>
+    import 'animate.css';
+</script>
 
 <header >
     <div class="wrapper">
@@ -21,6 +24,12 @@
             <a href = "#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
             </svg>
+                <ul class="animate__animated animate__flash">
+                    <li><a href="">shoes</a></li>
+                    <li><a href="">brag</a></li>
+                    <li><a href="">rings</a></li>
+                </ul>
+                
             </a>
         </nav>
     </div>
@@ -37,7 +46,7 @@
     }
     .wrapper {
         width: 100%;
-        max-width: 1200px;
+        max-width: 100%;
         margin: auto;
         overflow: hidden;
         max-height: 150px;
@@ -72,6 +81,19 @@
     }
 
 
-
+    .wrapper a ul {
+        display: none;
+    }
+    .wrapper a ul li{
+        background-color: #ffded7;
+        color: #ffff;
+        display: block;
+    }
+    .wrapper a:hover > ul {
+        display: block;
+        right: 1%; 
+        position:absolute;
+        
+    }
 
 </style>
