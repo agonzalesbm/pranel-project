@@ -24,10 +24,10 @@
             <a href = "#"><span style="color: black"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
             </svg></span>
-                <ul class="animate__animated animate__flash">
-                    <li><a href="">shoes</a></li>
-                    <li><a href="">brag</a></li>
-                    <li><a href="">rings</a></li>
+                <ul class="menu">
+                    <li><a href="">Shoes</a></li>
+                    <li><a href="">Bags</a></li>
+                    <li><a href="">Rings</a></li>
                 </ul>
                 
             </a>
@@ -44,6 +44,7 @@
         background: #ffded7;
         margin-bottom: 10px;
     }
+
     .wrapper {
         width: 100%;
         max-width: 1500px;
@@ -51,6 +52,7 @@
         overflow: hidden;
         max-height: 90px;
     }
+
     header .logoHeader {
         color: white;
         font-size: 50px;
@@ -65,35 +67,44 @@
 
     header nav a{
         display: inline-block;
-        color: white;
+        color: black;
         text-decoration: none;
         padding: 10px 20px;
         line-height:normal;
         font-size:30px;
         font-weight: bold;
-        -o-transition: all 500ms ease;
-        -webkit-transition: all 500ms ease;
-        transition: all 500ms ease;
     }
+
     header nav a:hover{
         background: white;
         border-radius: 30px;
     }
 
-
     .wrapper a ul {
         display: none;
+        z-index: 1000;
+        -moz-box-shadow:0.7px 1px 1px #777777;
+        -webkit-box-shadow:0.7px 1px 1px #777777;
+        box-shadow:0.7px 1px 1px #777777;
     }
+
     .wrapper a ul li{
         background-color: #ffded7;
         color: #ffff;
         display: block;
     }
+
     .wrapper a:hover > ul {
         display: block;
         right: 1%; 
         position:absolute;
-        
+        border-radius: 0px;
     }
 
+    .menu li :hover{
+        background: white;
+        color: black;
+        border-radius: 0%;
+        width: 100%;
+    }
 </style>
