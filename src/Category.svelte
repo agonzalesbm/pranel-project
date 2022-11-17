@@ -7,7 +7,7 @@
 <div class="container-fluid text-center">
     <div class="row">
         <div class="col">
-            <Product source="src\img\handbag\handbag-4.jpg" title='bolso1' price='50000$'/>
+            <Product source="src\img\handbag\handbag-5-person.jpeg" title='bolso1' price='50000$'/>
         </div>
         <div class="col">
             <Product source="src\img\handbag\handbag-3.jpg" title='bolso2' price='5000$'/>
