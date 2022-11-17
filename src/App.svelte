@@ -3,18 +3,24 @@
   import Counter from './lib/Counter.svelte'
   import Header from './Header.svelte'
   import Category from './Category.svelte';
+  import Footer from './footer_sec/FooterBody.svelte'
+  import Header from './Header.svelte';
+  import Home from './lib/Home.svelte'
 </script>
 
-<main>
+<main>  
   <Header />
   <Category />
   <Category />
+  <div class="carusel">
+    <Home />
+  </div>
+  <Footer />
 </main>
 
 <style>
   .logo {
     height: 6em;
-    padding: 1.5em;
     will-change: filter;
   }
   .logo:hover {
