@@ -34,21 +34,21 @@
         </div>
 
         <div class="carousel-inner">
-            <div class="carousel-item active">
+            <div class="carousel-item active" style="background-image: linear-gradient(rgba(33, 29, 29, 0.763), rgba(0, 0, 0, 0.8)), url('/cover/bag-dramatic.svg');">
                 <img
                     src="/cover/bag-dramatic.svg"
                     class="d-block w-100"
                     alt="Bags"
                 />
 
-                <button class="svg-wrapper">
+                <button class="svg-wrapper" >
                     <svg height="90" width="600">
                         <rect class="shape" height="73" width="280" />
                     </svg>
                     <div class="slide-title">See more Bags</div>
                 </button>
             </div>
-            <div class="carousel-item ">
+            <div class="carousel-item " style="background-image: linear-gradient(rgba(33, 29, 29, 0.763), rgba(0, 0, 0, 0.8)), url('/cover/woman-ring.svg');">
                 <img
                     src="/cover/woman-ring.svg"
                     class="d-block w-100"
@@ -61,7 +61,7 @@
                     <div class="slide-title">See more Rings</div>
                 </div>
             </div>
-            <div class="carousel-item ">
+            <div class="carousel-item " style="background-image: linear-gradient(rgba(33, 29, 29, 0.763), rgba(0, 0, 0, 0.8)), url('/cover/zapatos-drama.svg');">
                 <img
                     src="/cover/zapatos-drama.svg"
                     class="d-block w-100"
@@ -120,7 +120,7 @@
 
     div:hover img {
         opacity: 1;
-        transform: scale(1.15);
+        transform: scale(1.30);
         cursor: pointer;
         clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
     }
@@ -159,7 +159,7 @@
         position: absolute;
         top: 32%;
         left: 16%;
-        background-color: rgba(254, 242, 242, 0.2);
+        background-color: rgba(254, 242, 242, 0);
     }
 
     div:hover .shape {
@@ -169,5 +169,10 @@
         stroke-dashoffset: 0;
     }
 
-
+    .carousel-item {
+        background-position:center;
+        background-repeat:no-repeat;
+        background-size:cover;
+        background-attachment: fixed;
+    }
 </style>
