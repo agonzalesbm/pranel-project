@@ -2,6 +2,7 @@
   import svelteLogo from './assets/svelte.svg'
   import Counter from './lib/Counter.svelte'
   import Footer from './footer_sec/FooterBody.svelte'
+  import Header from './Header.svelte';
 </script>
 
 <main>
