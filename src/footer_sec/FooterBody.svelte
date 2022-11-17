@@ -49,16 +49,17 @@
 <style>
 
     .footerCont h1{
-        color:pink;
+        color:#ffded7;
         text-align: center;
         position: static;
     }
 
     .footerCont{
-            color:pink;
+            color:#ffded7;
             text-align: left;
             position: static;
             width: 100%;
+            background-color: black;
     }
 
     *{
@@ -110,7 +111,7 @@
         position: absolute;
         left:0;
         bottom: -10px;
-        background-color: #FFC0CB;
+        background-color: #ffded7;
         height: 4px;
         box-sizing: border-box;
         width: 50px;

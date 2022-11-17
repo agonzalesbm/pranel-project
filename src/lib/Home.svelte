@@ -130,7 +130,7 @@
         margin: 0 auto;
         width: 310px;
         height: 100px;
-        background-color: rgba(254, 242, 242, 0.8);
+        background-color: rgba(255, 222, 215, 0.8);
         padding: 14px;
         display: flex;
         justify-self: center;
