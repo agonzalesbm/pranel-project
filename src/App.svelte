@@ -1,9 +1,11 @@
 <script>
   import svelteLogo from './assets/svelte.svg'
   import Counter from './lib/Counter.svelte'
+  import Header from './Header.svelte'
 </script>
 
 <main>
+  <Header />
   <div>
     <a href="https://vitejs.dev" target="_blank" rel="noreferrer"> 
       <img src="/vite.svg" class="logo" alt="Vite Logo" />
