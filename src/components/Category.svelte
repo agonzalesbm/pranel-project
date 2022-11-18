@@ -1,7 +1,7 @@
 <script>
     import "bootstrap";
     import "bootstrap/dist/css/bootstrap.min.css";
-    import Product from "./product.svelte";
+    import Product from "./Product.svelte";
 
     let pathBag = "src/img/handbag/handbag-";
     let pathJewerly = "src/img/jewelry/jewelry-";
