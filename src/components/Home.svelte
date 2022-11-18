@@ -1,5 +1,6 @@
 <script>
-    import "bootstrap";
+    // @ts-nocheck
+    import 'bootstrap'
     import "bootstrap/dist/css/bootstrap.min.css";
 </script>
 
@@ -41,10 +42,12 @@
                 />
 
                 <button class="svg-wrapper">
-                    <svg height="90" width="600">
-                        <rect class="shape" height="73" width="280" />
-                    </svg>
-                    <div class="slide-title">See more Bags</div>
+                    <a href="/bags">
+                        <svg height="90" width="600">
+                            <rect class="shape" height="73" width="280" />
+                        </svg>
+                        <div class="slide-title">See more Bags</div>
+                    </a>
                 </button>
             </div>
             <div
