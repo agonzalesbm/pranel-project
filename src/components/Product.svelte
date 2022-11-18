@@ -11,15 +11,15 @@
     <a href="#">
         <ProductImage {handBag} {handBagPerson}/>
     </a>
-    <span>{price}</span>
-    <button class="btn">+</button>
+    <p class="card-text"><span class="text-align-center">{price}</span></p>
+    <button class="btn justify-content-center">+</button>
 </div>
 
 <style>
     .btn {
         background-color: #ffded7;
         max-width: 40px;
-        margin-left: 45%;
+        margin-left: 42%;
         border-radius: 40%;
     }
 </style>
