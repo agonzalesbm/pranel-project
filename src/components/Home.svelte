@@ -1,7 +1,6 @@
 <script>
     // @ts-nocheck
-    import 'bootstrap'
-    import "bootstrap/dist/css/bootstrap.min.css";
+    import "bootswatch/dist/lux/bootstrap.min.css";
 </script>
 
 <div>
@@ -46,7 +45,7 @@
                         <svg height="90" width="600">
                             <rect class="shape" height="73" width="280" />
                         </svg>
-                        <div class="slide-title">See more Bags</div>
+                        <div class="slide-title text-align-center">See more Bags</div>
                     </a>
                 </button>
             </div>
