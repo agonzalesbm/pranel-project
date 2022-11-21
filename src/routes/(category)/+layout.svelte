@@ -1,8 +1,9 @@
 <script>
     import Pagination from "../../components/Pagination.svelte";
+    import Navigator from "../../components/Navigator.svelte";
 
 </script>
 
-<h1>Hello from category</h1>
+<Navigator />
 <slot />
 <Pagination />
