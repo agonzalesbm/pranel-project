@@ -1,8 +1,12 @@
 import { db } from "./firebase";
-import { addDoc, collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 
-export const loadBags = async() => {
-    const querySnapshot = await getDocs(collection(db, 'bags'))
-    const elements = querySnapshot.docs.map(doc => doc.data())
+export const loadBags = async (/** @type {string} */ table,
+                                /** @type {number} */ first,
+                                /** @type {number} */ end) => {
+    const q = query(collection(db, table), where('pos', '>=', first), where('pos', '<=', end))
+    const querySnapshot = await getDocs(q)
+    const elements = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }))
+
     console.log(elements)
 }
