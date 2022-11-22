@@ -1,3 +1,3 @@
 import { writable } from "svelte/store";
 
-export const array = writable([])
+export let isInProduct = writable(false);
