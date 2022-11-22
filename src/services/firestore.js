@@ -1,5 +1,5 @@
 import { db } from "./firebase";
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
 
 export const filesLoader = async (/** @type {string} */ table,
                                 /** @type {number} */ first,
@@ -9,4 +9,15 @@ export const filesLoader = async (/** @type {string} */ table,
     const elements = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }))
 
     return elements
+}
+
+export const fileLoader = async (/** @type {string} */ table, /** @type {string} */ id) => {
+    const docRef = doc(db, table, id)
+    const docSnap =  await getDoc(docRef)
+
+    if (docSnap.exists()) {
+        docSnap.data()
+    } else [
+        console.log("No such document")
+    ]
 }
