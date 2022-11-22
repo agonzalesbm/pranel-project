@@ -1,7 +1,10 @@
 <script>
     import 'bootswatch/dist/lux/bootstrap.min.css'
+    import {isInProduct} from '../services/store'
+    let isHere = false;
+    isInProduct.subscribe( value => isHere = value);
 </script>
-<nav aria-label="Page navigation example">
+<nav class="{​​isHere ? 'visually-hidden':''}​​">
     <ul class="pagination justify-content-center">
         <li class="page-item disabled">
             <a class="page-link" href="#">&laquo;</a>
