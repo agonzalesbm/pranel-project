@@ -4,7 +4,7 @@
     let isHere = false;
     isInProduct.subscribe( value => isHere = value);
 </script>
-<nav class="{​​isHere ? 'visually-hidden':''}​​">
+<nav class="container {isHere? 'visually-hidden': ''} ​​">
     <ul class="pagination justify-content-center">
         <li class="page-item disabled">
             <a class="page-link" href="#">&laquo;</a>
