@@ -7,13 +7,13 @@
     <div class="container-fluid">
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#">Shoes</a>
+          <a class="nav-link" aria-current="page" href="/shoes">Shoes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Bags</a>
+          <a class="nav-link" href="/bags">Bags</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Rings</a>
+          <a class="nav-link" href="/jewelry">Rings</a>
         </li>
       </ul>
       <form class="d-flex">

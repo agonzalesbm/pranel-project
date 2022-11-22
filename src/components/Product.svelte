@@ -1,4 +1,5 @@
 <script>
+    import "bootstrap-icons/font/bootstrap-icons.css";
     import ProductImage from "./ProductImage.svelte";
 
     export let handBag = "";
@@ -9,17 +10,23 @@
 
 <div class="category_container card m-3">
     <a href="#">
-        <ProductImage {handBag} {handBagPerson}/>
+        <ProductImage {handBag} {handBagPerson} />
     </a>
-    <p class="card-text"><span class="text-align-center">{price}</span></p>
-    <button class="btn justify-content-center">+</button>
+    <p class="card-text"><span class="text-align-center">{price} $</span></p>
+    <button class="btn btn-outline-primary btn-sm justify-content-center"
+        ><h4>
+            <i
+                class="bi bi-cart-plus align-items-center justify-content-center"
+            />
+        </h4></button
+    >
 </div>
 
 <style>
-    .btn {
+    /* .btn {
         background-color: #ffded7;
         max-width: 40px;
-        margin-left: 42%;
-        border-radius: 40%;
-    }
+        margin-left: 39%;
+        border-radius: 20%;
+    } */
 </style>
