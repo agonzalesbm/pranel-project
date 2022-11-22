@@ -1,8 +1,11 @@
 <script>
     import "bootswatch/dist/lux/bootstrap.min.css";
+    import {isInProduct} from '../services/store'
+    let isHere = false;
+    isInProduct.subscribe( value => isHere = value);
 </script>
 
-<nav class="container-fluid">
+<nav class="container-fluid  {isHere ? 'visually-hidden':' '}">
   <nav class="navbar bg-light">
     <div class="container-fluid">
       <ul class="nav">
