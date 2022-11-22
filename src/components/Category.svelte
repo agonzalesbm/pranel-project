@@ -1,7 +1,6 @@
 <script>
     // @ts-nocheck
-    import "bootstrap";
-    import "bootstrap/dist/css/bootstrap.min.css";
+    import "bootswatch/dist/lux/bootstrap.min.css";
     import Product from "./Product.svelte";
 
     export let array = [];

@@ -1,5 +1,5 @@
 <script>
-  import "bootstrap/dist/css/bootstrap.min.css";
+    import "bootswatch/dist/lux/bootstrap.min.css";
 </script>
 
 <nav class="container-fluid">
