@@ -1,9 +1,10 @@
 <script>
     import 'animate.css';
     import logo from "../img/LogoPranel.svg";
+    import { isAnError} from '../services/store';
 </script>
 
-<header >
+<header class:visually-hidden={$isAnError}>
     <div class="wrapper">
         <div class="logoHeader"> 
             <a href="/"><img src="{logo}" width="300" height="90"></a>
