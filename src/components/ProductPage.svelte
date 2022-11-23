@@ -1,6 +1,8 @@
 <script>
     // @ts-nocheck
     import "bootswatch/dist/lux/bootstrap.min.css";
+    import 'animate.css'
+
     export let data;
     let imgSourc = data.image;
     $: imgSourc
@@ -14,7 +16,7 @@
     };
 </script>
 
-<div class="main-wrapper">
+<div class="main-wrapper animate__animated animate__fadeIn">
     <div class="container">
         <div class="product-div">
             <div class="product-div-left">
