@@ -1,4 +1,7 @@
-<footer class="footer" role="navigation">
+<script>
+    import { isAnError} from '../services/store';
+</script>
+<footer class:visually-hidden={$isAnError} class="footer" role="navigation">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <div class="footerCont">
         <h1>PRANEL</h1>

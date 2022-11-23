@@ -1,18 +1,27 @@
 <script>
 // @ts-nocheck
     import { page } from "$app/stores";
+    import {onDestroy} from 'svelte';
+    import { isAnError} from '../services/store'
+	isAnError.update( value => value = true);
+    onDestroy(() => {
+		isAnError.update( value => value = false);
+    })
 </script>
 
-<div>
-    <h1>{$page.status}: {$page.error.message}</h1>
-    <p> Aliquam vel ante nisl. Aliquam semper erat eu purus tristique elementum. Integer malesuada hendrerit mauris sit amet tincidunt. Nam vel lacus vel nulla porttitor volutpat. Nulla euismod ipsum neque, ac eleifend nibh molestie sit amet. In hac habitasse platea dictumst. Nam fermentum vulputate semper. </p>
-
-    <a href="/" class="btn btn-outline-dark">Go to Home</a>
+<div class="cover">
+    <div class="message">
+        <h1 class="glitch">{$page.status}</h1>
+        <h2>{$page.error.message}</h2>
+        <p> 
+        It may have been removed, changed or is temporarily unavailable. Please return to our home page to continue browsing our site.</p>
+        <a href="/" class="btn btn-outline-light">Go to Home</a>
+    </div>
 </div>
 
 <style>
-    div {
-        height: 80vh;
+    .cover{
+        height: 100vh;
         background-image: url('$lib/img/cover/ErrorPage.jpg');
         background-position: top;
         background-repeat: no-repeat;
@@ -25,20 +34,25 @@
         margin-left: 20%;
         margin-right: 20%;
         padding: 2em 2em;
-        background-color: rgba(255, 255, 255, 0.4);
     }
 
     h1 {
-        font-size: 4em;
+        font-size: 10em;
     }
 
-    h1,p, a{
-        text-shadow: 3px 3px 7px rgb(244, 215, 215);
+    h2 {
+        font-size: 3em;
+    }
+
+    .message {
+        text-shadow: 3px 3px 7px rgb(7, 7, 7);
         font-family: 'Times New Roman', Times, serif;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.735);
+        padding: 2em 2em;
     }
 
-    a {
-        color: black;
-        background-color: rgba(255, 255, 255, 0.4);
+    .message:hover {
+        background-color: rgb(0, 0, 0);
     }
 </style>
