@@ -1,7 +1,6 @@
 <script>
     import "bootstrap-icons/font/bootstrap-icons.css";
     import ProductImage from "./ProductImage.svelte";
-
     export let handBag = "";
     export let handBagPerson = "";
     export let title = "default";

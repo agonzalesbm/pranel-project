@@ -7,7 +7,7 @@ export async function load({ url }) {
     const sliceTexted = url.pathname.split("/");
     const [,table, id] = sliceTexted;
     console.log(table, id)
-    const res = await fetch(`http://localhost:5173/api/get-product?p=${table}&id=${id}`)
+    const res = await fetch(`http://localhost:5173/api/get-product?p=rings&id=${id}`)
     const json = await res.json()
     return json
 }

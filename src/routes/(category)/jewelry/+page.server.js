@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { error } from '@sveltejs/kit';
 
-/** @type {import('../../../../.svelte-kit/types/src/routes/(category)/bags/$types').PageLoad} */
+/** @type {import('../../../../.svelte-kit/types/src/routes/(category)/rings/$types').PageLoad} */
 export const load = async ({ url }) => {
     let index = 1
     const { pathname, searchParams } = url
