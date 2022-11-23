@@ -20,6 +20,6 @@ export const fileLoader = async (/** @type {string} */ table, /** @type {string}
     } else {
         const data = {}
         console.log("No such document")
-        return data;
+        return undefined;
     }
 }
