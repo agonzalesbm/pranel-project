@@ -1,8 +1,8 @@
 <script>
     // import 'bootstrap'
-    import 'bootstrap/dist/css/bootstrap.min.css'
+    import "bootswatch/dist/lux/bootstrap.min.css";
     import Footer from "../components/Footer.svelte";
-    import Header from "../components/Header.svelte";
+import Header from "../components/Header.svelte";
 </script>
 <Header />
 <slot />
