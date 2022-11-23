@@ -2,8 +2,16 @@
     // @ts-nocheck
     import "bootswatch/dist/lux/bootstrap.min.css";
     export let data;
+    let imgSourc = data.image;
+    $: imgSourc
     export let firstImg = "";
     export let secondImg = "";
+    const chnageOverHoverFirstImg = () => {
+        imgSourc = firstImg
+    };
+    const chnageOverHoverSecondImg = () => {
+        imgSourc = secondImg
+    };
 </script>
 
 <div class="main-wrapper">
@@ -11,11 +19,18 @@
         <div class="product-div">
             <div class="product-div-left">
                 <div class="img-container">
-                    <img src={firstImg} />
+                    <img src={imgSourc} id="actImg" />
                 </div>
                 <div class="hover-container">
-                    <div><img src={secondImg} /></div>
-                    <div><img src={firstImg} /></div>
+                    <div>
+                        <img
+                            src={secondImg}
+                            on:mouseover={chnageOverHoverSecondImg}
+                        />
+                    </div>
+                    <div>
+                        <img src={firstImg} on:mouseover={chnageOverHoverFirstImg} />
+                    </div>
                 </div>
             </div>
             <div class="product-div-right">
@@ -27,37 +42,13 @@
                 <p class="product-description">{data.description}</p>
                 <span class="product-price">Price: {data.price}$</span>
                 <div class="btn-groups">
-                    <button type="button" class="add-cart-btn"
-                        ><i class="fas fa-shopping-cart" />add to cart</button
+                    <button type="button" class="add-cart-btn">
+                        <i class="fas fa-shopping-cart" />add to cart</button
                     >
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        const allHoverImages = document.querySelectorAll(
-            ".hover-container div img"
-        );
-        const imgContainer = document.querySelector(".img-container");
-
-        window.addEventListener("DOMContentLoaded", () => {
-            allHoverImages[0].parentElement.classList.add("active");
-        });
-
-        allHoverImages.forEach((image) => {
-            image.addEventListener("mouseover", () => {
-                imgContainer.querySelector("img").src = image.src;
-                resetActiveImg();
-                image.parentElement.classList.add("active");
-            });
-        });
-
-        function resetActiveImg() {
-            allHoverImages.forEach((img) => {
-                img.parentElement.classList.remove("active");
-            });
-        }
-    </script>
 </div>
 
 <style>
@@ -79,7 +70,7 @@
 
     .main-wrapper {
         min-height: 100vh;
-        background-color: black;
+        background-color: whitesmoke;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -94,7 +85,7 @@
         padding: 2rem 0;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        background-color: gainsboro;
+        background-color: #ffded7;
         border-radius: 3px;
         column-gap: 10px;
     }
@@ -175,11 +166,11 @@
         margin-right: 8px;
     }
     .add-cart-btn {
-        background-color: #ffded7;
-        color: black;
-        margin-right: 8px;
-        border: 1px solid #000;
-        padding: 10px 20px;
+        border-radius: 15px;
+        background: pink;
+        padding: 20px;
+        width: 200px;
+        height: 50px;
     }
     .add-cart-btn:hover {
         background-color: #fff;
