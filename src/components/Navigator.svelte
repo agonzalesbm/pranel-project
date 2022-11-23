@@ -16,7 +16,7 @@
           <a class="nav-link" href="/bags">Bags</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/jewelry">Rings</a>
+          <a class="nav-link" href="/rings">Rings</a>
         </li>
       </ul>
       <form class="d-flex">
