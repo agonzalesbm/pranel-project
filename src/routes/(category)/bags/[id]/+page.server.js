@@ -6,6 +6,8 @@ import {fileLoader} from '../../../../services/firestore'
 export async function load({ url }) {
     const sliceTexted = url.pathname.split("/");
     const [,table, id] = sliceTexted;
-    const res = await fileLoader(table, id)
-    return res
+    console.log(table, id)
+    const res = await fetch(`http://localhost:5173/api/get-product?p=${table}&id=${id}`)
+    const json = await res.json()
+    return json
 }
