@@ -10,7 +10,6 @@
     export let category = "";
     let redirectCategory = category === 'rings' ? 'jewelry' : category
     let path = `/${redirectCategory}/${productId}`
-    console.log(path)
 </script>
 
 <div class="category_container card m-3">

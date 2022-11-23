@@ -1,9 +1,9 @@
 <script>
     // @ts-nocheck
     import "bootswatch/dist/lux/bootstrap.min.css";
-    import Product from "./Product.svelte";
+    import Product from "./Product.svelte"; 
 
-    export let array = [];
+    export let array = []; 
 </script>
 
 <div class="container ml-5 text-center">
