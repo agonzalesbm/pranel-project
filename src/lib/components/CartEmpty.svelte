@@ -19,7 +19,7 @@
 <div class="container ml-5 text-center">
     <div class="row justify-content-center">
         <div class="emptyCart"> 
-            <img src="src\img\cart\cartEmpty.png" width="300" height="300">
+            <img src="src\lib\img\cart\cartEmpty.png" width="300" height="300">
         </div>
         <p class = "label">YOUR SHOPPING CART IS EMPTY</p>
         <button class="btn justify-content-center">CONTINUE SHOPPING</button>

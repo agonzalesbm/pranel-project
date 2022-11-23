@@ -1,6 +1,6 @@
 <script>
     // import 'bootstrap'
     import 'bootstrap/dist/css/bootstrap.min.css'
-    import CartEmpty from '../../components/CartEmpty.svelte';
+    import CartEmpty from '$lib/components/CartEmpty.svelte';
 </script>
 <CartEmpty />

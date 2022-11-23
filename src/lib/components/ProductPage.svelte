@@ -25,12 +25,16 @@
                 </div>
                 <div class="hover-container">
                     <div>
+                        <!-- svelte-ignore a11y-missing-attribute -->
+                        <!-- svelte-ignore a11y-mouse-events-have-key-events -->
                         <img
                             src={secondImg}
                             on:mouseover={chnageOverHoverSecondImg}
                         />
                     </div>
                     <div>
+                        <!-- svelte-ignore a11y-missing-attribute -->
+                        <!-- svelte-ignore a11y-mouse-events-have-key-events -->
                         <img src={firstImg} on:mouseover={chnageOverHoverFirstImg} />
                     </div>
                 </div>
