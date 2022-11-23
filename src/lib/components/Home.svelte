@@ -32,10 +32,10 @@
         <div class="carousel-inner">
             <div
                 class="carousel-item active"
-                style="background-image: linear-gradient(rgba(33, 29, 29, 0.763), rgba(0, 0, 0, 0.8)), url('src/img/cover/bolsos.jpg');"
+                style="background-image: linear-gradient(rgba(33, 29, 29, 0.763), rgba(0, 0, 0, 0.8)), url('src/lib/img/cover/bolsos.jpg');"
             >
                 <img
-                    src="src/img/cover/bolsos.jpg"
+                    src="src/lib/img/cover/bolsos.jpg"
                     class="d-block w-100"
                     alt="Bags"
                 />
@@ -51,10 +51,10 @@
             </div>
             <div
                 class="carousel-item "
-                style="background-image: linear-gradient(rgba(33, 29, 29, 0.763), rgba(0, 0, 0, 0.8)), url('src/img/cover/ring.jpg');"
+                style="background-image: linear-gradient(rgba(33, 29, 29, 0.763), rgba(0, 0, 0, 0.8)), url('src/lib/img/cover/ring.jpg');"
             >
                 <img
-                    src="src/img/cover/ring.jpg"
+                    src="src/lib/img/cover/ring.jpg"
                     class="d-block w-100"
                     alt="Ring"
                 />
@@ -69,10 +69,10 @@
             </div>
             <div
                 class="carousel-item "
-                style="background-image: linear-gradient(rgba(33, 29, 29, 0.763), rgba(0, 0, 0, 0.8)), url('src/img/cover/shoes2.jpg');"
+                style="background-image: linear-gradient(rgba(33, 29, 29, 0.763), rgba(0, 0, 0, 0.8)), url('src/lib/img/cover/shoes2.jpg');"
             >
                 <img
-                    src="src/img/cover/shoes2.jpg"
+                    src="src/lib/img/cover/shoes2.jpg"
                     class="d-block w-100"
                     alt="Shoes"
                 />

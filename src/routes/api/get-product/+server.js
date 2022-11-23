@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { error, json } from '@sveltejs/kit';
-import { fileLoader } from '../../../services/firestore';
+import { fileLoader } from '$lib/services/firestore';
 
 /** @type {import('./$types').RequestHandler} */
 export const GET = async ({ url }) => {

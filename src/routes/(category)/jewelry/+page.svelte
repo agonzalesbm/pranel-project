@@ -1,6 +1,6 @@
 <script>
     // @ts-nocheck
-    import Category from "../../../components/Category.svelte";
+    import Category from "$lib/components/Category.svelte";
 
     export let data;
     const { result } = data;
