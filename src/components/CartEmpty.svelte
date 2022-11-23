@@ -4,6 +4,7 @@
     import {isInCart} from '../services/store'
     import Product from "./Product.svelte";
     import { onDestroy } from 'svelte';
+    
     isInCart.update(value => value = true)
 
     let pathCart = "src/img/cart/";
@@ -13,12 +14,12 @@
 	});
 </script>
 <div class="title_ml-5_text-left">
-    <p>MY CART</p>
+    <p>My Cart</p>
 </div>
 <div class="container ml-5 text-center">
     <div class="row justify-content-center">
         <div class="emptyCart"> 
-            <a href="/"><img src="src\img\cart\cartEmpty.png" width="300" height="300"></a>
+            <img src="src\img\cart\cartEmpty.png" width="300" height="300">
         </div>
         <p class = "label">YOUR SHOPPING CART IS EMPTY</p>
         <button class="btn justify-content-center">CONTINUE SHOPPING</button>
@@ -26,20 +27,17 @@
 </div>
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+    @import url(//db.onlinewebfonts.com/c/2a565fc8eb19fe770464e0d4ee172b96?family=Bree+Serif);
     .title_ml-5_text-left{
         margin-left: 90px;
         font-size: 40px;
-        font-family: serif;
+        font-family: 'Bree Serif';
     }
 
-    .emptyCart {
-        color: #545454;
-    }
     .label {
         margin-top: 40px;
         font-size: 40px;
-        font-family: 'Bodoni bold';
+        font-family: 'Bree Serif';
         color: #545454;
     }
 
@@ -47,9 +45,14 @@
         margin-top: 40px;
         margin-bottom: 110px;
         background-color: #fff4f2;
-        width: 300px;
+        width: 270px;
         height: 55px;
-        font-family: serif;
+        font-family: 'Bree Serif';
         font-size: 25px;
+        padding-bottom: 2px;
+        border-bottom: 3px solid #000000;
+        border-right: 3px solid #000000;
+        
     }
+    
 </style>
