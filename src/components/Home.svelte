@@ -58,11 +58,13 @@
                     class="d-block w-100"
                     alt="Ring"
                 />
-                <div class="svg-wrapper">
-                    <svg height="90" width="600">
-                        <rect class="shape" height="73" width="280" />
-                    </svg>
-                    <div class="slide-title">See more Rings</div>
+                <div class="svg-wrapper text-align-center">
+                    <a href="/jewelry">
+                        <svg height="90" width="600">
+                            <rect class="shape" height="73" width="280" />
+                        </svg>
+                        <div class="slide-title">See more Rings</div>
+                    </a>
                 </div>
             </div>
             <div
@@ -75,10 +77,12 @@
                     alt="Shoes"
                 />
                 <div class="svg-wrapper">
-                    <svg height="90" width="600">
-                        <rect class="shape" height="73" width="280" />
-                    </svg>
-                    <div class="slide-title">See more Shoes</div>
+                    <a href="/shoes">
+                        <svg height="90" width="600">
+                            <rect class="shape" height="73" width="280" />
+                        </svg>
+                        <div class="slide-title">See more Shoes</div>
+                    </a>
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 <script>
     // @ts-nocheck
-    import Category from "../../../components/Category.svelte";
+    import Category from "../../../components/Category.svelte"; 
 
     export let data;
     const { result } = data;
@@ -18,7 +18,7 @@
             }
         }
     }
-    arrays.push(array)
+    arrays.push(array); 
 </script>
 
 <Category array={arrays[0]} />
