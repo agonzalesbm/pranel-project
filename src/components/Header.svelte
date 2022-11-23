@@ -1,11 +1,9 @@
 <script>
     import "animate.css";
     import logo from "../img/LogoPranel.svg";
-    import {isInCart} from '../services/store'
+    import {isAnError,isInCart,isInCategory} from '../services/store';
     let cart = false
     isInCart.subscribe (value => cart = value)
-
-    import { isInCategory } from "../services/store";
 
     let isHidden = false;
     isInCategory.subscribe((value) => {
@@ -13,7 +11,7 @@
     });
 </script>
 
-<header>
+<header class:visually-hidden={$isAnError}>
     <div class="wrapper">
         <div class="logoHeader">
             <a href="/"><img src={logo} width="300" height="90" /></a>
