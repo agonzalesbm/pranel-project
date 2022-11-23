@@ -29,9 +29,9 @@
             <div class="footer-col">
                 <h4>online shopping subpages</h4>
                 <ul>
-                    <li><a href="">bags</a></li>
-                    <li><a href="">shoes</a></li>
-                    <li><a href="">rings</a></li>
+                    <li><a href="/bags">Bags</a></li>
+                    <li><a href="/shoes">Shoes</a></li>
+                    <li><a href="/jewelry">Jewelry</a></li>
                 </ul>
             </div>
             <div class="footer-col">
