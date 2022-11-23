@@ -13,6 +13,8 @@
             <Product
             handBag = {element.image}
             handBagPerson = {element.imagep}
+            productId = {element.id}
+            category = {element.category}
             title={element.name}
             price={element.price}
             />

@@ -6,10 +6,15 @@
     export let handBagPerson = "";
     export let title = "default";
     export let price = "";
+    export let productId = "";
+    export let category = "";
+    let redirectCategory = category === 'rings' ? 'jewelry' : category
+    let path = `/${redirectCategory}/${productId}`
+    console.log(path)
 </script>
 
 <div class="category_container card m-3">
-    <a href="#">
+    <a href="{path}">
         <ProductImage {handBag} {handBagPerson} />
     </a>
     <p class="card-text"><span class="text-align-center">{price} $</span></p>
@@ -23,10 +28,4 @@
 </div>
 
 <style>
-    /* .btn {
-        background-color: #ffded7;
-        max-width: 40px;
-        margin-left: 39%;
-        border-radius: 20%;
-    } */
 </style>
