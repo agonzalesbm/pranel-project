@@ -8,7 +8,7 @@ export const GET = async ({ url }) => {
     const id = url.searchParams.get('id')
     const result = await fileLoader(product, id)
     if (!result) {
-        throw error(404, "Not found")
+        throw error(404, "Page not found")
     }
     return json(result)
 }
