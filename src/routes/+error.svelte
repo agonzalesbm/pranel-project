@@ -2,7 +2,7 @@
 // @ts-nocheck
     import { page } from "$app/stores";
     import {onDestroy} from 'svelte';
-    import { isAnError} from '../services/store'
+    import {isAnError} from '../services/store'
 	isAnError.update( value => value = true);
     onDestroy(() => {
 		isAnError.update( value => value = false);

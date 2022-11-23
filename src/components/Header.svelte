@@ -1,7 +1,7 @@
 <script>
     import 'animate.css';
     import logo from "../img/LogoPranel.svg";
-    import { isAnError} from '../services/store';
+    import {isAnError} from '../services/store';
 </script>
 
 <header class:visually-hidden={$isAnError}>
