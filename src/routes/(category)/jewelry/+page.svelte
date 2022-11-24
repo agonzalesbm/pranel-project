@@ -23,7 +23,7 @@
 
 <section class="img-fluid img-format-container">
     <img src="/src/lib/img/cover/jewelry-head.jpg" alt="jewelry-head" />
-    <p>Jewelry</p>
+    <p>Rings</p>
 </section>
 <Category array={arrays[0]} />
 <Category array={arrays[1]} />
