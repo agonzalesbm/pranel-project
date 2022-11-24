@@ -1,15 +1,21 @@
 <script>
     import {isVisibleCart} from '../services/store';
+    let isClick = false;
+    isVisibleCart.subscribe(value=>isClick= value)
+    const onClick = () => {
+        isVisibleCart.update((value) => (value = !value));
+    };
 </script>
-<div>
+
+<div class:visually-hidden={!isClick}>
     <div class="ventana">
         <div class="subHeader">
-            <a href="#"><span style="color: black">
+            <a href="/cart"><span style="color: black">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    fill="currentColor"
+                    width="25"
+                    height="25"
+                    fill="white"
                     class="bi bi-cart-fill"
                     viewBox="0 0 16 16"
                 >
@@ -20,13 +26,13 @@
             >
         </a>
             <div class="controls">
-                <button class="buton"> &gt; </button>
+                <button on:click={onClick} class="buton"> &gt; </button>
             </div>
         </div>
         
             <div class="windows">
                 <div class="emptyCart">
-                    <img src="src\img\cart\cartEmpty.png" width="40%" height="40%"/>
+                    <img src="src/lib/img/cart/cartEmpty.png" width="40%" height="40%"/>
                     <p class="label">YOUR SHOPPING CART IS EMPTY</p>
                     <button class="btn justify-content-center"
                         >CONTINUE SHOPPING</button
@@ -39,28 +45,38 @@
 
 <style>
     .ventana {
-        background-color: #ffded7;
+        position: absolute;
+        top: 0;
+        background-color: #000000;
         width: 20%;
-        height: 60%;
+        height: 100vh;
         color: black;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 18px;
         text-align: center;
         padding: 33px;
-        position: absolute;
         right: 0%;
-        top: 90px;
         z-index: 999;
-        padding: 0%;
+        padding: 0;
     }
 
     .windows {
         background-color: #fdcbc1;
         text-align: center;
         color: black;
-        height: 100%;
-        top: 10%;
+        height: 100vh;
+        top: 5vh;
         position: relative;
+    }
+
+    .emptyCart {
+        top: 30vh;
+        position: absolute;
+        padding: 10;
+    }
+
+    .emptyCart img, p, button{
+        margin: 0.5em;
     }
 
     .controls {
@@ -71,7 +87,7 @@
 
     .ventana button {
         background: transparent;
-        color: black;
+        color: rgb(255, 249, 249);
         border-color: transparent;
     }
 
@@ -82,25 +98,21 @@
         text-align: center;
     }
 
-    .windows button {
-        background: rgb(255, 234, 234);
-        color: black;
-        border-color: black;
-        text-align: center;
-    }
-
     button:hover,
     button:focus {
-        background: white;
+        background:  white;
+        color:black;
+        border-radius: 10px;
     }
     .subHeader a{
         position: absolute;
-        top: 0;
+        top: calc(3% - 1.2rem);
         left: 1em;
     }
     .subHeader button{
         position: absolute;
         top: 0;
         right: 0;
+        top: calc(2% - 1.2rem);
     }
 </style>
