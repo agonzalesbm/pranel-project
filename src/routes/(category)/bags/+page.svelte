@@ -1,6 +1,7 @@
 <script>
     // @ts-nocheck
-    import Category from "$lib/components/Category.svelte"; 
+    import Category from "$lib/components/Category.svelte";
+    import HeaderCategory from "$lib/components/HeaderCategory.svelte";
 
     export let data;
     const { result } = data;
@@ -18,8 +19,10 @@
             }
         }
     }
-    arrays.push(array); 
+    arrays.push(array);
 </script>
+
+<HeaderCategory category="Bags" pathImage="/src/lib/img/cover/bag-head.png" />
 
 <Category array={arrays[0]} />
 <Category array={arrays[1]} />
