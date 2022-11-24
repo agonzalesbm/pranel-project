@@ -1,6 +1,7 @@
 <script>
     // @ts-nocheck
     import Category from "$lib/components/Category.svelte";
+    import 'animate.css'
 
     export let data;
     const { result } = data;
@@ -21,7 +22,7 @@
     arrays.push(array);
 </script>
 
-<section class="img-fluid img-format-container">
+<section class="img-fluid img-format-container animate__animated animate__fadeIn">
     <img src="/src/lib/img/cover/shoes-head.jpg" alt="shoes-head" />
     <p>Shoes</p>
 </section>
