@@ -1,4 +1,7 @@
-<footer class="footer" role="navigation">
+<script>
+    import {isAnError} from '../services/store';
+</script>
+<footer class:visually-hidden={$isAnError} class="footer" role="navigation">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <div class="footerCont">
         <h1>PRANEL</h1>
@@ -29,9 +32,9 @@
             <div class="footer-col">
                 <h4>online shopping subpages</h4>
                 <ul>
-                    <li><a href="">bags</a></li>
-                    <li><a href="">shoes</a></li>
-                    <li><a href="">rings</a></li>
+                    <li><a href="/bags">Bags</a></li>
+                    <li><a href="/shoes">Shoes</a></li>
+                    <li><a href="/jewelry">Jewelry</a></li>
                 </ul>
             </div>
             <div class="footer-col">

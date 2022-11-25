@@ -1,7 +1,6 @@
 <script>
     // @ts-nocheck
-    import 'bootstrap'
-    import "bootstrap/dist/css/bootstrap.min.css";
+    import "bootswatch/dist/lux/bootstrap.min.css";
 </script>
 
 <div>
@@ -33,10 +32,10 @@
         <div class="carousel-inner">
             <div
                 class="carousel-item active"
-                style="background-image: linear-gradient(rgba(33, 29, 29, 0.763), rgba(0, 0, 0, 0.8)), url('src/img/cover/bolsos.jpg');"
+                style="background-image: linear-gradient(rgba(33, 29, 29, 0.763), rgba(0, 0, 0, 0.8)), url('src/lib/img/cover/bolsos.jpg');"
             >
                 <img
-                    src="src/img/cover/bolsos.jpg"
+                    src="src/lib/img/cover/bolsos.jpg"
                     class="d-block w-100"
                     alt="Bags"
                 />
@@ -52,34 +51,38 @@
             </div>
             <div
                 class="carousel-item "
-                style="background-image: linear-gradient(rgba(33, 29, 29, 0.763), rgba(0, 0, 0, 0.8)), url('src/img/cover/ring.jpg');"
+                style="background-image: linear-gradient(rgba(33, 29, 29, 0.763), rgba(0, 0, 0, 0.8)), url('src/lib/img/cover/ring.jpg');"
             >
                 <img
-                    src="src/img/cover/ring.jpg"
+                    src="src/lib/img/cover/ring.jpg"
                     class="d-block w-100"
                     alt="Ring"
                 />
-                <div class="svg-wrapper">
-                    <svg height="90" width="600">
-                        <rect class="shape" height="73" width="280" />
-                    </svg>
-                    <div class="slide-title">See more Rings</div>
+                <div class="svg-wrapper text-align-center">
+                    <a href="/jewelry">
+                        <svg height="90" width="600">
+                            <rect class="shape" height="73" width="280" />
+                        </svg>
+                        <div class="slide-title">See more Rings</div>
+                    </a>
                 </div>
             </div>
             <div
                 class="carousel-item "
-                style="background-image: linear-gradient(rgba(33, 29, 29, 0.763), rgba(0, 0, 0, 0.8)), url('src/img/cover/shoes2.jpg');"
+                style="background-image: linear-gradient(rgba(33, 29, 29, 0.763), rgba(0, 0, 0, 0.8)), url('src/lib/img/cover/shoes2.jpg');"
             >
                 <img
-                    src="src/img/cover/shoes2.jpg"
+                    src="src/lib/img/cover/shoes2.jpg"
                     class="d-block w-100"
                     alt="Shoes"
                 />
                 <div class="svg-wrapper">
-                    <svg height="90" width="600">
-                        <rect class="shape" height="73" width="280" />
-                    </svg>
-                    <div class="slide-title">See more Shoes</div>
+                    <a href="/shoes">
+                        <svg height="90" width="600">
+                            <rect class="shape" height="73" width="280" />
+                        </svg>
+                        <div class="slide-title">See more Shoes</div>
+                    </a>
                 </div>
             </div>
         </div>
