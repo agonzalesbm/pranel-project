@@ -10,24 +10,28 @@
     export let productId = "";
     export let category = "";
     export let stock = 0;
-    export let description = '';
+    export let description = "";
 
     let redirectCategory = category === "rings" ? "jewelry" : category;
     let path = `/${redirectCategory}/${productId}`;
 
     const addProductInCart = () => {
-        $productsCart = [
-            ...$productsCart,
-            {
-                image: handBag,
-                imagePerson: handBagPerson,
-                name: title,
-                price,
-                stock,
-                description
-            },
-        ];
-        console.log($productsCart)
+        let exist = $productsCart.find((product) => product.id === productId);
+        if (!exist) {
+            $productsCart = [
+                ...$productsCart,
+                {
+                    id: productId,
+                    image: handBag,
+                    imagePerson: handBagPerson,
+                    name: title,
+                    price,
+                    stock,
+                    description,
+                },
+            ];
+            console.log($productsCart);
+        }
     };
 </script>
 
