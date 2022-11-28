@@ -1,26 +1,75 @@
 <script>
-    import "bootswatch/dist/lux/bootstrap.min.css";
-    import {isInProduct} from '../services/store'
-    let isHere = false;
-    isInProduct.subscribe( value => isHere = value);
+  // @ts-nocheck
+
+  import { goto } from "$app/navigation";
+
+  // @ts-nocheck
+
+  import "bootswatch/dist/lux/bootstrap.min.css";
+  import { isInProduct, currentPage } from "../services/store";
+  import ButtonColor from "./ButtonColor.svelte";
+
+  let isHere = false;
+  let path = "/";
+  let color = "#000";
+
+  isInProduct.subscribe((value) => (isHere = value));
+  currentPage.subscribe((value) => {
+    path = value;
+    console.log(value);
+  });
+
+  $: path;
+
+  const clickOnBags = () => {
+    path = "/bags";
+  };
+  const clickOnShoes = () => {
+    path = "/shoes";
+  };
+  const clickOnJewelry = () => {
+    path = "/jewelry";
+  };
+
+  const click = (e) => {
+    color = e.detail;
+    console.log(color);
+  };
+
+  const redirectoHome = () => {
+    goto("/");
+  };
+  console.log(path);
 </script>
 
-<nav class="container-fluid  {isHere ? 'visually-hidden':' '}">
+<nav class="container-fluid  {isHere ? 'visually-hidden' : ' '}">
   <nav class="navbar bg-light">
     <div class="container-fluid">
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/shoes">Shoes</a>
+          <a
+            on:click={clickOnShoes}
+            class="nav-link"
+            aria-current="page"
+            href="/shoes">Shoes</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/bags">Bags</a>
+          <a on:click={clickOnBags} class="nav-link" href="/bags">Bags</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/jewelry">Rings</a>
+          <a on:click={clickOnJewelry} class="nav-link" href="/jewelry">Rings</a
+          >
         </li>
       </ul>
       <form class="d-flex">
-        <button type="button" class="btn-filter">
+        <button
+          type="button"
+          class="btn-filter btn btn-primary"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasRight"
+          aria-controls="offcanvasRight"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -37,6 +86,48 @@
           Filter
         </button>
       </form>
+
+      <div
+        class="offcanvas offcanvas-end"
+        tabindex="-1"
+        id="offcanvasRight"
+        aria-labelledby="offcanvasRightLabel"
+      >
+        <div class="offcanvas-header">
+          <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+          <button
+            type="button"
+            class="btn-close text-reset"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          />
+        </div>
+        <div class="offcanvas-body">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="flexRadioDefault"
+              id="flexRadioDefault1"
+            />
+            <label class="form-check-label" for="flexRadioDefault1">
+              Default radio
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="flexRadioDefault"
+              id="flexRadioDefault2"
+              checked
+            />
+            <label class="form-check-label" for="flexRadioDefault2">
+              Default checked radio
+            </label>
+          </div>
+        </div>
+      </div>
     </div>
   </nav>
 </nav>
@@ -62,5 +153,10 @@
     background: #000000;
     text-decoration: none;
     color: white;
+  }
+  a:hover {
+    background-color: #000000;
+    color: #fff;
+    border-radius: 10%;
   }
 </style>
