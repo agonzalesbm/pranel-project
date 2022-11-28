@@ -5,3 +5,4 @@ export let isInProduct = writable(false);
 export let isInCategory = writable(false)
 export let isAnError = writable(false)
 export let isVisibleCart = writable(false)
+export let productsCart = writable([])
