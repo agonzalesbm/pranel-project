@@ -16,7 +16,6 @@
   isInProduct.subscribe((value) => (isHere = value));
   currentPage.subscribe((value) => {
     path = value;
-    console.log(value);
   });
 
   $: path;
@@ -36,10 +35,9 @@
     console.log(color);
   };
 
-  const redirectoHome = () => {
-    goto("/");
+  const goTo = () => {
+    goto(`${path}?q=2`);
   };
-  console.log(path);
 </script>
 
 <nav class="container-fluid  {isHere ? 'visually-hidden' : ' '}">
@@ -102,7 +100,8 @@
             aria-label="Close"
           />
         </div>
-        <div class="offcanvas-body">
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <div on:click={goTo} class="offcanvas-body">
           <div class="form-check">
             <input
               class="form-check-input"
