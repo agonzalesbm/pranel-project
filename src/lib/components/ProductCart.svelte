@@ -4,7 +4,7 @@
     export let productName = "";
     export let productDescription = "";
     export let price = "";
-    export let quantity = "";
+    export let quantity = 0;
 
 </script>
 
@@ -43,19 +43,21 @@
             <div class = "Quantity">
                 <div class = "second row">
                     <div class = "col">
-                        <button class="btn btn-outline-primary btn-sm justify-content-center">+</button>
+                        <button class="btn btn-sm justify-content-center">+</button>
                     </div>
                     <div class = "col">
                         {quantity}
                     </div>
                     <div class = "col">
-                        <button class="btn btn-outline-primary btn-sm justify-content-center">-</button>
+                        <button class="btn btn-sm justify-content-center">-</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-3">
-            <img class = "img-thumbnail" src="src/lib/img/cart/Dump.png" width=50px height=50px>
+            <div class="Dump"><!-- svelte-ignore a11y-missing-attribute -->
+                <button class="btn btn-sm justify-content-center" type="button"> <img src="src/lib/img/cart/Dump.png" width=40px height=50px></button>
+            </div>
         </div>
       </div>
 </div>
@@ -66,6 +68,30 @@
     
     .container{
         margin-left: 50px;
+    }
+
+    .container p{
+        margin-left: 10px;
+        font-size: 25px;
+    }
+
+    .Dump button{
+        margin: 105px;
+        margin-left: 180px;
+    }
+
+    .Quantity div{
+        height: 55px;
+        background-color: #a6a6a6;
+        border-radius: 3px;
+        font-size: 30px;
+    }
+
+    .Quantity button{
+        height: 44px;
+        width: 30px;
+        font-size: 20px;
+        background-color: #fff4f2;
     }
 
     .Principal {

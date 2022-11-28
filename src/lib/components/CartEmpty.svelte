@@ -1,8 +1,9 @@
 <script>
+// @ts-nocheck
+
     /*import "bootstrap";*/
     import "bootstrap/dist/css/bootstrap.min.css";
     import {isInCart} from '../services/store'
-    import Product from "./Product.svelte";
     import { onDestroy } from 'svelte';
     import ProductCart from "./ProductCart.svelte";
     import TotalPrice from "./TotalPrice.svelte";
@@ -28,10 +29,11 @@
     </div>
 </div>
 -->
+
 <div class = "">
     <div class="row">
         <div class = "col-md-9">
-        <ProductCart image = "src\lib\img\cart\cartEmpty.png" productName = "Product Name" productDescription = "Product Description" price="500 $"/>
+        <ProductCart image = "src\lib\img\cart\cartEmpty.png" productName = "Product Name" productDescription = "Product Description" price="500 $" quantity=2/>
         </div>
         <div class = "col">
             <TotalPrice />
