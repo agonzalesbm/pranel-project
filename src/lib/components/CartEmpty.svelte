@@ -4,6 +4,8 @@
     import {isInCart} from '../services/store'
     import Product from "./Product.svelte";
     import { onDestroy } from 'svelte';
+    import ProductCart from "./ProductCart.svelte";
+    import TotalPrice from "./TotalPrice.svelte";
     
     isInCart.update(value => value = true)
 
@@ -16,13 +18,24 @@
 <div class="title_ml-5_text-left">
     <p>My Cart</p>
 </div>
-<div class="container ml-5 text-center">
+<!--<div class="container ml-5 text-center">
     <div class="row justify-content-center">
         <div class="emptyCart"> 
             <img src="src\lib\img\cart\cartEmpty.png" width="300" height="300">
         </div>
         <p class = "label">YOUR SHOPPING CART IS EMPTY</p>
         <button class="btn justify-content-center">CONTINUE SHOPPING</button>
+    </div>
+</div>
+-->
+<div class = "">
+    <div class="row">
+        <div class = "col-md-9">
+        <ProductCart image = "src\lib\img\cart\cartEmpty.png" productName = "Product Name" productDescription = "Product Description" price="500 $"/>
+        </div>
+        <div class = "col">
+            <TotalPrice />
+        </div>
     </div>
 </div>
 
@@ -32,6 +45,10 @@
         margin-left: 90px;
         font-size: 40px;
         font-family: 'Bree Serif';
+    }
+
+    .col{
+        width: 100px;
     }
 
     .label {
