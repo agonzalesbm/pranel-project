@@ -35,20 +35,13 @@
 <div class="">
     <div class="row">
         <div class="col-md-9">
-            <ProductCart
-                image="src\lib\img\cart\cartEmpty.png"
-                productName="Product Name"
-                productDescription="Product Description"
-                price="500 $"
-                quantity="2"
-            />
             {#each $productsCart as { image, name, description, price, stock }}
                 <ProductCart
                     {image}
                     productName={name}
                     productDescription={description}
                     {price}
-                    quantity={stock}
+                    stock={stock}
                 />
             {/each}
         </div>

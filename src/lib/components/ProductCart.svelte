@@ -4,8 +4,20 @@
     export let productName = "";
     export let productDescription = "";
     export let price = "";
-    export let quantity = 0;
+    let quantity = 1;
+    export let stock = 0;
 
+    const increment = () => {
+        if (quantity <= stock -1){
+            quantity += 1
+        }
+    };
+    const decrease = () => {
+        if (quantity !== 1){
+            quantity -= 1
+        }   
+    };
+    
 </script>
 
 <!--<div class = "Principal">
@@ -43,13 +55,15 @@
             <div class = "Quantity">
                 <div class = "second row">
                     <div class = "col">
-                        <button class="btn btn-sm justify-content-center">+</button>
+                        <button on:click={increment} class="btn btn-sm justify-content-center">+
+                            
+                        </button>
                     </div>
                     <div class = "col">
                         {quantity}
                     </div>
                     <div class = "col">
-                        <button class="btn btn-sm justify-content-center">-</button>
+                        <button on:click={decrease} class="btn btn-sm justify-content-center">-</button>
                     </div>
                 </div>
             </div>
