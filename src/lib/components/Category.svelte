@@ -8,7 +8,7 @@
 
 <div class="container ml-5 text-center">
     <div class="row justify-content-center">
-        {#each array as { image, imagep, id, category, name, price, stock}}
+        {#each array as { image, imagep, id, category, name, price, stock, description }}
             <div class="col-md-3">
                 <Product
                     handBag={image}
@@ -18,6 +18,7 @@
                     title={name}
                     {price}
                     {stock}
+                    {description}
                 />
             </div>
         {/each}

@@ -10,6 +10,7 @@
     export let productId = "";
     export let category = "";
     export let stock = 0;
+    export let description = '';
 
     let redirectCategory = category === "rings" ? "jewelry" : category;
     let path = `/${redirectCategory}/${productId}`;
@@ -22,11 +23,11 @@
                 imagePerson: handBagPerson,
                 name: title,
                 price,
-                productId,
-                category,
-                stock
+                stock,
+                description
             },
         ];
+        console.log($productsCart)
     };
 </script>
 
