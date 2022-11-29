@@ -5,7 +5,6 @@
 
     export let data;
     const { image, id, name, size, price, description, suggested } = data;
-    console.log(suggested)
     let imgSourc = image;
     $: imgSourc;
     export let firstImg = "";

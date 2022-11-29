@@ -15,6 +15,12 @@ export async function load({ url }) {
         const suggestedProducts = await fetch(`http://localhost:5173/api/get-products-by-color?p=${table}&c=${json.color}`)
         const jsonSuggestedProducts = await suggestedProducts.json()
 
+        if (jsonSuggestedProducts.length < 4) {
+            const productsByPrice = await fetch(`http://localhost:5173/api/get-products-by-price?p=${table}&price=${json.price}`)
+            const jsonByPrice = await productsByPrice.json()
+            return { ...json, suggested: [...jsonSuggestedProducts, ...jsonByPrice] }
+        }
+
         if (json.message && json.message === MESSAGE_404) {
             throw error(404, MESSAGE_404)
         }
