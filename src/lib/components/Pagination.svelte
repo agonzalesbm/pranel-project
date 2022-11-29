@@ -5,6 +5,7 @@
 
     export let size = 0;
     export let category = "";
+    export let index = 1;
 
     let total = ~~(size / 12);
     $: total;
@@ -16,14 +17,16 @@
 
     let isHere = false;
     isInProduct.subscribe((value) => (isHere = value));
+
 </script>
 
 <nav class="container {isHere ? 'visually-hidden' : ''} ​​">
     <ul class="pagination justify-content-center">
         {#each array as element, i}
-            <li class="page-item" class:active={i === 0}>
+        
+            <li class="page-item" class:active={i===index-1}>
                 <a
-                    class="page-link"
+                    class="page-link" 
                     data-sveltekit-reload
                     href={`${category}?i=${i + 1}`}>{i + 1}</a
                 >

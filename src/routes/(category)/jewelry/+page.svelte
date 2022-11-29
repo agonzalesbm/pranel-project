@@ -5,7 +5,7 @@
     import HeaderCategory from "$lib/components/HeaderCategory.svelte";
 
     export let data;
-    const { result, size } = data;
+    const { result, size, index } = data;
 
     let arrays = [];
     let array = [];
@@ -34,4 +34,4 @@
 <Category array={arrays[1]} />
 <Category array={arrays[2]} />
 
-<Pagination {size} category={result.category} />
+<Pagination {size} {index}category={result.category} />

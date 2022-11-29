@@ -10,5 +10,5 @@ export const load = async ({ url }) => {
     const [, path] = pathname.split('/')
     const json = await getProducts(path, index)
     const size = await getSize(path)
-    return { result: json.result, size }
+    return { result: json.result, size, index }
 }
