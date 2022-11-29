@@ -1,18 +1,20 @@
 <script>
     // @ts-nocheck
     import "bootswatch/dist/lux/bootstrap.min.css";
-    import 'animate.css'
+    import "animate.css";
 
     export let data;
-    let imgSourc = data.image;
-    $: imgSourc
+    const { image, id, name, size, price, description, suggested } = data;
+    console.log(suggested)
+    let imgSourc = image;
+    $: imgSourc;
     export let firstImg = "";
     export let secondImg = "";
     const chnageOverHoverFirstImg = () => {
-        imgSourc = firstImg
+        imgSourc = firstImg;
     };
     const chnageOverHoverSecondImg = () => {
-        imgSourc = secondImg
+        imgSourc = secondImg;
     };
 </script>
 
@@ -35,18 +37,19 @@
                     <div>
                         <!-- svelte-ignore a11y-missing-attribute -->
                         <!-- svelte-ignore a11y-mouse-events-have-key-events -->
-                        <img src={firstImg} on:mouseover={chnageOverHoverFirstImg} />
+                        <img
+                            src={firstImg}
+                            on:mouseover={chnageOverHoverFirstImg}
+                        />
                     </div>
                 </div>
             </div>
             <div class="product-div-right">
-                <span class="product-name">{data.name}</span>
-                <span class="product-refrence"
-                    >Product Reference : {data.id}</span
-                >
-                <span class="product-size">Product Size : {data.size}</span>
-                <p class="product-description">{data.description}</p>
-                <span class="product-price">Price: {data.price}$</span>
+                <span class="product-name">{name}</span>
+                <span class="product-refrence">Product Reference : {id}</span>
+                <span class="product-size">Product Size : {size}</span>
+                <p class="product-description">{description}</p>
+                <span class="product-price">Price: {price}$</span>
                 <div class="btn-groups">
                     <button type="button" class="add-cart-btn">
                         <i class="fas fa-shopping-cart" />add to cart</button

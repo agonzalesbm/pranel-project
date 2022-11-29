@@ -11,11 +11,14 @@ export async function load({ url }) {
     try {
         const res = await fetch(`http://localhost:5173/api/get-product?p=${table}&id=${id}`)
         const json = await res.json()
-        console.log(json)
+
+        const suggestedProducts = await fetch(`http://localhost:5173/api/get-products-by-color?p=${table}&c=${json.color}`)
+        const jsonSuggestedProducts = await suggestedProducts.json()
+
         if (json.message && json.message === MESSAGE_404) {
             throw error(404, MESSAGE_404)
         }
-        return json
+        return { ...json, suggested: [...jsonSuggestedProducts] }
     } catch (error) {
         throw error(404, MESSAGE_404)
     }
