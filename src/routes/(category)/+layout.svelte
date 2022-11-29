@@ -13,4 +13,4 @@
 
 <Navigator />
 <slot />
-<Pagination />
+

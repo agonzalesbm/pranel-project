@@ -1,5 +1,6 @@
 <script>
     // @ts-nocheck
+    import Pagination from "$lib/components/Pagination.svelte";
     import Category from "$lib/components/Category.svelte";
     import HeaderCategory from "$lib/components/HeaderCategory.svelte";
 
@@ -30,3 +31,5 @@
 <Category array={arrays[0]} />
 <Category array={arrays[1]} />
 <Category array={arrays[2]} />
+
+<Pagination />
