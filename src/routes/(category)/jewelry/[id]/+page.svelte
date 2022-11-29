@@ -11,4 +11,4 @@
     });
     export let data
 </script>
-<ProductPage {data} firstImg = {data.image} secondImg = {data.imagep}/>
+<ProductPage {data} firstImg={data.image} secondImg={data.imagep} arrayInfo={data.specifiedBulletText.split("*").splice(1)}/>
