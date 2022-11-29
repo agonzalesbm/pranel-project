@@ -1,16 +1,19 @@
 <script>
-    import "bootswatch/dist/lux/bootstrap.min.css";
-</script>
-<div class="suggested">
-    <h2>Suggested Product</h2>
-</div>
-<style>
-    .suggested{
-        background-color: #ffded7;
-        text-align: left;;
-        font-family: "Roboto", sans-serif;
-        color: black;
-        border: 1px solid #000000;
-    }
+    // @ts-nocheck
 
+    import "bootswatch/dist/lux/bootstrap.min.css";
+    import Category from "./Category.svelte";
+
+    export let array = [];
+</script>
+
+<div class="suggested">
+    <h2 class="p-4 text-align-center">Suggested Product</h2>
+    <Category {array} />
+</div>
+
+<style>
+    .suggested {
+        background-color: #ffded7;
+    }
 </style>

@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import { error, json } from '@sveltejs/kit';
 const MESSAGE_404 = 'Page not found'
@@ -22,11 +23,13 @@ export const getSuggestions = async (/** @type {string} */ table, /** @type {str
     const res = await fetch(`http://localhost:5173/api/get-product?p=${table}&id=${id}`)
     const json = await res.json()
     const suggestedProducts = await fetch(`http://localhost:5173/api/get-products-by-color?p=${table}&c=${json.color}`)
-    const jsonSuggestedProducts = await suggestedProducts.json()
+    let jsonSuggestedProducts = await suggestedProducts.json()
+    jsonSuggestedProducts = jsonSuggestedProducts.filter(element => element.id !== id)
 
     if (jsonSuggestedProducts.length < 4) {
         const productsByPrice = await fetch(`http://localhost:5173/api/get-products-by-price?p=${table}&price=${json.price}`)
-        const jsonByPrice = await productsByPrice.json()
+        let jsonByPrice = await productsByPrice.json()
+        jsonByPrice = jsonByPrice.filter(element => element.id !== id)
         return [...jsonSuggestedProducts, ...jsonByPrice]
     }
     return [...jsonSuggestedProducts]

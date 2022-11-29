@@ -7,6 +7,7 @@
     export let data;
     const { product, suggested } = data;
     const { image, imagep, id, name, size, price, description } = product;
+    const [first, second, third, forth] = suggested
 
     let imgSourc = image;
     $: imgSourc;
@@ -62,7 +63,10 @@
         </div>
     </div>
 </div>
-<div class="container"><SuggestedProduct/></div>
+<div class="container">
+    <SuggestedProduct array={[first, second, third, forth]} />
+</div>
+
 <style>
     * {
         padding: 0;
