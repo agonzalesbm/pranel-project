@@ -2,6 +2,7 @@
     // @ts-nocheck
     import "bootswatch/dist/lux/bootstrap.min.css";
     import "animate.css";
+    import SuggestedProduct from "./SuggestedProduct.svelte";
 
     export let data;
     const { product, suggested } = data;
@@ -61,7 +62,7 @@
         </div>
     </div>
 </div>
-
+<div class="container"><SuggestedProduct/></div>
 <style>
     * {
         padding: 0;
