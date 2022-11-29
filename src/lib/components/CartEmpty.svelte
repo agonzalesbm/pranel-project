@@ -33,6 +33,22 @@
 -->
 
 <div class="">
+    <div class = "Principal">
+        <div class="row">
+          <div class = "col-md-4">
+              <p>Product</p>
+          </div>
+          <div class="col-2">
+            <p class= "price">Price</p>
+          </div>
+          <div class="col-2">
+              <p class="quantity">Quantity </p>
+          </div>
+          <div class="col-2">
+              
+          </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-9">
             {#each $productsCart as { image, name, description, price, stock }}
@@ -81,5 +97,26 @@
         padding-bottom: 2px;
         border-bottom: 3px solid #000000;
         border-right: 3px solid #000000;
+        
     }
+
+    .Principal {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-left: 3rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .quantity {
+        margin-left: -1.5rem;
+    }
+
+    .price{
+        margin-left: -1.9rem;
+    }
+
+    .Principal div{
+        background-color: #fff;
+    }
+    
 </style>

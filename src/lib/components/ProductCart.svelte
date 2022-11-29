@@ -20,24 +20,6 @@
     
 </script>
 
-<div class = "Principal">
-    <div class="row">
-      <div class = "col-md-5">
-          <p>Product</p>
-      </div>
-      <div class="col-2">
-        <p class= "price">Price</p>
-      </div>
-      <div class="col-2">
-          <p class="quantity">Quantity </p>
-      </div>
-      <div class="col-2">
-          
-      </div>
-    </div>
-</div>
-
-
 <div class = "container">
       <div class="row align-items-center">
         <div class = "col-2">
@@ -78,6 +60,7 @@
 <style>
     .row {
         background-color: #fff4f2;
+        margin-bottom: 1rem;
     }
     
     .container{
@@ -106,24 +89,5 @@
         width: 2rem;
         font-size: 1.5rem;
         background-color: #fff4f2;
-    }
-
-    .Principal {
-        font-size: 2.5rem;
-        font-weight: bold;
-        margin-left: 3rem;
-        margin-bottom: 0.3rem;
-    }
-
-    .quantity {
-        margin-left: -1.5rem;
-    }
-
-    .price{
-        margin-left: 2.5rem;
-    }
-
-    .Principal div{
-        background-color: #fff;
     }
 </style>
