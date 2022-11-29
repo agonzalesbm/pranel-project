@@ -55,10 +55,11 @@
                     <h5>List of products</h5>
                 </div>
                 <div class="popover-body">
-                    
+                    <h5 class="empty-message">Cart is empty</h5>
                 </div>
                 <div class="popover-footer">
-                    <h5>Total: 555 $</h5>
+                    <h5>Total: </h5><h5 style="right: 1em;position:absolute;" > 0.00 $</h5>
+                    
                 </div>
             </div>
             
@@ -148,11 +149,31 @@
     }
 
     .popover-body {
-        background-color: red;
         overflow: hidden;
         max-height: calc(100vh - 50vh);
         min-height: 0.5em;
     }
+    
+    .empty-message {
+        color: #777777;
+        margin: 1em;
+    }
+
+    .title{
+        border-color: transparent transparent black transparent;
+        border-style: solid;
+        padding-bottom: 0.2em;
+    }
+
+    .title, .popover-body {
+        text-align: center;
+    }
+
+    .popover-footer {
+        display: inline;
+        display: flex;
+    }
+
     .wrapper {
         width: 100%;
         max-width: 1500px;
