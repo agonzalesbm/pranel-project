@@ -20,6 +20,7 @@
     const onClick = () => {
         isVisibleCart.update((value) => (value = !value));
     };
+
 </script>
 
 <header class:visually-hidden={$isAnError}>
@@ -45,11 +46,27 @@
                     </svg></span
                 >
             </a>
-            <a on:click={onClick} class = {cart ? "visually-hidden" : ""} href = "#"><span style="color: black"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
-                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-            </svg></span>
-            
-            </a>
+            <span class="icon-cart">
+                <a href = "/cart" >
+                    <span style="color: black"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                    </span>
+                </a>
+                <div class="container">
+                    <div class="title">
+                        <h5>List of products</h5>
+                    </div>
+                    <div class="popover-body">
+                        <WindowsCart /><WindowsCart />
+                        <h5 class="empty-message">Cart is empty</h5>
+                    </div>
+                    <div class="popover-footer">
+                        <h5>Total: </h5><h5 style="right: 1em;position:absolute;" > 0.00 $</h5>
+                        
+                    </div>
+                </div>
+                
+            </span>
             
             <a href="#" 
                 ><span style="color: black"
@@ -66,7 +83,6 @@
                         />
                     </svg></span
                 >
-                <WindowsCart />
             </a>
             <a href="#" class:visually-hidden={isHidden}
                 ><span style="color: black"
@@ -104,6 +120,68 @@
         overflow: hidden;
         background: #ffded7;
         margin-bottom: 10px;
+    }
+
+    .icon-cart:hover .container {
+        visibility: visible;
+        opacity: 1;
+        transition: 0.3s;
+    }
+
+    .container {
+        visibility: hidden;
+        background-color: white;
+        padding: 15px;
+        position: absolute;
+        margin-left: -18em;
+        margin-top: -20px;
+        height: auto;
+        max-width: 25em;
+        min-width: 25em;
+        border-style: solid;
+        z-index: 10;
+        min-height: 3em;
+        max-height: calc(100vh - 30vh);
+        transition: 0.3s;
+        opacity: 0;
+    }
+
+    .container::before {
+        content: "";
+        border-style: solid;
+        border-width: 0px 12px 12px 12px;
+        border-color: transparent transparent black transparent;
+        position: absolute;
+        top: -12px;
+        right: 8px;
+    }
+
+    .popover-body {
+        overflow: hidden;
+        max-height: calc(100vh - 50vh);
+        min-height: 0.5em;
+        position: relative;
+    }
+    
+    .empty-message {
+        color: #777777;
+        margin: 1em;
+        z-index: -1;
+    }
+
+    .title{
+        border-color: transparent transparent black transparent;
+        border-style: solid;
+        padding-bottom: 0.2em;
+    }
+
+    .title, .popover-body {
+        text-align: center;
+    }
+
+    .popover-footer {
+        display: inline;
+        display: flex;
     }
 
     .wrapper {
