@@ -5,7 +5,7 @@
     isInProduct.subscribe( value => isHere = value);
 </script>
 
-<nav class="container-fluid  {isHere ? 'visually-hidden':' '}">
+<nav class="container-fluid">
   <nav class="navbar bg-light">
     <div class="container-fluid">
       <ul class="nav">
@@ -20,7 +20,7 @@
         </li>
       </ul>
       <form class="d-flex">
-        <button type="button" class="btn-filter">
+        <button type="button" class="btn-filter {isHere ? 'visually-hidden':' '}">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
