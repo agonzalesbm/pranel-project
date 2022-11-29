@@ -92,7 +92,7 @@
         aria-labelledby="offcanvasRightLabel"
       >
         <div class="offcanvas-header">
-          <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+          <h5 id="offcanvasRightLabel">Filter by</h5>
           <button
             type="button"
             class="btn-close text-reset"
@@ -101,18 +101,7 @@
           />
         </div>
         <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <div on:click={goTo} class="offcanvas-body">
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault"
-              id="flexRadioDefault1"
-            />
-            <label class="form-check-label" for="flexRadioDefault1">
-              Default radio
-            </label>
-          </div>
+        <div class="offcanvas-body">
           <div class="form-check">
             <input
               class="form-check-input"
@@ -122,7 +111,19 @@
               checked
             />
             <label class="form-check-label" for="flexRadioDefault2">
-              Default checked radio
+              All
+            </label>
+          </div>
+          <label class="form-check-label">Colors</label>
+          <div on:click={goTo} class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="flexRadioDefault"
+              id="black"
+            />
+            <label class="form-check-label" for="black">
+              Blacks <span style="background-color: black; color: black;">bs</span>
             </label>
           </div>
         </div>
