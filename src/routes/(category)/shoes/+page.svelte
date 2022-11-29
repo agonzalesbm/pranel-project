@@ -5,11 +5,11 @@
     import HeaderCategory from "$lib/components/HeaderCategory.svelte";
 
     export let data;
-    const { result } = data;
+    const { result, size } = data;
 
     let arrays = [];
     let array = [];
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < result.length; i++) {
         if (i !== 0 && i % 4 === 0) {
             arrays.push(array);
             array = [];
@@ -20,7 +20,9 @@
             }
         }
     }
-    arrays.push(array);
+    if (array) {
+        arrays.push(array);
+    }
 </script>
 
 <HeaderCategory
@@ -32,4 +34,4 @@
 <Category array={arrays[1]} />
 <Category array={arrays[2]} />
 
-<Pagination />
+<Pagination {size} category={result.category} />
