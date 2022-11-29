@@ -23,3 +23,8 @@ export const fileLoader = async (/** @type {string} */ table, /** @type {string}
         return undefined;
     }
 }
+
+export const getTotalProducts = async (/** @type {string} */ table) => {
+    const querySnapshot = await getDocs(collection(db, table))
+    return querySnapshot.size
+}

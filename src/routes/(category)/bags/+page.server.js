@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { getProducts, getSize } from '$lib/services/endpointCategory';
 import { error } from '@sveltejs/kit';
 
 /** @type {import('../../../../.svelte-kit/types/src/routes/(category)/bags/$types').PageLoad} */
@@ -6,7 +7,8 @@ export const load = async ({ url }) => {
     let index = 1
     const { pathname, searchParams } = url
     index = searchParams.get('i') === null ? 1 : parseInt(searchParams.get('i'))
-    const obj = await fetch(`http://localhost:5173/api/get-products?p=bags&i=${index}`)
-    const json = await obj.json()
-    return json
+    const [, path] = pathname.split('/')
+    const json = await getProducts(path, index)
+    const size = await getSize(path)
+    return { result: json.result, size }
 }
