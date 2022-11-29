@@ -2,12 +2,14 @@
     // @ts-nocheck
     import "bootswatch/dist/lux/bootstrap.min.css";
     import 'animate.css'
+    import { element } from "svelte/internal";
 
     export let data;
     let imgSourc = data.image;
     $: imgSourc
     export let firstImg = "";
     export let secondImg = "";
+    export let arrayInfo = [];
     const chnageOverHoverFirstImg = () => {
         imgSourc = firstImg
     };
@@ -44,8 +46,22 @@
                 <span class="product-refrence"
                     >Product Reference : {data.id}</span
                 >
-                <span class="product-size">Product Size : {data.size}</span>
-                <p class="product-description">{data.description}</p>
+                <span class="product-size">Size/Dimmensions : {data.size}</span>
+                <span class="aboutProduct">About The Product</span>
+
+                <div class="Description">
+                    {data.description}
+                </div>
+
+                <div class="LiDescription">
+
+                    {#each arrayInfo as element}
+                        <li class="listDesc">
+                        {element}
+                        </li>
+
+                    {/each}
+                </div>
                 <span class="product-price">Price: {data.price}$</span>
                 <div class="btn-groups">
                     <button type="button" class="add-cart-btn">
@@ -74,6 +90,9 @@
         display: block;
     }
 
+    .listDesc{
+        font-family: "Roboto", sans-serif;
+    }
     .main-wrapper {
         min-height: 100vh;
         background-color: whitesmoke;
@@ -142,6 +161,13 @@
         opacity: 0.9;
     }
 
+    .aboutProduct{
+        font-size: 23px;
+        margin-bottom: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        opacity: 1;
+    }
     .product-price {
         font-weight: 700;
         font-size: 25px;
@@ -150,11 +176,14 @@
     }
 
     .product-description {
+        display: flex;
+        word-wrap: break-word;
         font-weight: 18px;
         line-height: 1.6;
         font-weight: 300;
         opacity: 0.9;
-        margin-top: 22px;
+        margin-top: 0px;
+        margin-left: 0px;
     }
     .btn-groups {
         margin-top: 22px;
