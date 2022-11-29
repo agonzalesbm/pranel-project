@@ -20,6 +20,7 @@
     const onClick = () => {
         isVisibleCart.update((value) => (value = !value));
     };
+
 </script>
 
 <header class:visually-hidden={$isAnError}>
@@ -45,12 +46,23 @@
                     </svg></span
                 >
             </a>
-            <a on:click={onClick} class = {cart ? "visually-hidden" : ""} href = "#"><span style="color: black"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+            <a href = "/cart" class="icon-cart">
+                <span style="color: black"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-            </svg></span>
+                </span>
+            <div class="container">
+                <div class="title">
+                    <h5>List of products</h5>
+                </div>
+                <div class="popover-body">
+                    
+                </div>
+                <div class="popover-footer">
+                    <h5>Total: 555 $</h5>
+                </div>
+            </div>
             
-            </a>
-            
+        </a>
             <a href="#" 
                 ><span style="color: black"
                     ><svg
@@ -106,6 +118,41 @@
         margin-bottom: 10px;
     }
 
+    .icon-cart:hover .container {
+        visibility: visible;
+    }
+
+    .container {
+        visibility: hidden;
+        background-color: white;
+        padding: 15px;
+        position: absolute;
+        margin-left: -11em;
+        margin-top: 10px;
+        height: auto;
+        width: 12em;
+        border-style: solid;
+        z-index: 10;
+        min-height: 3em;
+        max-height: calc(100vh - 30vh);
+    }
+
+    .container::before {
+        content: "";
+        border-style: solid;
+        border-width: 0px 12px 12px 12px;
+        border-color: transparent transparent black transparent;
+        position: absolute;
+        top: -12px;
+        right: 8px;
+    }
+
+    .popover-body {
+        background-color: red;
+        overflow: hidden;
+        max-height: calc(100vh - 50vh);
+        min-height: 0.5em;
+    }
     .wrapper {
         width: 100%;
         max-width: 1500px;
