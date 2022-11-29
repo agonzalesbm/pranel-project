@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { error } from '@sveltejs/kit';
+import { getProducts, getSuggestions } from "$lib/services/endpoint";
 
 const MESSAGE_404 = 'Page not found'
 
@@ -9,22 +10,7 @@ export async function load({ url }) {
     const [, table, id] = sliceTexted;
     console.log(table, id)
     try {
-        const res = await fetch(`http://localhost:5173/api/get-product?p=${table}&id=${id}`)
-        const json = await res.json()
-
-        const suggestedProducts = await fetch(`http://localhost:5173/api/get-products-by-color?p=${table}&c=${json.color}`)
-        const jsonSuggestedProducts = await suggestedProducts.json()
-
-        if (jsonSuggestedProducts.length < 4) {
-            const productsByPrice = await fetch(`http://localhost:5173/api/get-products-by-price?p=${table}&price=${json.price}`)
-            const jsonByPrice = await productsByPrice.json()
-            return { ...json, suggested: [...jsonSuggestedProducts, ...jsonByPrice] }
-        }
-
-        if (json.message && json.message === MESSAGE_404) {
-            throw error(404, MESSAGE_404)
-        }
-        return { ...json, suggested: [...jsonSuggestedProducts] }
+        return { product: getProducts(table, id), suggested: getSuggestions(table, id) }
     } catch (error) {
         throw error(404, MESSAGE_404)
     }

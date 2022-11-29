@@ -4,11 +4,14 @@
     import "animate.css";
 
     export let data;
-    const { image, id, name, size, price, description, suggested } = data;
+    const { product, suggested } = data;
+    const { image, imagep, id, name, size, price, description } = product;
+
     let imgSourc = image;
     $: imgSourc;
-    export let firstImg = "";
-    export let secondImg = "";
+
+    export let firstImg = image;
+    export let secondImg = imagep;
     const chnageOverHoverFirstImg = () => {
         imgSourc = firstImg;
     };

@@ -10,6 +10,7 @@
                 isInProduct.update((value) => (value = false));
         });
         export let data;
+        const { image, imagep } = data.product;
 </script>
 
-<ProductPage {data} firstImg={data.image} secondImg={data.imagep} />
+<ProductPage {data} firstImg={image} secondImg={imagep} />
