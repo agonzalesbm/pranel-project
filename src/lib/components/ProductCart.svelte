@@ -89,6 +89,8 @@
 </div>
 
 <style>
+    a:link { text-decoration:none; } 
+    a:visited { text-decoration:none; }
     .row {
         background-color: #fff4f2;
         margin-bottom: 1rem;
