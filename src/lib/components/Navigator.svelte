@@ -38,6 +38,10 @@
   const goTo = () => {
     goto(`${path}?q=2`);
   };
+
+  function select(colorName) {
+    console.log(colorName);
+  }
 </script>
 
 <nav class="container-fluid  {isHere ? 'visually-hidden' : ' '}">
@@ -115,15 +119,73 @@
             </label>
           </div>
           <label class="form-check-label">Colors</label>
-          <div on:click={goTo} class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault"
-              id="black"
-            />
-            <label class="form-check-label" for="black">
-              Blacks <span style="background-color: black; color: black;">bs</span>
+          
+          <div class="colors">
+            <label class="color-box">
+              <input type="checkbox" on:click={()=> console.log("blue")} name="" id="">
+              <div style="background-color: blue;"></div>
+            </label>
+            <label class="color-box">
+              <input type="checkbox" name="" id="">
+              <div style="background-color: navy;"></div>
+            </label>
+            <label class="color-box">
+              <input type="checkbox" name="" id="">
+              <div style="background-color: indigo;"></div>
+            </label>
+            <label class="color-box">
+              <input type="checkbox" name="" id="">
+              <div style="background-color: purple;"></div>
+            </label>
+            <label class="color-box">
+              <input type="checkbox" name="" id="">
+              <div style="background-color: coral;"></div>
+            </label>
+          </div>
+
+          <div class="colors">
+            <label class="color-box">
+              <input type="checkbox" name="" id="">
+              <div style="background-color: orange;"></div>
+            </label>
+            <label class="color-box">
+              <input type="checkbox" name="" id="">
+              <div style="background-color: lemonchiffon;"></div>
+            </label>
+            <label class="color-box">
+              <input type="checkbox" name="" id="">
+              <div style="background-color: yellow;"></div>
+            </label>
+            <label class="color-box">
+              <input type="checkbox" name="" id="">
+              <div style="background-color: maroon;"></div>
+            </label>
+            <label class="color-box">
+              <input type="checkbox" name="" id="">
+              <div style="background-color: brown;"></div>
+            </label>
+          </div>
+
+          <div class="colors">
+            <label class="color-box">
+              <input type="checkbox" name="" id="">
+              <div style="background-color: red;"></div>
+            </label>
+            <label class="color-box">
+              <input type="checkbox" name="" id="">
+              <div style="background-color: pink;"></div>
+            </label>
+            <label class="color-box">
+              <input type="checkbox" name="" id="">
+              <div style="background-color: white;"></div>
+            </label>
+            <label class="color-box">
+              <input type="checkbox" name="" id="">
+              <div style="background-color: grey;"></div>
+            </label>
+            <label class="color-box">
+              <input type="checkbox" name="" id="">
+              <div style="background-color: black;"></div>
             </label>
           </div>
         </div>
@@ -158,5 +220,32 @@
     background-color: #000000;
     color: #fff;
     border-radius: 10%;
+  }
+  .colors {
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding-left: 0.5em;
+  }
+
+  .color-box div{
+    width: 4em;
+    height: 4em;
+    background-color: white;
+    margin: 0.5em;
+    border-radius: 50%;
+    box-shadow: 0px 0px 0.5em #c7b0ab;
+  }
+
+  .color-box div:hover{
+    box-shadow: inset 0px 0px 0.3em rgba(0, 0, 0, 0.43);
+  }
+
+  .color-box input {
+    display: none;
+  }
+  .color-box input:checked + div {
+    border: solid 0.3em #000000;
+    box-shadow: 0px 0px 0.6em rgba(0, 0, 0, 0.9);
   }
 </style>
