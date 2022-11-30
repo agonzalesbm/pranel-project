@@ -7,3 +7,6 @@ export let isAnError = writable(false)
 export let isVisibleCart = writable(false)
 
 export let currentPage = writable('')
+
+
+export let currentProducts = writable([])
