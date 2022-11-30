@@ -34,7 +34,6 @@
                     description,
                 },
             ];
-            console.log($productsCart);
             changeState = true;
         } else {
             changeState = false;

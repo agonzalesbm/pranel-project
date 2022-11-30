@@ -1,19 +1,52 @@
 <script>
     // @ts-nocheck
     import "bootswatch/dist/lux/bootstrap.min.css";
-    import 'animate.css'
+    import "animate.css";
+    import { productsCart } from "../services/store";
+    import { goto } from "$app/navigation";
 
     export let data;
-    let imgSourc = data.image;
-    $: imgSourc
     export let firstImg = "";
     export let secondImg = "";
+
+    const { id, image, imagep, name, price, stock, description } = data;
+    let imgSourc = data.image;
+    let changeState = $productsCart.find((product) => product.id === id);
+
+    $: imgSourc;
+    $: changeState;
+
     const chnageOverHoverFirstImg = () => {
-        imgSourc = firstImg
+        imgSourc = firstImg;
     };
     const chnageOverHoverSecondImg = () => {
-        imgSourc = secondImg
+        imgSourc = secondImg;
     };
+
+    const addProductInCart = () => {
+        let exist = $productsCart.find((product) => product.id === id);
+        if (!exist) {
+            $productsCart = [
+                ...$productsCart,
+                {
+                    id,
+                    image,
+                    imagePerson: imagep,
+                    name,
+                    price,
+                    stock,
+                    description,
+                },
+            ];
+            changeState = true;
+        } else {
+            changeState = false;
+        }
+    };
+
+    const goTo =() => {
+        goto('/cart')
+    }
 </script>
 
 <div class="main-wrapper animate__animated animate__fadeIn">
@@ -35,7 +68,10 @@
                     <div>
                         <!-- svelte-ignore a11y-missing-attribute -->
                         <!-- svelte-ignore a11y-mouse-events-have-key-events -->
-                        <img src={firstImg} on:mouseover={chnageOverHoverFirstImg} />
+                        <img
+                            src={firstImg}
+                            on:mouseover={chnageOverHoverFirstImg}
+                        />
                     </div>
                 </div>
             </div>
@@ -48,9 +84,15 @@
                 <p class="product-description">{data.description}</p>
                 <span class="product-price">Price: {data.price}$</span>
                 <div class="btn-groups">
-                    <button type="button" class="add-cart-btn">
-                        <i class="fas fa-shopping-cart" />add to cart</button
-                    >
+                    {#if changeState}
+                        <button on:click={goTo} type="button" class="add-cart-btn">
+                            <i class="fas fa-shopping-cart" />Go cart</button
+                        >
+                    {:else}
+                        <button on:click={addProductInCart} type="button" class="add-cart-btn">
+                            <i class="fas fa-shopping-cart" />add to cart</button
+                        >
+                    {/if}
                 </div>
             </div>
         </div>

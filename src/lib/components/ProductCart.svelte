@@ -12,9 +12,6 @@
 
     let quantity = 1;
     let priceChange = 0.0;
-    let priceStore = 0;
-
-    totalPriceCart.subscribe((value) => (priceStore = value));
 
     $: priceChange = price * quantity;
     const increment = () => {
