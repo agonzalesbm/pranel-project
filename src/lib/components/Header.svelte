@@ -20,6 +20,26 @@
     const onClick = () => {
         isVisibleCart.update((value) => (value = !value));
     };
+
+    import { clickBags, clickShoes, clickJewelry } from "$lib/services/store";
+
+    function clickBagsButton() {
+        clickBags.update(value => value = true);
+        clickShoes.update(value => value = false);
+        clickJewelry.update(value => value = false);
+    }
+
+    function clickJewelryButton() {
+        clickBags.update(value => value = false);
+        clickShoes.update(value => value = false);
+        clickJewelry.update(value => value = true);
+    }
+
+    function clickShoesButton() {
+        clickBags.update(value => value = false);
+        clickShoes.update(value => value = true);
+        clickJewelry.update(value => value = false);
+    }
 </script>
 
 <header class:visually-hidden={$isAnError}>
@@ -85,9 +105,9 @@
                     </svg></span
                 >
                 <ul class="menu">
-                    <li><a href="/shoes">Shoes</a></li>
-                    <li><a href="/bags">Bags</a></li>
-                    <li><a href="/jewelry">Jewelry</a></li>
+                    <li><a href="/shoes" on:click={clickShoesButton}>Shoes</a></li>
+                    <li><a href="/bags" on:click={clickBagsButton}>Bags</a></li>
+                    <li><a href="/jewelry" on:click={clickJewelryButton}>Jewelry</a></li>
                 </ul>
             </a>
         </nav>

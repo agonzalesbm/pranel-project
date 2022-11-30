@@ -1,8 +1,41 @@
+<!-- <script context="module"> -->
 <script>
     import "bootswatch/dist/lux/bootstrap.min.css";
-    import {isInProduct} from '../services/store'
+    import {isInProduct, clickBags, clickJewelry, clickShoes} from '../services/store'
     let isHere = false;
     isInProduct.subscribe( value => isHere = value);
+
+    let checkShoes = false
+    let checkBags = false
+    let checkJewelry = false
+
+    clickBags.subscribe((value) =>{
+      checkBags = value;
+    })
+    clickShoes.subscribe((value) =>{
+      checkShoes = value;
+    })
+    clickJewelry.subscribe((value) =>{
+      checkJewelry = value;
+    })
+
+    export function shoesMarked() {
+      clickShoes.update((value) => value = true);
+      clickBags.update((value) => value = false);
+      clickJewelry.update((value) => value = false);
+    }
+
+    export function bagsMarked() {
+      clickShoes.update((value) => value = false);
+      clickBags.update((value) => value = true);
+      clickJewelry.update((value) => value = false);
+    }
+
+    export function jewelryMarked() {
+      clickShoes.update((value) => value = false);
+      clickBags.update((value) => value = false);
+      clickJewelry.update((value) => value = true);
+    }
 </script>
 
 <nav class="container-fluid">
@@ -10,13 +43,31 @@
     <div class="container-fluid">
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/shoes">Shoes</a>
+          <a class="nav-link" aria-current="page" href="/shoes" on:click = {shoesMarked}>
+            {#if checkShoes}
+              <u>Shoes</u>
+            {:else}
+              <p class="color-disabled">Shoes</p>
+            {/if}
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/bags">Bags</a>
+          <a class="nav-link" href="/bags" on:click = {bagsMarked}>
+            {#if checkBags}
+              <u>Bags</u>
+            {:else}
+              <p class="color-disabled">Bags</p>
+            {/if}
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/jewelry">Rings</a>
+          <a class="nav-link" href="/jewelry" on:click = {jewelryMarked}>
+            {#if checkJewelry}
+              <u>Jewelry</u>
+            {:else}
+              <p class="color-disabled">Jewelry</p>
+            {/if}
+          </a>
         </li>
       </ul>
       <form class="d-flex">
@@ -62,5 +113,9 @@
     background: #000000;
     text-decoration: none;
     color: white;
+  }
+
+  .color-disabled {
+    color: #949494;
   }
 </style>
