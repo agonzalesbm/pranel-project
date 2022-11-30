@@ -1,18 +1,62 @@
 <script>
     // @ts-nocheck
     import "bootswatch/dist/lux/bootstrap.min.css";
-    import 'animate.css'
+    import "animate.css";
+    import { productsCart } from "../services/store";
+    import { goto } from "$app/navigation";
+    import Noty from "noty";
+    import "noty/lib/themes/nest.css";
+    import 'noty/lib/noty.css'
 
     export let data;
-    let imgSourc = data.image;
-    $: imgSourc
     export let firstImg = "";
     export let secondImg = "";
+
+    const { id, image, imagep, name, price, stock, description, category } = data;
+    let imgSourc = data.image;
+    let changeState = $productsCart.find((product) => product.id === id);
+
+    $: imgSourc;
+    $: changeState;
+
     const chnageOverHoverFirstImg = () => {
-        imgSourc = firstImg
+        imgSourc = firstImg;
     };
     const chnageOverHoverSecondImg = () => {
-        imgSourc = secondImg
+        imgSourc = secondImg;
+    };
+
+    const addProductInCart = () => {
+        let exist = $productsCart.find((product) => product.id === id);
+        if (!exist) {
+            $productsCart = [
+                ...$productsCart,
+                {
+                    id,
+                    image,
+                    imagePerson: imagep,
+                    name,
+                    price,
+                    stock,
+                    description,
+                    category
+                },
+            ];
+            changeState = true;
+            new Noty({
+                theme: "nest",
+                text: "Product added to cart",
+                type: "alert",
+                layout: 'bottomRight',
+                timeout: 1500,
+            }).show();
+        } else {
+            changeState = false;
+        }
+    };
+
+    const goTo = () => {
+        goto("/cart");
     };
 </script>
 
@@ -35,7 +79,10 @@
                     <div>
                         <!-- svelte-ignore a11y-missing-attribute -->
                         <!-- svelte-ignore a11y-mouse-events-have-key-events -->
-                        <img src={firstImg} on:mouseover={chnageOverHoverFirstImg} />
+                        <img
+                            src={firstImg}
+                            on:mouseover={chnageOverHoverFirstImg}
+                        />
                     </div>
                 </div>
             </div>
@@ -48,9 +95,23 @@
                 <p class="product-description">{data.description}</p>
                 <span class="product-price">Price: {data.price}$</span>
                 <div class="btn-groups">
-                    <button type="button" class="add-cart-btn">
-                        <i class="fas fa-shopping-cart" />add to cart</button
-                    >
+                    {#if changeState}
+                        <button
+                            on:click={goTo}
+                            type="button"
+                            class="add-cart-btn"
+                        >
+                            <i class="fas fa-shopping-cart" />Go cart</button
+                        >
+                    {:else}
+                        <button
+                            on:click={addProductInCart}
+                            type="button"
+                            class="add-cart-btn"
+                        >
+                            <i class="fas fa-shopping-cart" />add to cart</button
+                        >
+                    {/if}
                 </div>
             </div>
         </div>

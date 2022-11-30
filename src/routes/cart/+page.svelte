@@ -1,6 +1,6 @@
 <script>
     // import 'bootstrap'
-    import 'bootstrap/dist/css/bootstrap.min.css'
-    import CartEmpty from '$lib/components/CartEmpty.svelte';
+    import "bootswatch/dist/lux/bootstrap.min.css";
+    import Cart from '$lib/components/Cart.svelte';
 </script>
-<CartEmpty />
+<Cart />
