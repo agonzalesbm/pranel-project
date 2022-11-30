@@ -8,6 +8,10 @@
     import ProductCart from "./ProductCart.svelte";
     import TotalPrice from "./TotalPrice.svelte";
     import { productsCart, totalPriceCart } from "../services/store";
+    import Noty from "noty";
+    import "noty/lib/themes/nest.css";
+    import "noty/lib/noty.css";
+    import { goto } from "$app/navigation";
 
     isInCart.update((value) => (value = true));
 
@@ -19,6 +23,7 @@
 
     $: total;
     $: products;
+    $: console.log(products)
 
     deleteElement.subscribe((value) => (deleteId = value));
     productsCart.subscribe((value) => {
@@ -30,13 +35,24 @@
 
     totalPriceCart.subscribe((value) => (total = value));
 
-    $: deleteId != '' ? deleteProductCart() : ''
+    $: deleteId != "" ? deleteProductCart() : "";
     const deleteProductCart = () => {
         const index = $productsCart.findIndex((e) => e.id === deleteId);
         $productsCart.splice(index, 1);
-        productsCart.update(value => value = $productsCart)
-        deleteElement.update(value => value = '')
+        productsCart.update((value) => (value = $productsCart));
+        deleteElement.update((value) => (value = ""));
+        new Noty({
+            theme: "nest",
+            text: "Product removed to cart",
+            type: "error",
+            layout: "bottomRight",
+            timeout: 1500,
+        }).show();
     };
+
+    const goTo = () => {
+        goto('/')
+    }
 
     onDestroy(() => {
         isInCart.update((value) => (value = false));
@@ -60,7 +76,7 @@
                     />
                 </div>
                 <p class="label">YOUR SHOPPING CART IS EMPTY</p>
-                <button class="btn justify-content-center"
+                <button on:click={goTo} class="btn justify-content-center"
                     >CONTINUE SHOPPING</button
                 >
             </div>
@@ -82,7 +98,7 @@
         </div>
         <div class="row">
             <div class="col-md-9">
-                {#each $productsCart as { image, name, description, price, stock, id } (id)}
+                {#each $productsCart as { image, name, description, price, stock, id, category } (id)}
                     <ProductCart
                         {image}
                         productName={name}
@@ -91,6 +107,7 @@
                         {stock}
                         {total}
                         {id}
+                        {category}
                     />
                 {/each}
             </div>

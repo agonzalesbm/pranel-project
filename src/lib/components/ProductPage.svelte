@@ -4,12 +4,15 @@
     import "animate.css";
     import { productsCart } from "../services/store";
     import { goto } from "$app/navigation";
+    import Noty from "noty";
+    import "noty/lib/themes/nest.css";
+    import 'noty/lib/noty.css'
 
     export let data;
     export let firstImg = "";
     export let secondImg = "";
 
-    const { id, image, imagep, name, price, stock, description } = data;
+    const { id, image, imagep, name, price, stock, description, category } = data;
     let imgSourc = data.image;
     let changeState = $productsCart.find((product) => product.id === id);
 
@@ -36,17 +39,25 @@
                     price,
                     stock,
                     description,
+                    category
                 },
             ];
             changeState = true;
+            new Noty({
+                theme: "nest",
+                text: "Product added to cart",
+                type: "alert",
+                layout: 'bottomRight',
+                timeout: 1500,
+            }).show();
         } else {
             changeState = false;
         }
     };
 
-    const goTo =() => {
-        goto('/cart')
-    }
+    const goTo = () => {
+        goto("/cart");
+    };
 </script>
 
 <div class="main-wrapper animate__animated animate__fadeIn">
@@ -85,11 +96,19 @@
                 <span class="product-price">Price: {data.price}$</span>
                 <div class="btn-groups">
                     {#if changeState}
-                        <button on:click={goTo} type="button" class="add-cart-btn">
+                        <button
+                            on:click={goTo}
+                            type="button"
+                            class="add-cart-btn"
+                        >
                             <i class="fas fa-shopping-cart" />Go cart</button
                         >
                     {:else}
-                        <button on:click={addProductInCart} type="button" class="add-cart-btn">
+                        <button
+                            on:click={addProductInCart}
+                            type="button"
+                            class="add-cart-btn"
+                        >
                             <i class="fas fa-shopping-cart" />add to cart</button
                         >
                     {/if}

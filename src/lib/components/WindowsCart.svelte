@@ -2,17 +2,23 @@
     export let name = "Name default";
     export let price = 0.0;
     export let image = "src/lib/img/jewelry/jewelry-1.jpg";
+    export let id = ''
+    export let category = ''
+
+    let path = category + "/" + id
 </script>
 
-<div class="body-product">
-    <div class="img-pr">
-        <img src={image} alt="img-product" />
+<a href={path}>
+    <div class="body-product">
+        <div class="img-pr">
+            <img src={image} alt="img-product" />
+        </div>
+        <div class="description-pr">
+            <h5 class="name-pr">{name}</h5>
+            <h5 class="price-pr">{price} $</h5>
+        </div>
     </div>
-    <div class="description-pr">
-        <h5 class="name-pr">{name}</h5>
-        <h5 class="price-pr">{price} $</h5>
-    </div>
-</div>
+</a>
 
 <style>
     .body-product {

@@ -9,6 +9,9 @@
     export let stock = 0;
     export let total = 0;
     export let id = "";
+    export let category = "";
+
+    let path = category + "/" + id;
 
     let quantity = 1;
     let priceChange = 0.0;
@@ -36,10 +39,10 @@
     <div class="row align-items-center">
         <div class="col-2">
             <!-- svelte-ignore a11y-missing-attribute -->
-            <img class="img-thumbnail" src={image} />
+            <a href={path}><img class="img-thumbnail" src={image} /></a>
         </div>
         <div class="col-md-4 align-items-center">
-            <p>{productName}</p>
+            <p><a href={path}>{productName}</a></p>
         </div>
         <div class="col">
             <p>{priceChange.toFixed(2)}</p>

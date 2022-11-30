@@ -4,6 +4,9 @@
     import { productsCart } from "../services/store";
     import { tick } from "svelte";
     import { goto } from "$app/navigation";
+    import Noty from "noty";
+    import "noty/lib/themes/nest.css";
+    import 'noty/lib/noty.css'
 
     export let handBag = "";
     export let handBagPerson = "";
@@ -32,8 +35,16 @@
                     price,
                     stock,
                     description,
+                    category
                 },
             ];
+            new Noty({
+                theme: "nest",
+                text: "Product added to cart",
+                type: 'alert',
+                layout: 'bottomRight',
+                timeout: 1500
+            }).show();
             changeState = true;
         } else {
             changeState = false;
@@ -41,8 +52,8 @@
     };
 
     const goToCart = () => {
-        goto('/cart')
-    }
+        goto("/cart");
+    };
 </script>
 
 <div class="category_container card m-3">
@@ -51,7 +62,9 @@
     </a>
     <p class="card-text"><span class="text-align-center">{price} $</span></p>
     {#if changeState}
-        <button on:click={goToCart} class="btn btn-outline-primary btn-sm-justify-content-center"
+        <button
+            on:click={goToCart}
+            class="btn btn-outline-primary btn-sm-justify-content-center"
             >View in the cart</button
         >
     {:else}
