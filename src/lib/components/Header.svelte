@@ -47,22 +47,35 @@
                 >
             </a>
             <span class="icon-cart">
-                <a href = "/cart" >
+                <a on:click={onClick} class = {cart ? "visually-hidden" : ""}  href = "/cart" >
                     <span style="color: black"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
                     <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
                     </span>
                 </a>
-                <div class="container">
+                <div class={cart ? "container visually-hidden" : "container"} >
                     <div class="title">
                         <h5>List of products</h5>
                     </div>
-                    <div class="popover-body">
-                        <WindowsCart /><WindowsCart />
-                        <h5 class="empty-message">Cart is empty</h5>
+                    <div class="popover-body ">
+                        <WindowsCart/>
+                        <WindowsCart/>
+                        <WindowsCart/>
+                        <WindowsCart/>
+                        <WindowsCart/>
+                        <WindowsCart/>
+                        <WindowsCart/>
+                        <WindowsCart/>
+
+                        <div class="div-link">
+                            <a class="link-popover" href="/cart">View all products</a>
+                        </div>
                     </div>
-                    <div class="popover-footer">
+                    <div class="popover-footer ">
                         <h5>Total: </h5><h5 style="right: 1em;position:absolute;" > 0.00 $</h5>
-                        
+                    </div>
+                    <div class="popover-empty visually-hidden">
+                        <h5 class="empty-message">Cart is empty</h5>
+                        <a href="/" class="btn-pop">Go to Home</a>
                     </div>
                 </div>
                 
@@ -139,11 +152,13 @@
         max-width: 25em;
         min-width: 25em;
         border-style: solid;
+        border-color: black;
         z-index: 10;
         min-height: 3em;
         max-height: calc(100vh - 30vh);
         transition: 0.3s;
         opacity: 0;
+        border-radius: 4px;
     }
 
     .container::before {
@@ -161,12 +176,13 @@
         max-height: calc(100vh - 50vh);
         min-height: 0.5em;
         position: relative;
+        box-shadow: inset ;
     }
     
     .empty-message {
         color: #777777;
-        margin: 1em;
-        z-index: -1;
+        margin: 0.5em;
+        padding-top: 1em;
     }
 
     .title{
@@ -182,6 +198,55 @@
     .popover-footer {
         display: inline;
         display: flex;
+        border: black solid 0.3em;
+        padding-top: 0.5em;
+        border-color: black transparent transparent transparent;
+        border-radius: 0.35em;
+    }
+
+    .btn-pop{
+        width: 80%;
+        height: 2em;
+        background-color: black;
+        color: azure;
+        padding: 0.4em;
+        margin-left: -0.5em;
+        font-size: 1.5em;
+        transform: scale(0.7);
+    }
+
+    .btn-pop:hover{
+        color: black;
+        border: rgba(0, 0, 0) solid 0.2em;
+        border-radius: 0;
+        padding: 0.2em;
+    }
+
+    .popover-empty {
+        height: 7em;
+        text-align: center;
+        display: block;
+        position: relative;
+    }
+
+    .link-popover{
+        font-size: 1em;
+        position: relative;
+        border: black solid 1px;
+        padding:0.5em;
+        margin: 0;
+        background-color: #ffded7;
+        border-radius: 30px;
+    }
+
+    .div-link{
+        bottom: 0%;
+        left: 0%;
+        position: absolute;
+        width: 100%;
+        background: linear-gradient(to top,  white, rgba(255, 255, 255, 0.628));
+        z-index: 1;
+        height: 5em;
     }
 
     .wrapper {
