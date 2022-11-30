@@ -9,6 +9,7 @@
         isInCategory,
         isVisibleCart,
         productsCart,
+        totalPriceCart
     } from "../services/store";
     import Product from "./Product.svelte";
     import WindowsCart from "./WindowsCart.svelte";
@@ -96,7 +97,7 @@
                     <div class="popover-footer">
                         <h5>Total:</h5>
                         <h5 style="right: 1em;position:absolute;">
-                            {total.toFixed(2)} $
+                            {$totalPriceCart.toFixed(2)} $
                         </h5>
                     </div>
                 </div>

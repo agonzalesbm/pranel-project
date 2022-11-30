@@ -3,11 +3,11 @@
 
     /*import "bootstrap";*/
     import "bootswatch/dist/lux/bootstrap.min.css";
-    import { isInCart } from "../services/store";
-    import { onDestroy } from "svelte";
+    import { deleteElement, isInCart } from "../services/store";
+    import { onDestroy, tick } from "svelte";
     import ProductCart from "./ProductCart.svelte";
     import TotalPrice from "./TotalPrice.svelte";
-    import { productsCart } from "../services/store";
+    import { productsCart, totalPriceCart } from "../services/store";
 
     isInCart.update((value) => (value = true));
 
@@ -15,14 +15,29 @@
 
     let products = [];
     let total = 0;
+    let deleteId = "";
 
+    $: total;
     $: products;
+
+    deleteElement.subscribe((value) => (deleteId = value));
     productsCart.subscribe((value) => {
         products = value;
         total = 0;
         products.forEach((e) => (total += e.price));
+        totalPriceCart.update((value) => (value = total));
     });
-    
+
+    totalPriceCart.subscribe((value) => (total = value));
+
+    $: deleteId != '' ? deleteProductCart() : ''
+    const deleteProductCart = () => {
+        const index = $productsCart.findIndex((e) => e.id === deleteId);
+        $productsCart.splice(index, 1);
+        productsCart.update(value => value = $productsCart)
+        deleteElement.update(value => value = '')
+    };
+
     onDestroy(() => {
         isInCart.update((value) => (value = false));
     });
@@ -67,18 +82,20 @@
         </div>
         <div class="row">
             <div class="col-md-9">
-                {#each $productsCart as { image, name, description, price, stock }}
+                {#each $productsCart as { image, name, description, price, stock, id } (id)}
                     <ProductCart
                         {image}
                         productName={name}
                         productDescription={description}
                         {price}
                         {stock}
+                        {total}
+                        {id}
                     />
                 {/each}
             </div>
             <div class="col">
-                <TotalPrice TotalPrice = {total.toFixed(2)} $/>
+                <TotalPrice TotalPrice={$totalPriceCart.toFixed(2)} $ />
             </div>
         </div>
     {/if}
