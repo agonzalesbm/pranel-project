@@ -3,9 +3,12 @@
     export let image = "";
     export let productName = "";
     export let productDescription = "";
-    export let price = "";
+    export let price = 0;
     let quantity = 1;
     export let stock = 0;
+    let priceChange = 0.0
+
+    $: priceChange = price * quantity
 
     const increment = () => {
         if (quantity <= stock -1){
@@ -28,10 +31,9 @@
         </div>
         <div class="col-md-4 align-items-center">
             <p>{productName}</p>
-            <p>{productDescription}</p>
         </div>
         <div class="col">
-            <p>{price}</p>
+            <p>{priceChange.toFixed(2)}</p>
         </div>
         <div class="col">
             <div class = "Quantity">

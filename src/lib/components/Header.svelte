@@ -1,4 +1,6 @@
 <script>
+    // @ts-nocheck
+
     import "animate.css";
     import logo from "../img/LogoPranel.svg";
     import {
@@ -6,7 +8,9 @@
         isInCart,
         isInCategory,
         isVisibleCart,
+        productsCart,
     } from "../services/store";
+    import Product from "./Product.svelte";
     import WindowsCart from "./WindowsCart.svelte";
 
     let cart = false;
@@ -21,6 +25,15 @@
         isVisibleCart.update((value) => (value = !value));
     };
 
+    let products = [];
+    let total = 0;
+
+    $: products;
+    productsCart.subscribe((value) => {
+        products = value;
+        total = 0;
+        products.forEach((e) => (total += e.price));
+    });
 </script>
 
 <header class:visually-hidden={$isAnError}>
@@ -47,28 +60,49 @@
                 >
             </a>
             <span class="icon-cart">
-                <a href = "/cart" >
-                    <span style="color: black"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
-                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                    </span>
+                <a href="/cart">
+                    <span style="color: black">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-cart-fill"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+                            />
+                        </svg></span
+                    >
                 </a>
                 <div class="container">
                     <div class="title">
                         <h5>List of products</h5>
                     </div>
                     <div class="popover-body">
-                        <WindowsCart /><WindowsCart />
-                        <h5 class="empty-message">Cart is empty</h5>
+                        {#if total !== 0}
+                            {#each products as product}
+                                <WindowsCart
+                                    name={product.name}
+                                    price={product.price}
+                                    image={product.image}
+                                />
+                            {/each}
+                        {:else}
+                            <h5 class="empty-message">Cart is empty</h5>
+                        {/if}
                     </div>
                     <div class="popover-footer">
-                        <h5>Total: </h5><h5 style="right: 1em;position:absolute;" > 0.00 $</h5>
-                        
+                        <h5>Total:</h5>
+                        <h5 style="right: 1em;position:absolute;">
+                            {total.toFixed(2)} $
+                        </h5>
                     </div>
                 </div>
-                
             </span>
-            
-            <a href="#" 
+
+            <a href="#"
                 ><span style="color: black"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -162,20 +196,21 @@
         min-height: 0.5em;
         position: relative;
     }
-    
+
     .empty-message {
         color: #777777;
         margin: 1em;
         z-index: -1;
     }
 
-    .title{
+    .title {
         border-color: transparent transparent black transparent;
         border-style: solid;
         padding-bottom: 0.2em;
     }
 
-    .title, .popover-body {
+    .title,
+    .popover-body {
         text-align: center;
     }
 

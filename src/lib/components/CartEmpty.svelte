@@ -21,50 +21,57 @@
 <div class="title_ml-5_text-left">
     <p>My Cart</p>
 </div>
-<!--<div class="container ml-5 text-center">
-    <div class="row justify-content-center">
-        <div class="emptyCart"> 
-            <img src="src\lib\img\cart\cartEmpty.png" width="300" height="300">
-        </div>
-        <p class = "label">YOUR SHOPPING CART IS EMPTY</p>
-        <button class="btn justify-content-center">CONTINUE SHOPPING</button>
-    </div>
-</div>
--->
 
 <div class="">
-    <div class = "Principal">
+    {#if $productsCart.length === 0}
+        <div class="container ml-5 text-center">
+            <div class="row justify-content-center">
+                <div class="emptyCart">
+                    <!-- svelte-ignore a11y-missing-attribute -->
+                    <img
+                        src="src\lib\img\cart\cartEmpty.png"
+                        width="300"
+                        height="300"
+                    />
+                </div>
+                <p class="label">YOUR SHOPPING CART IS EMPTY</p>
+                <button class="btn justify-content-center"
+                    >CONTINUE SHOPPING</button
+                >
+            </div>
+        </div>
+    {:else}
+        <div class="Principal">
+            <div class="row">
+                <div class="col-md-4">
+                    <p>Product</p>
+                </div>
+                <div class="col-2">
+                    <p class="price">Price</p>
+                </div>
+                <div class="col-2">
+                    <p class="quantity">Quantity</p>
+                </div>
+                <div class="col-2" />
+            </div>
+        </div>
         <div class="row">
-          <div class = "col-md-4">
-              <p>Product</p>
-          </div>
-          <div class="col-2">
-            <p class= "price">Price</p>
-          </div>
-          <div class="col-2">
-              <p class="quantity">Quantity </p>
-          </div>
-          <div class="col-2">
-              
-          </div>
+            <div class="col-md-9">
+                {#each $productsCart as { image, name, description, price, stock }}
+                    <ProductCart
+                        {image}
+                        productName={name}
+                        productDescription={description}
+                        {price}
+                        {stock}
+                    />
+                {/each}
+            </div>
+            <div class="col">
+                <TotalPrice />
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-9">
-            {#each $productsCart as { image, name, description, price, stock }}
-                <ProductCart
-                    {image}
-                    productName={name}
-                    productDescription={description}
-                    {price}
-                    stock={stock}
-                />
-            {/each}
-        </div>
-        <div class="col">
-            <TotalPrice />
-        </div>
-    </div>
+    {/if}
 </div>
 
 <style>
@@ -97,7 +104,6 @@
         padding-bottom: 2px;
         border-bottom: 3px solid #000000;
         border-right: 3px solid #000000;
-        
     }
 
     .Principal {
@@ -111,12 +117,11 @@
         margin-left: -1.5rem;
     }
 
-    .price{
+    .price {
         margin-left: -1.9rem;
     }
 
-    .Principal div{
+    .Principal div {
         background-color: #fff;
     }
-    
 </style>

@@ -1,13 +1,16 @@
 <script>
+    export let name = "Name default";
+    export let price = 0.0;
+    export let image = "src/lib/img/jewelry/jewelry-1.jpg";
 </script>
 
 <div class="body-product">
     <div class="img-pr">
-        <img src="src/lib/img/jewelry/jewelry-1.jpg" alt="img-product">
+        <img src={image} alt="img-product" />
     </div>
     <div class="description-pr">
-        <h5 class="name-pr">Product name 1 - Example I-TEST 1</h5>
-        <h5 class="price-pr">1000.00 $</h5>
+        <h5 class="name-pr">{name}</h5>
+        <h5 class="price-pr">{price} $</h5>
     </div>
 </div>
 
@@ -25,24 +28,24 @@
     }
 
     img {
-        min-width: 100px;
-        max-width: 150px;
-        max-height: 85%;
-        align-items: center;
+    min-width: 100px;
+    max-width: 150px;
+    max-height: 85%;
+    align-items: center;
     }
 
-    .name-pr{
+    .name-pr {
         font-weight: bold;
         font-size: 0.8em;
     }
 
-    .description-pr{
+    .description-pr {
         width: calc(100% - 80px);
         text-align: left;
         padding-left: 1em;
     }
 
-    .price-pr{
+    .price-pr {
         text-align: right;
         font-size: 0.8em;
     }
