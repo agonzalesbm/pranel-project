@@ -35,6 +35,7 @@
         total = 0;
         products.forEach((e) => (total += e.price));
     });
+
 </script>
 
 <header class:visually-hidden={$isAnError}>
@@ -92,8 +93,7 @@
                                     id={product.id}
                                 />
                             {/each}
-                            <div class="div-link visually-hidden">
-                                <a class="link-popover" href="/cart">View all products</a>
+                            <div class="gradient ">
                             </div>
                         {:else}
                             <div class="popover-empty ">
@@ -102,12 +102,18 @@
                             </div>
                         {/if}
                     </div>
-                    <div class="popover-footer visually-hidden">
-                        <h5>Total:</h5>
-                        <h5 style="right: 1em;position:absolute;">
-                            {$totalPriceCart.toFixed(2)} $
-                        </h5>
+                    <div class={total !== 0? "" : "visually-hidden"}>
+                        <div class="popover-footer">
+                            <h5>Total:</h5>
+                            <h5 style="right: 1em;position:absolute;">
+                                {$totalPriceCart.toFixed(2)} $
+                            </h5>
+                        </div>
+                        <div class="btn-view">
+                            <b><a class="link-popover" href="/cart">View all products</a></b>
+                        </div>
                     </div>
+                    
                 </div>
             </span>
 
@@ -261,23 +267,38 @@
     }
 
     .link-popover{
+        width: 100%;
         font-size: 1em;
         position: relative;
-        border: black solid 1px;
         padding:0.5em;
         margin: 0;
         background-color: #ffded7;
-        border-radius: 30px;
+        transform: translateY(-50%);
+        text-transform: uppercase;
+        border-radius: 3px;
+        box-shadow: 0 0 2px rgb(51, 51, 51);
     }
 
-    .div-link{
-        bottom: 0%;
+    .link-popover:hover{
+        border-radius: 3px;
+    }
+
+    .btn-view{
+        position: relative;
+        width: 100%;
+        height: 2.5em;
+        text-align: center;
+    }
+
+    .gradient {
+        bottom: -0em;
         left: 0%;
         position: absolute;
-        width: 100%;
-        background: linear-gradient(to top,  white, rgba(255, 255, 255, 0.628));
+        width: 98.5%;
+        background: linear-gradient(to top,  #0000004c, rgba(251, 238, 238, 0.133));
         z-index: 1;
-        height: 5em;
+        height: 5%;
+        margin-left: 0.2em;
     }
 
     .wrapper {
