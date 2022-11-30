@@ -1,5 +1,5 @@
 <script>
-    import "bootstrap-icons/font/bootstrap-icons.css";
+    import "bootswatch/dist/lux/bootstrap.min.css";
     export let image = "";
     export let productName = "";
     export let productDescription = "";
@@ -67,6 +67,7 @@
     
     .container{
         margin-left: 1%;
+        overflow: hidden;
     }
 
     .container p{
@@ -87,8 +88,8 @@
     }
 
     .Quantity button{
-        height: 3rem;
-        width: 2rem;
+        height: 85%;
+        width: 100%;
         font-size: 1.5rem;
         background-color: #fff4f2;
     }

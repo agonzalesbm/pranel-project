@@ -2,7 +2,7 @@
     // @ts-nocheck
 
     /*import "bootstrap";*/
-    import "bootstrap/dist/css/bootstrap.min.css";
+    import "bootswatch/dist/lux/bootstrap.min.css";
     import { isInCart } from "../services/store";
     import { onDestroy } from "svelte";
     import ProductCart from "./ProductCart.svelte";
@@ -117,18 +117,18 @@
     }
 
     .Principal {
-        font-size: 2.5rem;
+        font-size: 250%;
         font-weight: bold;
-        margin-left: 3rem;
+        margin-left: 1%;
         margin-bottom: 0.3rem;
     }
 
     .quantity {
-        margin-left: -1.5rem;
+        margin-left: -8.5rem;
     }
 
     .price {
-        margin-left: -1.9rem;
+        margin-left: 0.5rem;
     }
 
     .Principal div {
