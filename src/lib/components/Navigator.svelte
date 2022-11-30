@@ -1,4 +1,6 @@
 <script>
+    import { goto } from "$app/navigation";
+
   import {
     sortedByAscendingOrder,
     sortedByDescendingOrder,
@@ -47,6 +49,7 @@
     isSortByAscending.update((value) => (value = false));
     sortedByDescendingOrder();
   };
+  console.log(path)
 </script>
 
 <nav class="container-fluid  {isHere ? 'visually-hidden' : ' '}">
@@ -111,31 +114,50 @@
         </div>
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <div class="offcanvas-body">
-          <div on:click={orderByAscending} class="form-check form-check-inline">
+          <div class="form-check form-check-inline">
             <input
+              on:click={orderByAscending}
               class="form-check-input"
               type="radio"
               id="inlineCheckbox2"
               value="option2"
               name="check"
             />
-            <label class="form-check-label" for="inlineCheckbox2">
+            <label
+              on:click={orderByAscending}
+              class="form-check-label"
+              for="inlineCheckbox2"
+            >
               Ascending
             </label>
           </div>
-          <div
-            on:click={orderByDescending}
-            class="form-check form-check-inline"
-          >
+          <div class="form-check form-check-inline">
             <input
+              on:click={orderByDescending}
               class="form-check-input"
               type="radio"
               id="inlineCheckbox3"
               value="option2"
               name="check"
             />
-            <label class="form-check-label" for="inlineCheckbox3">
+            <label
+              on:click={orderByDescending}
+              class="form-check-label"
+              for="inlineCheckbox3"
+            >
               Descending
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              id="restore"
+              value="option2"
+              name="check"
+            />
+            <label class="form-check-label" for="restore">
+              Restore
             </label>
           </div>
           <hr />

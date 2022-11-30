@@ -20,7 +20,6 @@
     isSortByAscending.subscribe((value) => (isChangeAscending = value));
     isSortByDescending.subscribe((value) => (isChangeDescending = value));
     const fillFields = () => {
-        console.log(isChangeAscending);
         arrays = [];
         array = [];
         for (let i = 0; i < 12; i++) {
@@ -43,11 +42,13 @@
     category="Rings"
     pathImage="/src/lib/img/cover/jewelry-head.jpg"
 />
-{#if isChangeAscending}
-    {fillFields()}
-{:else if isChangeDescending}
-    {fillFields()}
-{/if}
+<p class="visually-hidden">
+    {#if isChangeAscending}
+        {fillFields()}
+    {:else if isChangeDescending}
+        {fillFields()}
+    {/if}
+</p>
 <Category array={arrays[0]} />
 <Category array={arrays[1]} />
 <Category array={arrays[2]} />

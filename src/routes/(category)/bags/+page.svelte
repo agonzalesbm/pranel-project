@@ -7,7 +7,6 @@
         isSortByAscending,
         isSortByDescending,
     } from "$lib/services/store";
-    import { tick } from "svelte";
 
     export let data;
     const { result } = data;
@@ -20,7 +19,6 @@
     isSortByAscending.subscribe((value) => (isChangeAscending = value));
     isSortByDescending.subscribe((value) => (isChangeDescending = value));
     const fillFields = () => {
-        console.log(isChangeAscending);
         arrays = [];
         array = [];
         for (let i = 0; i < 12; i++) {
@@ -40,11 +38,13 @@
 </script>
 
 <HeaderCategory category="Bags" pathImage="/src/lib/img/cover/bag-head.png" />
-{#if isChangeAscending}
-    {fillFields()}
-{:else if isChangeDescending}
-    {fillFields()}
-{/if}
+<p class="visually-hidden">
+    {#if isChangeAscending}
+        {fillFields()}
+    {:else if isChangeDescending}
+        {fillFields()}
+    {/if}
+</p>
 <Category array={arrays[0]} />
 <Category array={arrays[1]} />
 <Category array={arrays[2]} />
