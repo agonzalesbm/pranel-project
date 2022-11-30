@@ -1,13 +1,19 @@
 <script>
-  // @ts-nocheck
-
-  import { goto } from "$app/navigation";
+  import {
+    sortedByAscendingOrder,
+    sortedByDescendingOrder,
+  } from "$lib/services/sorted";
 
   // @ts-nocheck
 
   import "bootswatch/dist/lux/bootstrap.min.css";
-  import { isInProduct, currentPage } from "../services/store";
-  import ButtonColor from "./ButtonColor.svelte";
+  import {
+    isInProduct,
+    currentPage,
+    isSortByAscending,
+    isSortByDescending,
+  } from "../services/store";
+  import RowColors from "./RowColors.svelte";
 
   let isHere = false;
   let path = "/";
@@ -30,18 +36,17 @@
     path = "/jewelry";
   };
 
-  const click = (e) => {
-    color = e.detail;
-    console.log(color);
+  const orderByAscending = () => {
+    isSortByAscending.update((value) => (value = true));
+    isSortByDescending.update((value) => (value = false));
+    sortedByAscendingOrder();
   };
 
-  const goTo = () => {
-    goto(`${path}?q=2`);
+  const orderByDescending = () => {
+    isSortByDescending.update((value) => (value = true));
+    isSortByAscending.update((value) => (value = false));
+    sortedByDescendingOrder();
   };
-
-  function select(colorName) {
-    console.log(colorName);
-  }
 </script>
 
 <nav class="container-fluid  {isHere ? 'visually-hidden' : ' '}">
@@ -106,88 +111,57 @@
         </div>
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <div class="offcanvas-body">
-          <div class="form-check">
+          <div on:click={orderByAscending} class="form-check form-check-inline">
             <input
               class="form-check-input"
               type="radio"
-              name="flexRadioDefault"
-              id="flexRadioDefault2"
-              checked
+              id="inlineCheckbox2"
+              value="option2"
+              name="check"
             />
-            <label class="form-check-label" for="flexRadioDefault2">
-              All
+            <label class="form-check-label" for="inlineCheckbox2">
+              Ascending
             </label>
           </div>
+          <div
+            on:click={orderByDescending}
+            class="form-check form-check-inline"
+          >
+            <input
+              class="form-check-input"
+              type="radio"
+              id="inlineCheckbox3"
+              value="option2"
+              name="check"
+            />
+            <label class="form-check-label" for="inlineCheckbox3">
+              Descending
+            </label>
+          </div>
+          <hr />
+          <!-- svelte-ignore a11y-label-has-associated-control -->
           <label class="form-check-label">Colors</label>
-          
-          <div class="colors">
-            <label class="color-box">
-              <input type="checkbox" on:click={()=> console.log("blue")} name="" id="">
-              <div style="background-color: blue;"></div>
-            </label>
-            <label class="color-box">
-              <input type="checkbox" name="" id="">
-              <div style="background-color: navy;"></div>
-            </label>
-            <label class="color-box">
-              <input type="checkbox" name="" id="">
-              <div style="background-color: indigo;"></div>
-            </label>
-            <label class="color-box">
-              <input type="checkbox" name="" id="">
-              <div style="background-color: purple;"></div>
-            </label>
-            <label class="color-box">
-              <input type="checkbox" name="" id="">
-              <div style="background-color: coral;"></div>
-            </label>
-          </div>
-
-          <div class="colors">
-            <label class="color-box">
-              <input type="checkbox" name="" id="">
-              <div style="background-color: orange;"></div>
-            </label>
-            <label class="color-box">
-              <input type="checkbox" name="" id="">
-              <div style="background-color: lemonchiffon;"></div>
-            </label>
-            <label class="color-box">
-              <input type="checkbox" name="" id="">
-              <div style="background-color: yellow;"></div>
-            </label>
-            <label class="color-box">
-              <input type="checkbox" name="" id="">
-              <div style="background-color: maroon;"></div>
-            </label>
-            <label class="color-box">
-              <input type="checkbox" name="" id="">
-              <div style="background-color: brown;"></div>
-            </label>
-          </div>
-
-          <div class="colors">
-            <label class="color-box">
-              <input type="checkbox" name="" id="">
-              <div style="background-color: red;"></div>
-            </label>
-            <label class="color-box">
-              <input type="checkbox" name="" id="">
-              <div style="background-color: pink;"></div>
-            </label>
-            <label class="color-box">
-              <input type="checkbox" name="" id="">
-              <div style="background-color: white;"></div>
-            </label>
-            <label class="color-box">
-              <input type="checkbox" name="" id="">
-              <div style="background-color: grey;"></div>
-            </label>
-            <label class="color-box">
-              <input type="checkbox" name="" id="">
-              <div style="background-color: black;"></div>
-            </label>
-          </div>
+          <RowColors
+            firstColor="blue"
+            secondColor="navy"
+            thirdColor="indigo"
+            forthColor="purple"
+            fifthColor="coral"
+          />
+          <RowColors
+            firstColor="orange"
+            secondColor="lemonchiffon"
+            thirdColor="yellow"
+            forthColor="maroon"
+            fifthColor="brown"
+          />
+          <RowColors
+            firstColor="red"
+            secondColor="pink"
+            thirdColor="white"
+            forthColor="grey"
+            fifthColor="black"
+          />
         </div>
       </div>
     </div>
@@ -220,32 +194,5 @@
     background-color: #000000;
     color: #fff;
     border-radius: 10%;
-  }
-  .colors {
-    width: 100%;
-    height: auto;
-    display: flex;
-    padding-left: 0.5em;
-  }
-
-  .color-box div{
-    width: 4em;
-    height: 4em;
-    background-color: white;
-    margin: 0.5em;
-    border-radius: 50%;
-    box-shadow: 0px 0px 0.5em #c7b0ab;
-  }
-
-  .color-box div:hover{
-    box-shadow: inset 0px 0px 0.3em rgba(0, 0, 0, 0.43);
-  }
-
-  .color-box input {
-    display: none;
-  }
-  .color-box input:checked + div {
-    border: solid 0.3em #000000;
-    box-shadow: 0px 0px 0.6em rgba(0, 0, 0, 0.9);
   }
 </style>

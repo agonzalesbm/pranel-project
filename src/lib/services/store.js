@@ -10,3 +10,5 @@ export let currentPage = writable('')
 
 
 export let currentProducts = writable([])
+export let isSortByAscending = writable(false)
+export let isSortByDescending = writable(false)
