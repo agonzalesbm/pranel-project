@@ -6,7 +6,7 @@
   <div class="card bg-secondary mb-3" style="max-width: 20rem;">
       <div class="card-header">Total:</div>
       <div class="card-body">
-        <h4 class="total_price">{TotalPrice}</h4>
+        <h4 class="total_price">{TotalPrice} $</h4>
         <div class= "Pay">
           <button class="btn btn-sm justify-content-center">Pay                    
           </button>
@@ -23,13 +23,13 @@
     }
 
     .total_price {
-      font-size: 3rem;
+      font-size: 300%;
     }
 
     .Pay button{
-        height: 3rem;
-        width: 17.8rem;
-        font-size: 1.5rem;
+        height: 33%;
+        width: 100%;
+        font-size: 150%;
         background-color: #a6a6a6;
     }
   </style>

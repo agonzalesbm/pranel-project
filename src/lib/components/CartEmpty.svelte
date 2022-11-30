@@ -13,6 +13,16 @@
 
     let pathCart = "src/img/cart/";
 
+    let products = [];
+    let total = 0;
+
+    $: products;
+    productsCart.subscribe((value) => {
+        products = value;
+        total = 0;
+        products.forEach((e) => (total += e.price));
+    });
+    
     onDestroy(() => {
         isInCart.update((value) => (value = false));
     });
@@ -68,7 +78,7 @@
                 {/each}
             </div>
             <div class="col">
-                <TotalPrice />
+                <TotalPrice TotalPrice = {total.toFixed(2)} $/>
             </div>
         </div>
     {/if}
