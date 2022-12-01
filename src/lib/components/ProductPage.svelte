@@ -2,12 +2,12 @@
     // @ts-nocheck
     import "bootswatch/dist/lux/bootstrap.min.css";
     import "animate.css";
-    import SuggestedProduct from "./SuggestedProduct.svelte";
     import { productsCart } from "../services/store";
     import { goto } from "$app/navigation";
     import Noty from "noty";
     import "noty/lib/themes/nest.css";
     import 'noty/lib/noty.css'
+    import SuggestedProduct from "./SuggestedProduct.svelte";
     
     export let data;
     export let arrayInfo = [];
@@ -140,9 +140,9 @@
         </div>
     </div>
 </div>
-<!-- <div class="container">
+<div class="container">
     <SuggestedProduct array={[first, second, third, forth]} />
-</div> -->
+</div>
 
 <style>
     * {
