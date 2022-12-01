@@ -214,7 +214,7 @@
           </div>
           <hr />
           <!-- svelte-ignore a11y-label-has-associated-control -->
-          <!-- <label class="form-check-label">Colors</label>
+          <label class="form-check-label">Colors</label>
           <RowColors
             firstColor="blue"
             secondColor="green"
@@ -229,7 +229,7 @@
             forthColor="red"
             fifthColor="pink"
           />
-          <div class="container mt-4">
+          <!-- <div class="container mt-4">
             <div class="row">
               <button on:click={changeByDefualt} class="btn btn-outline-danger"
                 >By default</button
