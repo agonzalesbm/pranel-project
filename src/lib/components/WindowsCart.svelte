@@ -1,6 +1,7 @@
 <script>
     export let name = "Name default";
     export let price = 0.0;
+    export let quantity = 1;
     export let image = "src/lib/img/jewelry/jewelry-1.jpg";
     export let id = ''
     export let category = ''
@@ -18,6 +19,7 @@
         <a href={path}>
             <h5 class="name-pr">{name}</h5>
         </a>
+        <h6 class="label"><b>x</b>{quantity}</h6>
         <h5 class="price-pr">{price} $</h5>
     </div>
 </div>
@@ -62,5 +64,15 @@
     .price-pr {
         text-align: right;
         font-size: 0.8em;
+    }
+
+    .label {
+        left: 0; 
+        background-color:#ffded7;
+        padding: 0.2em;
+        border-radius: 1em;
+        width: 3em;
+        text-align: center;
+        text-transform: lowercase;
     }
 </style>
