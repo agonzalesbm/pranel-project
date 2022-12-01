@@ -139,9 +139,9 @@
         </div>
     </div>
 </div>
-<div class="container">
+<!-- <div class="container">
     <SuggestedProduct array={[first, second, third, forth]} />
-</div>
+</div> -->
 
 <style>
     * {

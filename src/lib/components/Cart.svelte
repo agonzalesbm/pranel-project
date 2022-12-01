@@ -118,7 +118,7 @@
                 {/each}
             </div>
             <div class="col">
-                <TotalPrice TotalPrice={$totalPriceCart.toFixed(2)} $ />
+                <TotalPrice totalPrice={$totalPriceCart.toFixed(2)} $ />
             </div>
         </div>
     {/if}

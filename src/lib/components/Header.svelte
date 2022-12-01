@@ -128,7 +128,8 @@
                         <div class="popover-footer">
                             <h5>Total:</h5>
                             <h5 style="right: 1em;position:absolute;">
-                                {$totalPriceCart.toFixed(2)} $
+                                <!-- {$totalPriceCart.toFixed(2)} $ -->
+                                0.00 $
                             </h5>
                         </div>
                         <div class="btn-view">

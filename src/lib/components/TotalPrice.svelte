@@ -1,12 +1,13 @@
 <script>
-  export let TotalPrice = 0;
+  export let totalPrice = 0;
 </script>
 
 <div class="container">
   <div class="card bg-secondary mb-3" style="max-width: 20rem;">
       <div class="card-header">Total:</div>
       <div class="card-body">
-        <h4 class="total_price">{TotalPrice} $</h4>
+        <!-- <h4 class="total_price">{totalPrice} $</h4> -->
+        <h4 class="total_price">0.00 $</h4>
         <div class= "Pay">
           <button class="btn btn-sm justify-content-center">Pay                    
           </button>
