@@ -1,36 +1,18 @@
-<!-- <script context="module"> -->
 <script>
-    let checkShoes = false    
-    let checkBags = false    
-    let checkJewelry = false    
-    clickBags.subscribe((value) =>{      checkBags = value;    })    
-    clickShoes.subscribe((value) =>{      checkShoes = value;    })   
-     clickJewelry.subscribe((value) =>{      checkJewelry = value;    })
-    import "bootswatch/dist/lux/bootstrap.min.css";
-    import {isInProduct, clickBags, clickJewelry, clickShoes} from '../services/store'
-    let isHere = false;
-    isInProduct.subscribe( value => isHere = value);
-
-    export function shoesMarked() {
-      clickShoes.update((value) => value = true);
-      clickBags.update((value) => value = false);
-      clickJewelry.update((value) => value = false);
-    }
-
-    export function bagsMarked() {
-      clickShoes.update((value) => value = false);
-      clickBags.update((value) => value = true);
-      clickJewelry.update((value) => value = false);
-    }
-
-    export function jewelryMarked() {
-      clickShoes.update((value) => value = false);
-      clickBags.update((value) => value = false);
-      clickJewelry.update((value) => value = true);
-    }
-
-    
-  import { goto } from "$app/navigation";
+  let checkShoes = false;
+  let checkBags = false;
+  let checkJewelry = false;
+  let path = "/";
+  
+  import "bootswatch/dist/lux/bootstrap.min.css";
+  import {
+    isInProduct,
+    clickBags,
+    clickJewelry,
+    clickShoes,
+  } from "../services/store";
+  let isHere = false;
+  isInProduct.subscribe((value) => (isHere = value));
 
   import {
     sortedByAscendingOrder,
@@ -39,16 +21,39 @@
 
   import "bootswatch/dist/lux/bootstrap.min.css";
   import {
-    isInProduct,
     currentPage,
     isSortByAscending,
     isSortByDescending,
   } from "../services/store";
   import RowColors from "./RowColors.svelte";
 
-  let isHere = false;
-  let path = "/";
-  let color = "#000";
+  clickBags.subscribe((value) => {
+    checkBags = value;
+  });
+  clickShoes.subscribe((value) => {
+    checkShoes = value;
+  });
+  clickJewelry.subscribe((value) => {
+    checkJewelry = value;
+  }); 
+
+  export function shoesMarked() {
+    clickShoes.update((value) => (value = true));
+    clickBags.update((value) => (value = false));
+    clickJewelry.update((value) => (value = false));
+  }
+
+  export function bagsMarked() {
+    clickShoes.update((value) => (value = false));
+    clickBags.update((value) => (value = true));
+    clickJewelry.update((value) => (value = false));
+  }
+
+  export function jewelryMarked() {
+    clickShoes.update((value) => (value = false));
+    clickBags.update((value) => (value = false));
+    clickJewelry.update((value) => (value = true));
+  }
 
   isInProduct.subscribe((value) => (isHere = value));
   currentPage.subscribe((value) => {
@@ -78,15 +83,20 @@
     isSortByAscending.update((value) => (value = false));
     sortedByDescendingOrder();
   };
-  console.log(path)
+  console.log(path);
 </script>
 
-<nav class="container-fluid  {isHere ? 'visually-hidden' : ' '}">
+<nav class="container-fluid">
   <nav class="navbar bg-light">
     <div class="container-fluid">
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/shoes" on:click = {shoesMarked}>
+          <a
+            class="nav-link"
+            aria-current="page"
+            href="/shoes"
+            on:click={shoesMarked}
+          >
             {#if checkShoes}
               <u>Shoes</u>
             {:else}
@@ -95,7 +105,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/bags" on:click = {bagsMarked}>
+          <a class="nav-link" href="/bags" on:click={bagsMarked}>
             {#if checkBags}
               <u>Bags</u>
             {:else}
@@ -104,7 +114,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/jewelry" on:click = {jewelryMarked}>
+          <a class="nav-link" href="/jewelry" on:click={jewelryMarked}>
             {#if checkJewelry}
               <u>Jewelry</u>
             {:else}
@@ -116,7 +126,7 @@
       <form class="d-flex">
         <button
           type="button"
-          class="btn-filter btn btn-primary"
+          class="btn-filter btn btn-primary {isHere ? 'visually-hidden' : ' '}"
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasRight"
           aria-controls="offcanvasRight"
@@ -197,9 +207,7 @@
               value="option2"
               name="check"
             />
-            <label class="form-check-label" for="restore">
-              Restore
-            </label>
+            <label class="form-check-label" for="restore"> Restore </label>
           </div>
           <hr />
           <!-- svelte-ignore a11y-label-has-associated-control -->
@@ -258,9 +266,4 @@
     color: #949494;
   }
 
-  a:hover {
-    background-color: #000000;
-    color: #fff;
-    border-radius: 10%;
-  }
 </style>
