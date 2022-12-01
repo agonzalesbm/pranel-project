@@ -30,6 +30,8 @@
     let total = 0;
 
     $: products;
+    $: total
+    $: console.log(total)
     productsCart.subscribe((value) => {
         products = value;
         total = 0;
@@ -125,7 +127,7 @@
                         <div class="popover-footer">
                             <h5>Total:</h5>
                             <h5 style="right: 1em;position:absolute;">
-                                {$totalPriceCart.toFixed(2)} $
+                                {total.toFixed(2)} $
                             </h5>
                         </div>
                         <div class="btn-view">

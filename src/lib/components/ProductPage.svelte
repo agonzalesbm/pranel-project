@@ -2,36 +2,31 @@
     // @ts-nocheck
     import "bootswatch/dist/lux/bootstrap.min.css";
     import "animate.css";
+    import SuggestedProduct from "./SuggestedProduct.svelte";
     import { productsCart } from "../services/store";
     import { goto } from "$app/navigation";
     import Noty from "noty";
     import "noty/lib/themes/nest.css";
     import 'noty/lib/noty.css'
-
+    
     export let data;
-    export let firstImg = "";
-    export let secondImg = "";
-
-    const { id, image, imagep, name, price, stock, description, category } = data;
-    let imgSourc = data.image;
+    export let arrayInfo = [];
+    
+    
+    const { product, suggested } = data;
+    const { image, imagep, id, name, size, price, stock, description, category} = product;
+    const [first, second, third, forth] = suggested
+    
     let changeState = $productsCart.find((product) => product.id === id);
+    let imgSourc = image;
+    export let secondImg = imagep;
+    export let firstImg = image;
 
     $: imgSourc;
     $: changeState;
-    import SuggestedProduct from "./SuggestedProduct.svelte";
-    import "animate.css";
-    import { element } from "svelte/internal";
-    export let data;
-    export let arrayInfo = [];
-    const { product, suggested } = data;
-    const { image, imagep, id, name, size, price, description } = product;
-    const [first, second, third, forth] = suggested
 
-    let imgSourc = image;
     $: imgSourc;
 
-    export let firstImg = image;
-    export let secondImg = imagep;
     const chnageOverHoverFirstImg = () => {
         imgSourc = firstImg;
     };

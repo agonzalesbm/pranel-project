@@ -57,12 +57,6 @@
 </script>
 
 <div class="category_container card m-3">
-    <a href={path}>
-    let redirectCategory = category === "rings" ? "jewelry" : category;
-    let path = `/${redirectCategory}/${productId}`;
-</script>
-
-<div class="category_container card m-3">
     <a data-sveltekit-reload href={path}>
         <ProductImage {handBag} {handBagPerson} />
     </a>
