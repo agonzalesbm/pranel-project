@@ -34,9 +34,7 @@
                 }
             }
         }
-        if (array) {
         arrays.push(array);
-        }
     };
     fillFields();
 </script>
@@ -52,8 +50,7 @@
         {fillFields()}
     {/if}
 </p>
-<Category array={arrays[0]} />
-<Category array={arrays[1]} />
-<Category array={arrays[2]} />
-
-<Pagination {size} {index}category={result.category} />
+{#each arrays as array}
+    <Category {array} />
+{/each}
+<Pagination {size} {index} category={result.category} />

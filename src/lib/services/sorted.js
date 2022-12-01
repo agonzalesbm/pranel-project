@@ -14,4 +14,5 @@ export const sortedByDescendingOrder = () => {
     currentProducts.subscribe(value => array = value)
     
     array.sort((a, b) => b.price - a.price)
+    currentProducts.update(value => value = array)
 }

@@ -214,24 +214,17 @@
           <label class="form-check-label">Colors</label>
           <RowColors
             firstColor="blue"
-            secondColor="navy"
-            thirdColor="indigo"
-            forthColor="purple"
-            fifthColor="coral"
+            secondColor="green"
+            thirdColor="black"
+            forthColor="gray"
+            fifthColor="white"
           />
           <RowColors
             firstColor="orange"
-            secondColor="lemonchiffon"
+            secondColor="brown"
             thirdColor="yellow"
-            forthColor="maroon"
-            fifthColor="brown"
-          />
-          <RowColors
-            firstColor="red"
-            secondColor="pink"
-            thirdColor="white"
-            forthColor="grey"
-            fifthColor="black"
+            forthColor="red"
+            fifthColor="pink"
           />
         </div>
       </div>

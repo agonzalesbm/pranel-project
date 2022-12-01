@@ -1,36 +1,49 @@
 <script>
-    export let firstColor = 'black'
-    export let secondColor = 'black'
-    export let thirdColor = 'black'
-    export let forthColor = 'black'
-    export let fifthColor = 'black'
+    // @ts-nocheck
+
+    import { goto } from "$app/navigation";
+    import { currentPage } from "$lib/services/store";
+
+    export let firstColor = "black";
+    export let secondColor = "black";
+    export let thirdColor = "black";
+    export let forthColor = "black";
+    export let fifthColor = "black";
+
+    let path = "/";
+    currentPage.subscribe((value) => (path = value));
 </script>
 
 <div class="colors">
     <label class="color-box">
-        <input
-            type="checkbox"
-            on:click={() => console.log("blue")}
-            name=""
-            id=""
-        />
-        <div style="background-color: {firstColor};" />
+        <input type="checkbox" name="" id="" />
+        <a data-sveltekit-reload href={`${path}?color=${firstColor}`}>
+            <div style="background-color: {firstColor};" />
+        </a>
     </label>
     <label class="color-box">
         <input type="checkbox" name="" id="" />
-        <div style="background-color: {secondColor};" />
+        <a data-sveltekit-reload href={`${path}?color=${secondColor}`}>
+            <div style="background-color: {secondColor};" />
+        </a>
     </label>
     <label class="color-box">
         <input type="checkbox" name="" id="" />
+        <a data-sveltekit-reload href={`${path}?color=${thirdColor}`}>
         <div style="background-color: {thirdColor};" />
+        </a>
     </label>
     <label class="color-box">
         <input type="checkbox" name="" id="" />
+        <a data-sveltekit-reload href={`${path}?color=${forthColor}`}>
         <div style="background-color: {forthColor};" />
+        </a>
     </label>
     <label class="color-box">
         <input type="checkbox" name="" id="" />
+        <a data-sveltekit-reload href={`${path}?color=${fifthColor}`}>
         <div style="background-color: {fifthColor};" />
+        </a>
     </label>
 </div>
 

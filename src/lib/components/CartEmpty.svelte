@@ -1,6 +1,6 @@
 <script>
     /*import "bootstrap";*/
-    import "bootstrap/dist/css/bootstrap.min.css";
+    import "bootswatch/dist/lux/bootstrap.min.css";
     import {isInCart} from '../services/store'
     import Product from "./Product.svelte";
     import { onDestroy } from 'svelte';
