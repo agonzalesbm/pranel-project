@@ -1,20 +1,18 @@
 <script>
     // @ts-nocheck
     import "bootswatch/dist/lux/bootstrap.min.css";
-    import Product from "./Product.svelte"; 
+    import Product from "./Product.svelte";
 
-    export let array = []; 
+    export let array = [];
 </script>
 
 <div class="container ml-5 text-center">
     <div class="row justify-content-center">
-        {#each array as element (element.id)}
+        {#each array as element}
             <div class="col-md-3">
             <Product
             handBag = {element.image}
             handBagPerson = {element.imagep}
-            productId = {element.id}
-            category = {element.category}
             title={element.name}
             price={element.price}
             />

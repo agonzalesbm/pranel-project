@@ -1,26 +1,136 @@
 <script>
-    import "bootswatch/dist/lux/bootstrap.min.css";
-    import {isInProduct} from '../services/store'
-    let isHere = false;
-    isInProduct.subscribe( value => isHere = value);
+  let checkShoes = false;
+  let checkBags = false;
+  let checkJewelry = false;
+  let path = "/";
+  
+  import "bootswatch/dist/lux/bootstrap.min.css";
+  import {
+    isInProduct,
+    clickBags,
+    clickJewelry,
+    clickShoes,
+  } from "../services/store";
+  let isHere = false;
+  isInProduct.subscribe((value) => (isHere = value));
+
+  import {
+    sortedByAscendingOrder,
+    sortedByDescendingOrder,
+  } from "$lib/services/sorted";
+
+  import "bootswatch/dist/lux/bootstrap.min.css";
+  import {
+    currentPage,
+    isSortByAscending,
+    isSortByDescending,
+  } from "../services/store";
+  import RowColors from "./RowColors.svelte";
+
+  clickBags.subscribe((value) => {
+    checkBags = value;
+  });
+  clickShoes.subscribe((value) => {
+    checkShoes = value;
+  });
+  clickJewelry.subscribe((value) => {
+    checkJewelry = value;
+  }); 
+
+  export function shoesMarked() {
+    clickShoes.update((value) => (value = true));
+    clickBags.update((value) => (value = false));
+    clickJewelry.update((value) => (value = false));
+  }
+
+  export function bagsMarked() {
+    clickShoes.update((value) => (value = false));
+    clickBags.update((value) => (value = true));
+    clickJewelry.update((value) => (value = false));
+  }
+
+  export function jewelryMarked() {
+    clickShoes.update((value) => (value = false));
+    clickBags.update((value) => (value = false));
+    clickJewelry.update((value) => (value = true));
+  }
+
+  isInProduct.subscribe((value) => (isHere = value));
+  currentPage.subscribe((value) => {
+    path = value;
+  });
+
+  $: path;
+
+  const clickOnBags = () => {
+    path = "/bags";
+  };
+  const clickOnShoes = () => {
+    path = "/shoes";
+  };
+  const clickOnJewelry = () => {
+    path = "/jewelry";
+  };
+
+  const orderByAscending = () => {
+    isSortByAscending.update((value) => (value = true));
+    isSortByDescending.update((value) => (value = false));
+    sortedByAscendingOrder();
+  };
+
+  const orderByDescending = () => {
+    isSortByDescending.update((value) => (value = true));
+    isSortByAscending.update((value) => (value = false));
+    sortedByDescendingOrder();
+  };
+  console.log(path);
 </script>
 
-<nav class="container-fluid  {isHere ? 'visually-hidden':' '}">
+<nav class="container-fluid">
   <nav class="navbar bg-light">
     <div class="container-fluid">
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/shoes">Shoes</a>
+          <a
+            class="nav-link"
+            aria-current="page"
+            href="/shoes"
+            on:click={shoesMarked}
+          >
+            {#if checkShoes}
+              <u>Shoes</u>
+            {:else}
+              <p class="color-disabled">Shoes</p>
+            {/if}
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/bags">Bags</a>
+          <a class="nav-link" href="/bags" on:click={bagsMarked}>
+            {#if checkBags}
+              <u>Bags</u>
+            {:else}
+              <p class="color-disabled">Bags</p>
+            {/if}
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/jewelry">Rings</a>
+          <a class="nav-link" href="/jewelry" on:click={jewelryMarked}>
+            {#if checkJewelry}
+              <u>Jewelry</u>
+            {:else}
+              <p class="color-disabled">Jewelry</p>
+            {/if}
+          </a>
         </li>
       </ul>
-      <form class="d-flex">
-        <button type="button" class="btn-filter">
+      <form class="d-flex" class:visually-hidden={isHere}>
+        <button
+          type="button"
+          class="btn-filter btn btn-primary"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasRight"
+          aria-controls="offcanvasRight"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -37,6 +147,94 @@
           Filter
         </button>
       </form>
+
+      <div
+        class="offcanvas offcanvas-end"
+        tabindex="-1"
+        id="offcanvasRight"
+        aria-labelledby="offcanvasRightLabel"
+      >
+        <div class="offcanvas-header">
+          <h5 id="offcanvasRightLabel">Filter by</h5>
+          <button
+            type="button"
+            class="btn-close text-reset"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          />
+        </div>
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <div class="offcanvas-body">
+          <div class="form-check form-check-inline">
+            <input
+              on:click={orderByAscending}
+              class="form-check-input"
+              type="radio"
+              id="inlineCheckbox2"
+              value="option2"
+              name="check"
+            />
+            <label
+              on:click={orderByAscending}
+              class="form-check-label"
+              for="inlineCheckbox2"
+            >
+              Ascending
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              on:click={orderByDescending}
+              class="form-check-input"
+              type="radio"
+              id="inlineCheckbox3"
+              value="option2"
+              name="check"
+            />
+            <label
+              on:click={orderByDescending}
+              class="form-check-label"
+              for="inlineCheckbox3"
+            >
+              Descending
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              id="restore"
+              value="option2"
+              name="check"
+            />
+            <label class="form-check-label" for="restore"> Restore </label>
+          </div>
+          <hr />
+          <!-- svelte-ignore a11y-label-has-associated-control -->
+          <label class="form-check-label">Colors</label>
+          <RowColors
+            firstColor="blue"
+            secondColor="navy"
+            thirdColor="indigo"
+            forthColor="purple"
+            fifthColor="coral"
+          />
+          <RowColors
+            firstColor="orange"
+            secondColor="lemonchiffon"
+            thirdColor="yellow"
+            forthColor="maroon"
+            fifthColor="brown"
+          />
+          <RowColors
+            firstColor="red"
+            secondColor="pink"
+            thirdColor="white"
+            forthColor="grey"
+            fifthColor="black"
+          />
+        </div>
+      </div>
     </div>
   </nav>
 </nav>
@@ -63,4 +261,9 @@
     text-decoration: none;
     color: white;
   }
+
+  .color-disabled {
+    color: #949494;
+  }
+
 </style>
