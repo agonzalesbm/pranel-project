@@ -123,10 +123,10 @@
           </a>
         </li>
       </ul>
-      <form class="d-flex">
+      <form class="d-flex" class:visually-hidden={isHere}>
         <button
           type="button"
-          class="btn-filter btn btn-primary {isHere ? 'visually-hidden' : ' '}"
+          class="btn-filter btn btn-primary"
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasRight"
           aria-controls="offcanvasRight"
