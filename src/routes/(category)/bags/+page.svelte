@@ -18,6 +18,9 @@
     let array = [];
     let isChangeAscending = false;
     let isChangeDescending = false;
+
+    $: arrays;
+
     isSortByAscending.subscribe((value) => (isChangeAscending = value));
     isSortByDescending.subscribe((value) => (isChangeDescending = value));
     const fillFields = () => {
@@ -35,7 +38,7 @@
             }
         }
         if (array) {
-        arrays.push(array);
+            arrays.push(array);
         }
     };
     fillFields();
@@ -49,7 +52,7 @@
         {fillFields()}
     {/if}
 </p>
-<Category array={arrays[0]} />
-<Category array={arrays[1]} />
-<Category array={arrays[2]} />
+{#each arrays as array}
+    <Category {array} />
+{/each}
 <Pagination {size} {index} category={result.category} />

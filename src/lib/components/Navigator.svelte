@@ -1,9 +1,4 @@
 <script>
-  let checkShoes = false;
-  let checkBags = false;
-  let checkJewelry = false;
-  let path = "/";
-  
   import "bootswatch/dist/lux/bootstrap.min.css";
   import {
     isInProduct,
@@ -26,7 +21,14 @@
     isSortByDescending,
   } from "../services/store";
   import RowColors from "./RowColors.svelte";
+  import { goto } from "$app/navigation";
 
+  let checkShoes = false;
+  let checkBags = false;
+  let checkJewelry = false;
+  let path = "/";
+
+  $: console.log('this is', checkBags);
   clickBags.subscribe((value) => {
     checkBags = value;
   });
@@ -35,7 +37,7 @@
   });
   clickJewelry.subscribe((value) => {
     checkJewelry = value;
-  }); 
+  });
 
   export function shoesMarked() {
     clickShoes.update((value) => (value = true));
@@ -83,7 +85,18 @@
     isSortByAscending.update((value) => (value = false));
     sortedByDescendingOrder();
   };
-  console.log(path);
+
+  const changeByDefualt = () => {
+    let isInShoes = false;
+    let isInBags = false;
+    let isInJewelry = false;
+    clickShoes.subscribe((value) => (isInShoes = value));
+    clickBags.subscribe((value) => (isInBags = value));
+    clickJewelry.subscribe((value) => (isInJewelry = value));
+    console.log(isInShoes);
+    console.log(isInBags);
+    console.log(isInJewelry);
+  };
 </script>
 
 <nav class="container-fluid">
@@ -199,40 +212,30 @@
               Descending
             </label>
           </div>
-          <div class="form-check form-check-inline">
-            <input
-              class="form-check-input"
-              type="radio"
-              id="restore"
-              value="option2"
-              name="check"
-            />
-            <label class="form-check-label" for="restore"> Restore </label>
-          </div>
           <hr />
           <!-- svelte-ignore a11y-label-has-associated-control -->
-          <label class="form-check-label">Colors</label>
+          <!-- <label class="form-check-label">Colors</label>
           <RowColors
             firstColor="blue"
-            secondColor="navy"
-            thirdColor="indigo"
-            forthColor="purple"
-            fifthColor="coral"
+            secondColor="green"
+            thirdColor="black"
+            forthColor="gray"
+            fifthColor="white"
           />
           <RowColors
             firstColor="orange"
-            secondColor="lemonchiffon"
+            secondColor="brown"
             thirdColor="yellow"
-            forthColor="maroon"
-            fifthColor="brown"
+            forthColor="red"
+            fifthColor="pink"
           />
-          <RowColors
-            firstColor="red"
-            secondColor="pink"
-            thirdColor="white"
-            forthColor="grey"
-            fifthColor="black"
-          />
+          <div class="container mt-4">
+            <div class="row">
+              <button on:click={changeByDefualt} class="btn btn-outline-danger"
+                >By default</button
+              >
+            </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -265,5 +268,4 @@
   .color-disabled {
     color: #949494;
   }
-
 </style>
