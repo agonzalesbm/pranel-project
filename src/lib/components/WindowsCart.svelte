@@ -4,7 +4,7 @@
     export let image = "src/lib/img/jewelry/jewelry-1.jpg";
     export let id = ''
     export let category = ''
-
+    category = category === 'rings' ? 'jewelry' : category
     let path = category + "/" + id
 </script>
 
