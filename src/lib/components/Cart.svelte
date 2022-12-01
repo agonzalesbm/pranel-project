@@ -84,16 +84,22 @@
     {:else}
         <div class="Principal">
             <div class="row">
-                <div class="col-md-4">
-                    <p>Product</p>
+                <div class="col-9">
+                    <div class="row">
+                    <div class="col-2">
+                        <p>Product</p>
+                    </div>
+                    <div class="col-3">
+
+                    </div>
+                    <div class="col">
+                        <p class="price">Price</p>
+                    </div>
+                    <div class="col-5">
+                        <p class="quantity">Quantity</p>
+                    </div>
                 </div>
-                <div class="col-2">
-                    <p class="price">Price</p>
                 </div>
-                <div class="col-2">
-                    <p class="quantity">Quantity</p>
-                </div>
-                <div class="col-2" />
             </div>
         </div>
         <div class="row">
@@ -127,12 +133,12 @@
     }
 
     .col {
-        width: 100px;
+        width: 100%;
     }
 
     .label {
         margin-top: 40px;
-        font-size: 40px;
+        font-size: 14%;
         font-family: "Bree Serif";
         color: #545454;
     }
@@ -154,15 +160,10 @@
         font-size: 250%;
         font-weight: bold;
         margin-left: 1%;
-        margin-bottom: 0.3rem;
-    }
-
-    .quantity {
-        margin-left: -8.5rem;
     }
 
     .price {
-        margin-left: 0.5rem;
+        margin-left: 26%;
     }
 
     .Principal div {

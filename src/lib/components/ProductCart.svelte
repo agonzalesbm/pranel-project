@@ -50,23 +50,20 @@
         </div>
         <div class="col">
             <div class="Quantity">
-                <div class="second row">
-                    <div class="col">
-                        <button
-                            on:click={increment}
-                            class="btn btn-sm justify-content-center"
-                            >+
-                        </button>
-                    </div>
-                    <div class="col">
-                        {quantity}
-                    </div>
-                    <div class="col">
-                        <button
-                            on:click={decrease}
-                            class="btn btn-sm justify-content-center">-</button
-                        >
-                    </div>
+                <div>
+                    <button
+                        on:click={decrease}
+                        class="btn btn-sm justify-content-center"
+                        >-</button>
+                </div>
+                <div>
+                    <p class="align-text-center">{quantity}</p>
+                </div>
+                <div>
+                    <button
+                        on:click={increment}
+                        class="btn btn-sm justify-content-center">+</button
+                    >
                 </div>
             </div>
         </div>
@@ -113,19 +110,27 @@
 
     .Dump button {
         margin: 10%;
-        margin-left: 70%;
+        margin-left: 65%;
     }
 
     .Quantity div {
         height: 3.7rem;
+        width: 70%;
+        margin-left: 20%;
+        margin-bottom: 5%;
         background-color: #a6a6a6;
         border-radius: 3px;
-        font-size: 2rem;
+    }
+
+    .Quantity p {
+        font-size: 250%;
+        text-align: center;
     }
 
     .Quantity button {
-        height: 85%;
-        width: 100%;
+        height: 78%;
+        width: 90%;
+        margin: 5%;
         font-size: 1.5rem;
         background-color: #fff4f2;
     }
