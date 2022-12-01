@@ -39,7 +39,7 @@
 </script>
 
 <HeaderCategory
-    category="Rings"
+    category="Jewelry"
     pathImage="/src/lib/img/cover/jewelry-head.jpg"
 />
 <p class="visually-hidden">
