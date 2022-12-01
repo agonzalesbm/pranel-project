@@ -8,7 +8,7 @@
 
 <div class="container ml-5 text-center">
     <div class="row justify-content-center">
-        {#each array as element}
+        {#each array as element (element.id)}
             <div class="col-md-3">
             <Product
             handBag = {element.image}

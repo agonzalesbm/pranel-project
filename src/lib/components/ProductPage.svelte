@@ -1,20 +1,31 @@
 <script>
     // @ts-nocheck
     import "bootswatch/dist/lux/bootstrap.min.css";
-    import 'animate.css'
+    import SuggestedProduct from "./SuggestedProduct.svelte";
+    import "animate.css";
     import { element } from "svelte/internal";
 
-    export let data;
-    let imgSourc = data.image;
-    $: imgSourc
     export let firstImg = "";
     export let secondImg = "";
     export let arrayInfo = [];
+    
+    
+
+    export let data;
+    const { product, suggested } = data;
+    const { image, imagep, id, name, size, price, description } = product;
+    const [first, second, third, forth] = suggested
+
+    let imgSourc = image;
+    $: imgSourc;
+
+    export let firstImg = image;
+    export let secondImg = imagep;
     const chnageOverHoverFirstImg = () => {
-        imgSourc = firstImg
+        imgSourc = firstImg;
     };
     const chnageOverHoverSecondImg = () => {
-        imgSourc = secondImg
+        imgSourc = secondImg;
     };
 </script>
 
@@ -37,7 +48,10 @@
                     <div>
                         <!-- svelte-ignore a11y-missing-attribute -->
                         <!-- svelte-ignore a11y-mouse-events-have-key-events -->
-                        <img src={firstImg} on:mouseover={chnageOverHoverFirstImg} />
+                        <img
+                            src={firstImg}
+                            on:mouseover={chnageOverHoverFirstImg}
+                        />
                     </div>
                 </div>
             </div>
@@ -71,6 +85,9 @@
             </div>
         </div>
     </div>
+</div>
+<div class="container">
+    <SuggestedProduct array={[first, second, third, forth]} />
 </div>
 
 <style>
