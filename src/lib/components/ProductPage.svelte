@@ -18,7 +18,20 @@
 
     $: imgSourc;
     $: changeState;
+    import SuggestedProduct from "./SuggestedProduct.svelte";
+    import "animate.css";
+    import { element } from "svelte/internal";
+    export let data;
+    export let arrayInfo = [];
+    const { product, suggested } = data;
+    const { image, imagep, id, name, size, price, description } = product;
+    const [first, second, third, forth] = suggested
 
+    let imgSourc = image;
+    $: imgSourc;
+
+    export let firstImg = image;
+    export let secondImg = imagep;
     const chnageOverHoverFirstImg = () => {
         imgSourc = firstImg;
     };
@@ -87,13 +100,27 @@
                 </div>
             </div>
             <div class="product-div-right">
-                <span class="product-name">{data.name}</span>
+                <span class="product-name">{name}</span>
                 <span class="product-refrence"
-                    >Product Reference : {data.id}</span
+                    >Product Reference : {id}</span
                 >
-                <span class="product-size">Product Size : {data.size}</span>
-                <p class="product-description">{data.description}</p>
-                <span class="product-price">Price: {data.price}$</span>
+                <span class="product-size">Size/Dimmensions : {size}</span>
+                <span class="aboutProduct">About The Product</span>
+
+                <div class="Description">
+                    {description}
+                </div>
+
+                <div class="LiDescription">
+
+                    {#each arrayInfo as element}
+                        <li class="listDesc">
+                        {element}
+                        </li>
+
+                    {/each}
+                </div>
+                <span class="product-price">Price: {price}$</span>
                 <div class="btn-groups">
                     {#if changeState}
                         <button
@@ -117,6 +144,9 @@
         </div>
     </div>
 </div>
+<div class="container">
+    <SuggestedProduct array={[first, second, third, forth]} />
+</div>
 
 <style>
     * {
@@ -135,6 +165,9 @@
         display: block;
     }
 
+    .listDesc{
+        font-family: "Roboto", sans-serif;
+    }
     .main-wrapper {
         min-height: 100vh;
         background-color: whitesmoke;
@@ -203,6 +236,13 @@
         opacity: 0.9;
     }
 
+    .aboutProduct{
+        font-size: 23px;
+        margin-bottom: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        opacity: 1;
+    }
     .product-price {
         font-weight: 700;
         font-size: 25px;
@@ -211,11 +251,14 @@
     }
 
     .product-description {
+        display: flex;
+        word-wrap: break-word;
         font-weight: 18px;
         line-height: 1.6;
         font-weight: 300;
         opacity: 0.9;
-        margin-top: 22px;
+        margin-top: 0px;
+        margin-left: 0px;
     }
     .btn-groups {
         margin-top: 22px;

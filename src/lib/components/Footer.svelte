@@ -1,5 +1,24 @@
 <script>
     import {isAnError} from '../services/store';
+    import { clickBags, clickShoes, clickJewelry } from "$lib/services/store";
+
+    function clickBagsButton() {
+        clickBags.update(value => value = true);
+        clickShoes.update(value => value = false);
+        clickJewelry.update(value => value = false);
+    }
+
+    function clickJewelryButton() {
+        clickBags.update(value => value = false);
+        clickShoes.update(value => value = false);
+        clickJewelry.update(value => value = true);
+    }
+
+    function clickShoesButton() {
+        clickBags.update(value => value = false);
+        clickShoes.update(value => value = true);
+        clickJewelry.update(value => value = false);
+    }
 </script>
 <footer class:visually-hidden={$isAnError} class="footer" role="navigation">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -32,9 +51,9 @@
             <div class="footer-col">
                 <h4>online shopping subpages</h4>
                 <ul>
-                    <li><a href="/bags">Bags</a></li>
-                    <li><a href="/shoes">Shoes</a></li>
-                    <li><a href="/jewelry">Jewelry</a></li>
+                    <li><a href="/shoes" on:click={clickShoesButton}>Shoes</a></li>
+                    <li><a href="/bags" on:click={clickBagsButton}>Bags</a></li>
+                    <li><a href="/jewelry" on:click={clickJewelryButton}>Jewelry</a></li>
                 </ul>
             </div>
             <div class="footer-col">
