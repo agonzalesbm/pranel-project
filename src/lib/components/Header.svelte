@@ -36,6 +36,7 @@
         products = value;
         total = 0;
         products.forEach((e) => (total += e.price));
+        totalPriceCart.update(value => value = total)
     });
 
     import { clickBags, clickShoes, clickJewelry } from "$lib/services/store";
@@ -127,7 +128,7 @@
                         <div class="popover-footer">
                             <h5>Total:</h5>
                             <h5 style="right: 1em;position:absolute;">
-                                {total.toFixed(2)} $
+                                {$totalPriceCart.toFixed(2)} $
                             </h5>
                         </div>
                         <div class="btn-view">

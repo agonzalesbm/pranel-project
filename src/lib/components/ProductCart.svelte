@@ -17,6 +17,7 @@
     let priceChange = 0.0;
 
     $: priceChange = price * quantity;
+    $: quantity;
     const increment = () => {
         if (quantity <= stock - 1) {
             quantity += 1;
@@ -26,7 +27,7 @@
     const decrease = () => {
         if (quantity !== 1) {
             quantity -= 1;
-            totalPriceCart.update((value) => value - price);
+            totalPriceCart.update((value) => (value = value - price));
         }
     };
 
@@ -89,8 +90,12 @@
 </div>
 
 <style>
-    a:link { text-decoration:none; } 
-    a:visited { text-decoration:none; }
+    a:link {
+        text-decoration: none;
+    }
+    a:visited {
+        text-decoration: none;
+    }
     .row {
         background-color: #fff4f2;
         margin-bottom: 1rem;
