@@ -27,8 +27,9 @@
   let checkBags = false;
   let checkJewelry = false;
   let path = "/";
+  let isCheck = "";
 
-  $: console.log('this is', checkBags);
+  $: console.log("this is", checkBags);
   clickBags.subscribe((value) => {
     checkBags = value;
   });
@@ -40,18 +41,21 @@
   });
 
   export function shoesMarked() {
+    isCheck = "";
     clickShoes.update((value) => (value = true));
     clickBags.update((value) => (value = false));
     clickJewelry.update((value) => (value = false));
   }
 
   export function bagsMarked() {
+    isCheck = "";
     clickShoes.update((value) => (value = false));
     clickBags.update((value) => (value = true));
     clickJewelry.update((value) => (value = false));
   }
 
   export function jewelryMarked() {
+    isCheck = "";
     clickShoes.update((value) => (value = false));
     clickBags.update((value) => (value = false));
     clickJewelry.update((value) => (value = true));
@@ -180,11 +184,12 @@
         <div class="offcanvas-body">
           <div class="form-check form-check-inline">
             <input
+              bind:group={isCheck}
               on:click={orderByAscending}
               class="form-check-input"
               type="radio"
               id="inlineCheckbox2"
-              value="option2"
+              value="option1"
               name="check"
             />
             <label
@@ -197,12 +202,13 @@
           </div>
           <div class="form-check form-check-inline">
             <input
+              bind:group={isCheck}
               on:click={orderByDescending}
               class="form-check-input"
               type="radio"
               id="inlineCheckbox3"
               value="option2"
-              name="check"
+              name="check 2"
             />
             <label
               on:click={orderByDescending}
