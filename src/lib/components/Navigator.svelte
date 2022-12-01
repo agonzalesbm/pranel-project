@@ -212,19 +212,9 @@
               Descending
             </label>
           </div>
-          <div class="form-check form-check-inline">
-            <input
-              class="form-check-input"
-              type="radio"
-              id="restore"
-              value="option2"
-              name="check"
-            />
-            <label class="form-check-label" for="restore"> Restore </label>
-          </div>
           <hr />
           <!-- svelte-ignore a11y-label-has-associated-control -->
-          <label class="form-check-label">Colors</label>
+          <!-- <label class="form-check-label">Colors</label>
           <RowColors
             firstColor="blue"
             secondColor="green"
@@ -245,7 +235,7 @@
                 >By default</button
               >
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

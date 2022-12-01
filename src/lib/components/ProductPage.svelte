@@ -1,25 +1,70 @@
 <script>
     // @ts-nocheck
     import "bootswatch/dist/lux/bootstrap.min.css";
-    import SuggestedProduct from "./SuggestedProduct.svelte";
     import "animate.css";
-    import { element } from "svelte/internal";
+    import SuggestedProduct from "./SuggestedProduct.svelte";
+    import { productsCart } from "../services/store";
+    import { goto } from "$app/navigation";
+    import Noty from "noty";
+    import "noty/lib/themes/nest.css";
+    import 'noty/lib/noty.css'
+    
     export let data;
     export let arrayInfo = [];
+    
+    
     const { product, suggested } = data;
-    const { image, imagep, id, name, size, price, description } = product;
+    const { image, imagep, id, name, size, price, stock, description, category} = product;
     const [first, second, third, forth] = suggested
-
+    
+    let changeState = $productsCart.find((product) => product.id === id);
     let imgSourc = image;
+    export let secondImg = imagep;
+    export let firstImg = image;
+
+    $: imgSourc;
+    $: changeState;
+
     $: imgSourc;
 
-    export let firstImg = image;
-    export let secondImg = imagep;
     const chnageOverHoverFirstImg = () => {
         imgSourc = firstImg;
     };
     const chnageOverHoverSecondImg = () => {
         imgSourc = secondImg;
+    };
+
+    const addProductInCart = () => {
+        let exist = $productsCart.find((product) => product.id === id);
+        if (!exist) {
+            $productsCart = [
+                ...$productsCart,
+                {
+                    id,
+                    image,
+                    imagePerson: imagep,
+                    name,
+                    price,
+                    stock,
+                    description,
+                    category
+                },
+            ];
+            changeState = true;
+            new Noty({
+                theme: "nest",
+                text: "Product added to cart",
+                type: "alert",
+                layout: 'bottomRight',
+                timeout: 1500,
+            }).show();
+        } else {
+            changeState = false;
+        }
+    };
+
+    const goTo = () => {
+        goto("/cart");
     };
 </script>
 
@@ -72,17 +117,31 @@
                 </div>
                 <span class="product-price">Price: {price}$</span>
                 <div class="btn-groups">
-                    <button type="button" class="add-cart-btn">
-                        <i class="fas fa-shopping-cart" />add to cart</button
-                    >
+                    {#if changeState}
+                        <button
+                            on:click={goTo}
+                            type="button"
+                            class="add-cart-btn"
+                        >
+                            <i class="fas fa-shopping-cart" />Go cart</button
+                        >
+                    {:else}
+                        <button
+                            on:click={addProductInCart}
+                            type="button"
+                            class="add-cart-btn"
+                        >
+                            <i class="fas fa-shopping-cart" />add to cart</button
+                        >
+                    {/if}
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="container">
+<!-- <div class="container">
     <SuggestedProduct array={[first, second, third, forth]} />
-</div>
+</div> -->
 
 <style>
     * {

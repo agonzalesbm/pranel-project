@@ -1,6 +1,8 @@
 <script>
+// @ts-nocheck
+
     // import 'bootstrap'
     import "bootswatch/dist/lux/bootstrap.min.css";
-    import CartEmpty from '$lib/components/CartEmpty.svelte';
+    import Cart from '$lib/components/Cart.svelte';
 </script>
-<CartEmpty />
+<Cart />
