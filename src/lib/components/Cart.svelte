@@ -137,23 +137,23 @@
     }
 
     .label {
-        margin-top: 40px;
-        font-size: 14%;
+        margin-top: 5%;
+        font-size: 200%;
         font-family: "Bree Serif";
         color: #545454;
     }
 
     .btn {
-        margin-top: 40px;
-        margin-bottom: 110px;
+        margin-top: 2%;
+        margin-bottom: 10%;
         background-color: #fff4f2;
-        width: 270px;
-        height: 55px;
+        width: 20%;
+        height: 60%;
         font-family: "Bree Serif";
-        font-size: 25px;
-        padding-bottom: 2px;
+        font-size: 135%;
         border-bottom: 3px solid #000000;
         border-right: 3px solid #000000;
+        border-radius: 7px;
     }
 
     .Principal {
