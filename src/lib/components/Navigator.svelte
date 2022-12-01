@@ -29,7 +29,8 @@
   let path = "/";
   let isCheck = "";
 
-  $: console.log("this is", checkBags);
+  $: isCheck;
+
   clickBags.subscribe((value) => {
     checkBags = value;
   });
@@ -83,7 +84,7 @@
     isSortByDescending.update((value) => (value = false));
     sortedByAscendingOrder();
   };
-
+  
   const orderByDescending = () => {
     isSortByDescending.update((value) => (value = true));
     isSortByAscending.update((value) => (value = false));
@@ -97,9 +98,6 @@
     clickShoes.subscribe((value) => (isInShoes = value));
     clickBags.subscribe((value) => (isInBags = value));
     clickJewelry.subscribe((value) => (isInJewelry = value));
-    console.log(isInShoes);
-    console.log(isInBags);
-    console.log(isInJewelry);
   };
 </script>
 
