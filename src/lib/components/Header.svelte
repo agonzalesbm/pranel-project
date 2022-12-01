@@ -9,7 +9,7 @@
         isInCategory,
         isVisibleCart,
         productsCart,
-        totalPriceCart
+        totalPriceCart,
     } from "../services/store";
     import Product from "./Product.svelte";
     import WindowsCart from "./WindowsCart.svelte";
@@ -30,33 +30,33 @@
     let total = 0;
 
     $: products;
-    $: total
-    $: console.log(total)
+    $: total;
+    $: console.log(total);
     productsCart.subscribe((value) => {
         products = value;
         total = 0;
         products.forEach((e) => (total += e.price));
-        totalPriceCart.update(value => value = total)
+        totalPriceCart.update((value) => (value = total));
     });
 
     import { clickBags, clickShoes, clickJewelry } from "$lib/services/store";
 
     function clickBagsButton() {
-        clickBags.update(value => value = true);
-        clickShoes.update(value => value = false);
-        clickJewelry.update(value => value = false);
+        clickBags.update((value) => (value = true));
+        clickShoes.update((value) => (value = false));
+        clickJewelry.update((value) => (value = false));
     }
 
     function clickJewelryButton() {
-        clickBags.update(value => value = false);
-        clickShoes.update(value => value = false);
-        clickJewelry.update(value => value = true);
+        clickBags.update((value) => (value = false));
+        clickShoes.update((value) => (value = false));
+        clickJewelry.update((value) => (value = true));
     }
 
     function clickShoesButton() {
-        clickBags.update(value => value = false);
-        clickShoes.update(value => value = true);
-        clickJewelry.update(value => value = false);
+        clickBags.update((value) => (value = false));
+        clickShoes.update((value) => (value = true));
+        clickJewelry.update((value) => (value = false));
     }
 </script>
 
@@ -84,7 +84,11 @@
                 >
             </a>
             <span class="icon-cart">
-                <a on:click={onClick} class = {cart ? "visually-hidden" : ""} href="/cart">
+                <a
+                    on:click={onClick}
+                    class={cart ? "visually-hidden" : ""}
+                    href="/cart"
+                >
                     <span style="color: black">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +104,7 @@
                         </svg>
                     </span>
                 </a>
-                <div class={cart ? "container visually-hidden" : "container"} >
+                <div class={cart ? "container visually-hidden" : "container"}>
                     <div class="title">
                         <h5>List of products</h5>
                     </div>
@@ -115,8 +119,7 @@
                                     id={product.id}
                                 />
                             {/each}
-                            <div class="gradient ">
-                            </div>
+                            <div class="gradient " />
                         {:else}
                             <div class="popover-empty ">
                                 <h5 class="empty-message">Cart is empty</h5>
@@ -124,7 +127,7 @@
                             </div>
                         {/if}
                     </div>
-                    <div class={total !== 0? "" : "visually-hidden"}>
+                    <div class={total !== 0 ? "" : "visually-hidden"}>
                         <div class="popover-footer">
                             <h5>Total:</h5>
                             <h5 style="right: 1em;position:absolute;">
@@ -133,10 +136,13 @@
                             </h5>
                         </div>
                         <div class="btn-view">
-                            <b><a class="link-popover" href="/cart">View all products</a></b>
+                            <b
+                                ><a class="link-popover" href="/cart"
+                                    >View all products</a
+                                ></b
+                            >
                         </div>
                     </div>
-                    
                 </div>
             </span>
 
@@ -173,9 +179,15 @@
                     </svg></span
                 >
                 <ul class="menu">
-                    <li><a href="/shoes" on:click={clickShoesButton}>Shoes</a></li>
+                    <li>
+                        <a href="/shoes" on:click={clickShoesButton}>Shoes</a>
+                    </li>
                     <li><a href="/bags" on:click={clickBagsButton}>Bags</a></li>
-                    <li><a href="/jewelry" on:click={clickJewelryButton}>Jewelry</a></li>
+                    <li>
+                        <a href="/jewelry" on:click={clickJewelryButton}
+                            >Jewelry</a
+                        >
+                    </li>
                 </ul>
             </a>
         </nav>
@@ -231,11 +243,29 @@
     }
 
     .popover-body {
-        overflow: hidden;
+        overflow-y: auto;
         max-height: calc(100vh - 50vh);
         min-height: 0.5em;
         position: relative;
-        box-shadow: inset ;
+        box-shadow: inset;
+
+        scrollbar-width: thin;
+        scrollbar-color: #ffd7d7 rgb(255, 255, 255);
+    }
+
+    /* Works on Chrome, Edge, and Safari */
+    .popover-body::-webkit-scrollbar {
+        width: 12px;
+        border-radius: 20px;
+    }
+    .popover-body::-webkit-scrollbar-track {
+        background: rgb(255, 255, 255);
+    }
+
+    .popover-body::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.807);
+        border-radius: 20px;
+        border: 3px solid rgb(255, 255, 255);
     }
 
     .empty-message {
@@ -264,7 +294,7 @@
         border-radius: 0.35em;
     }
 
-    .btn-pop{
+    .btn-pop {
         width: 80%;
         height: 2em;
         background-color: black;
@@ -275,7 +305,7 @@
         transform: scale(0.7);
     }
 
-    .btn-pop:hover{
+    .btn-pop:hover {
         color: black;
         border: rgba(0, 0, 0) solid 0.2em;
         border-radius: 0;
@@ -287,13 +317,14 @@
         text-align: center;
         display: block;
         position: relative;
+        overflow: hidden;
     }
 
-    .link-popover{
+    .link-popover {
         width: 100%;
         font-size: 1em;
         position: relative;
-        padding:0.5em;
+        padding: 0.5em;
         margin: 0;
         background-color: #ffded7;
         transform: translateY(-50%);
@@ -302,11 +333,11 @@
         box-shadow: 0 0 2px rgb(51, 51, 51);
     }
 
-    .link-popover:hover{
+    .link-popover:hover {
         border-radius: 3px;
     }
 
-    .btn-view{
+    .btn-view {
         position: relative;
         width: 100%;
         height: 2.5em;
@@ -314,11 +345,15 @@
     }
 
     .gradient {
-        bottom: -0em;
+        bottom: 0%;
         left: 0%;
-        position: absolute;
+        position: fixed;
         width: 98.5%;
-        background: linear-gradient(to top,  #0000004c, rgba(251, 238, 238, 0.133));
+        background: linear-gradient(
+            to top,
+            #0000004c,
+            rgba(251, 238, 238, 0.133)
+        );
         z-index: 1;
         height: 5%;
         margin-left: 0.2em;
