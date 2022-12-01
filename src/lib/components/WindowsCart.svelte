@@ -8,19 +8,27 @@
     let path = category + "/" + id
 </script>
 
-<a href={path}>
-    <div class="body-product">
-        <div class="img-pr">
+<div class="body-product">
+    <div class="img-pr">
+        <a href={path}>
             <img src={image} alt="img-product" />
-        </div>
-        <div class="description-pr">
-            <h5 class="name-pr">{name}</h5>
-            <h5 class="price-pr">{price} $</h5>
-        </div>
+        </a>
     </div>
-</a>
+    <div class="description-pr">
+        <a href={path}>
+            <h5 class="name-pr">{name}</h5>
+        </a>
+        <h5 class="price-pr">{price} $</h5>
+    </div>
+</div>
 
 <style>
+    a:link {
+        text-decoration: none;
+    }
+    a:visited {
+        text-decoration: none;
+    }
     .body-product {
         min-width: 100%;
         border-style: solid;
