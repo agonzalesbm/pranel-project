@@ -1,5 +1,6 @@
 <script>
     // @ts-nocheck
+    import Pagination from "$lib/components/Pagination.svelte";
     import Category from "$lib/components/Category.svelte";
     import HeaderCategory from "$lib/components/HeaderCategory.svelte";
     import {
@@ -9,7 +10,8 @@
     } from "$lib/services/store";
 
     export let data;
-    const { result } = data;
+    const { result, size, index } = data;
+
     $currentProducts = result;
 
     let arrays = [];
@@ -21,7 +23,7 @@
     const fillFields = () => {
         arrays = [];
         array = [];
-        for (let i = 0; i < 12; i++) {
+        for (let i = 0; i < result.length; i++) {
             if (i !== 0 && i % 4 === 0) {
                 arrays.push(array);
                 array = [];
@@ -32,7 +34,9 @@
                 }
             }
         }
+        if (array) {
         arrays.push(array);
+        }
     };
     fillFields();
 </script>
@@ -48,3 +52,4 @@
 <Category array={arrays[0]} />
 <Category array={arrays[1]} />
 <Category array={arrays[2]} />
+<Pagination {size} {index} category={result.category} />
