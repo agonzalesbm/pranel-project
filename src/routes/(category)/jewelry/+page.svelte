@@ -18,6 +18,9 @@
     let array = [];
     let isChangeAscending = false;
     let isChangeDescending = false;
+
+    isSortByAscending.update((value) => (value = false));
+    isSortByDescending.update((value) => (value = false));
     isSortByAscending.subscribe((value) => (isChangeAscending = value));
     isSortByDescending.subscribe((value) => (isChangeDescending = value));
     const fillFields = () => {
