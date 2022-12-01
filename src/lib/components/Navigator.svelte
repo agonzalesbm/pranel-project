@@ -1,5 +1,5 @@
 <script>
-    import { goto } from "$app/navigation";
+  import { goto } from "$app/navigation";
 
   import {
     sortedByAscendingOrder,
@@ -49,7 +49,6 @@
     isSortByAscending.update((value) => (value = false));
     sortedByDescendingOrder();
   };
-  console.log(path)
 </script>
 
 <nav class="container-fluid  {isHere ? 'visually-hidden' : ' '}">
@@ -128,7 +127,7 @@
               class="form-check-label"
               for="inlineCheckbox2"
             >
-              Ascending
+              Ascending <i class="bi bi-arrow-up-square-fill" />
             </label>
           </div>
           <div class="form-check form-check-inline">
@@ -145,19 +144,7 @@
               class="form-check-label"
               for="inlineCheckbox3"
             >
-              Descending
-            </label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input
-              class="form-check-input"
-              type="radio"
-              id="restore"
-              value="option2"
-              name="check"
-            />
-            <label class="form-check-label" for="restore">
-              Restore
+              Descending <i class="bi bi-arrow-down-square-fill" />
             </label>
           </div>
           <hr />
@@ -165,25 +152,29 @@
           <label class="form-check-label">Colors</label>
           <RowColors
             firstColor="blue"
-            secondColor="navy"
-            thirdColor="indigo"
-            forthColor="purple"
-            fifthColor="coral"
+            secondColor="green"
+            thirdColor="gray"
+            forthColor="black"
+            fifthColor="white"
           />
           <RowColors
             firstColor="orange"
             secondColor="lemonchiffon"
             thirdColor="yellow"
-            forthColor="maroon"
-            fifthColor="brown"
+            forthColor="red"
+            fifthColor="pink"
           />
-          <RowColors
-            firstColor="red"
-            secondColor="pink"
-            thirdColor="white"
-            forthColor="grey"
-            fifthColor="black"
-          />
+          <div class="container mt-5">
+            <div class="row">
+              <a
+                data-sveltekit-reload
+                href={path.split('=')[0]}
+                class="btn btn-outline-primary"
+              >
+                By Default
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
