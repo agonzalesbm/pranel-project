@@ -100,6 +100,7 @@
                     >Product Reference : {id}</span
                 >
                 <span class="product-size">Size/Dimmensions : {size}</span>
+                <span class="Stock">Stock:{stock}[Units]</span>
                 <span class="aboutProduct">About The Product</span>
 
                 <div class="Description">
