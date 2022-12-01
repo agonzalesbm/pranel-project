@@ -1,23 +1,15 @@
 <!-- <script context="module"> -->
 <script>
+    let checkShoes = false    
+    let checkBags = false    
+    let checkJewelry = false    
+    clickBags.subscribe((value) =>{      checkBags = value;    })    
+    clickShoes.subscribe((value) =>{      checkShoes = value;    })   
+     clickJewelry.subscribe((value) =>{      checkJewelry = value;    })
     import "bootswatch/dist/lux/bootstrap.min.css";
     import {isInProduct, clickBags, clickJewelry, clickShoes} from '../services/store'
     let isHere = false;
     isInProduct.subscribe( value => isHere = value);
-
-    let checkShoes = false
-    let checkBags = false
-    let checkJewelry = false
-
-    clickBags.subscribe((value) =>{
-      checkBags = value;
-    })
-    clickShoes.subscribe((value) =>{
-      checkShoes = value;
-    })
-    clickJewelry.subscribe((value) =>{
-      checkJewelry = value;
-    })
 
     export function shoesMarked() {
       clickShoes.update((value) => value = true);
@@ -36,9 +28,60 @@
       clickBags.update((value) => value = false);
       clickJewelry.update((value) => value = true);
     }
+
+    
+  import { goto } from "$app/navigation";
+
+  import {
+    sortedByAscendingOrder,
+    sortedByDescendingOrder,
+  } from "$lib/services/sorted";
+
+  import "bootswatch/dist/lux/bootstrap.min.css";
+  import {
+    isInProduct,
+    currentPage,
+    isSortByAscending,
+    isSortByDescending,
+  } from "../services/store";
+  import RowColors from "./RowColors.svelte";
+
+  let isHere = false;
+  let path = "/";
+  let color = "#000";
+
+  isInProduct.subscribe((value) => (isHere = value));
+  currentPage.subscribe((value) => {
+    path = value;
+  });
+
+  $: path;
+
+  const clickOnBags = () => {
+    path = "/bags";
+  };
+  const clickOnShoes = () => {
+    path = "/shoes";
+  };
+  const clickOnJewelry = () => {
+    path = "/jewelry";
+  };
+
+  const orderByAscending = () => {
+    isSortByAscending.update((value) => (value = true));
+    isSortByDescending.update((value) => (value = false));
+    sortedByAscendingOrder();
+  };
+
+  const orderByDescending = () => {
+    isSortByDescending.update((value) => (value = true));
+    isSortByAscending.update((value) => (value = false));
+    sortedByDescendingOrder();
+  };
+  console.log(path)
 </script>
 
-<nav class="container-fluid">
+<nav class="container-fluid  {isHere ? 'visually-hidden' : ' '}">
   <nav class="navbar bg-light">
     <div class="container-fluid">
       <ul class="nav">
@@ -71,7 +114,13 @@
         </li>
       </ul>
       <form class="d-flex">
-        <button type="button" class="btn-filter {isHere ? 'visually-hidden':' '}">
+        <button
+          type="button"
+          class="btn-filter btn btn-primary"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasRight"
+          aria-controls="offcanvasRight"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -88,6 +137,96 @@
           Filter
         </button>
       </form>
+
+      <div
+        class="offcanvas offcanvas-end"
+        tabindex="-1"
+        id="offcanvasRight"
+        aria-labelledby="offcanvasRightLabel"
+      >
+        <div class="offcanvas-header">
+          <h5 id="offcanvasRightLabel">Filter by</h5>
+          <button
+            type="button"
+            class="btn-close text-reset"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          />
+        </div>
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <div class="offcanvas-body">
+          <div class="form-check form-check-inline">
+            <input
+              on:click={orderByAscending}
+              class="form-check-input"
+              type="radio"
+              id="inlineCheckbox2"
+              value="option2"
+              name="check"
+            />
+            <label
+              on:click={orderByAscending}
+              class="form-check-label"
+              for="inlineCheckbox2"
+            >
+              Ascending
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              on:click={orderByDescending}
+              class="form-check-input"
+              type="radio"
+              id="inlineCheckbox3"
+              value="option2"
+              name="check"
+            />
+            <label
+              on:click={orderByDescending}
+              class="form-check-label"
+              for="inlineCheckbox3"
+            >
+              Descending
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              id="restore"
+              value="option2"
+              name="check"
+            />
+            <label class="form-check-label" for="restore">
+              Restore
+            </label>
+          </div>
+          <hr />
+          <!-- svelte-ignore a11y-label-has-associated-control -->
+          <label class="form-check-label">Colors</label>
+          <RowColors
+            firstColor="blue"
+            secondColor="navy"
+            thirdColor="indigo"
+            forthColor="purple"
+            fifthColor="coral"
+          />
+          <RowColors
+            firstColor="orange"
+            secondColor="lemonchiffon"
+            thirdColor="yellow"
+            forthColor="maroon"
+            fifthColor="brown"
+          />
+          <RowColors
+            firstColor="red"
+            secondColor="pink"
+            thirdColor="white"
+            forthColor="grey"
+            fifthColor="black"
+          />
+        </div>
+      </div>
     </div>
   </nav>
 </nav>
@@ -117,5 +256,11 @@
 
   .color-disabled {
     color: #949494;
+  }
+
+  a:hover {
+    background-color: #000000;
+    color: #fff;
+    border-radius: 10%;
   }
 </style>
