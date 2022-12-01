@@ -4,14 +4,8 @@
     import SuggestedProduct from "./SuggestedProduct.svelte";
     import "animate.css";
     import { element } from "svelte/internal";
-
-    export let firstImg = "";
-    export let secondImg = "";
-    export let arrayInfo = [];
-    
-    
-
     export let data;
+    export let arrayInfo = [];
     const { product, suggested } = data;
     const { image, imagep, id, name, size, price, description } = product;
     const [first, second, third, forth] = suggested
@@ -56,15 +50,15 @@
                 </div>
             </div>
             <div class="product-div-right">
-                <span class="product-name">{data.name}</span>
+                <span class="product-name">{name}</span>
                 <span class="product-refrence"
-                    >Product Reference : {data.id}</span
+                    >Product Reference : {id}</span
                 >
-                <span class="product-size">Size/Dimmensions : {data.size}</span>
+                <span class="product-size">Size/Dimmensions : {size}</span>
                 <span class="aboutProduct">About The Product</span>
 
                 <div class="Description">
-                    {data.description}
+                    {description}
                 </div>
 
                 <div class="LiDescription">
@@ -76,7 +70,7 @@
 
                     {/each}
                 </div>
-                <span class="product-price">Price: {data.price}$</span>
+                <span class="product-price">Price: {price}$</span>
                 <div class="btn-groups">
                     <button type="button" class="add-cart-btn">
                         <i class="fas fa-shopping-cart" />add to cart</button
