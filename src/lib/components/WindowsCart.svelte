@@ -24,13 +24,13 @@
     .body-product {
         min-width: 100%;
         border-style: solid;
-        border-color: transparent transparent rgba(1, 1, 1, 0.783) transparent;
+        border-color: transparent transparent rgba(42, 41, 41, 0.504) transparent;
+        border-radius: 0.3em;
         padding: 0.1em;
         position: relative;
         display: inline;
         display: flex;
         height: 6em;
-        z-index: 1;
     }
 
     img {
