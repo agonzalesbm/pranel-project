@@ -6,18 +6,33 @@
     import { goto } from "$app/navigation";
     import Noty from "noty";
     import "noty/lib/themes/nest.css";
-    import 'noty/lib/noty.css'
+    import "noty/lib/noty.css";
     import SuggestedProduct from "./SuggestedProduct.svelte";
-    
+    import { browser } from "$app/environment";
+
     export let data;
     export let arrayInfo = [];
-    
-    
+
     const { product, suggested } = data;
-    const { image, imagep, id, name, size, price, stock, description, category} = product;
-    const [first, second, third, forth] = suggested
-    
-    let changeState = $productsCart.find((product) => product.id === id);
+    const {
+        image,
+        imagep,
+        id,
+        name,
+        size,
+        price,
+        stock,
+        description,
+        category,
+    } = product;
+    const [first, second, third, forth] = suggested;
+
+    let changeState = false;
+    if (browser) {
+        let cartStorage = window.localStorage.getItem("cart");
+        let cart = JSON.parse(cartStorage);
+        changeState = cart.find((product) => product.id === id);
+    }
     let imgSourc = image;
     export let secondImg = imagep;
     export let firstImg = image;
@@ -35,10 +50,13 @@
     };
 
     const addProductInCart = () => {
-        let exist = $productsCart.find((product) => product.id === id);
+        if (!browser) return;
+        let cartStorage = window.localStorage.getItem("cart");
+        let cart = JSON.parse(cartStorage);
+        let exist = cart.find((product) => product.id === id);
         if (!exist) {
-            $productsCart = [
-                ...$productsCart,
+            cart = [
+                ...cart,
                 {
                     id,
                     image,
@@ -47,15 +65,18 @@
                     price,
                     stock,
                     description,
-                    category
+                    category,
+                    quantity: 1
                 },
             ];
+            window.localStorage.setItem("cart", JSON.stringify(cart));
+            productsCart.set(cart)
             changeState = true;
             new Noty({
                 theme: "nest",
                 text: "Product added to cart",
                 type: "alert",
-                layout: 'bottomRight',
+                layout: "bottomRight",
                 timeout: 1500,
             }).show();
         } else {
@@ -96,9 +117,7 @@
             </div>
             <div class="product-div-right">
                 <span class="product-name">{name}</span>
-                <span class="product-refrence"
-                    >Product Reference : {id}</span
-                >
+                <span class="product-refrence">Product Reference : {id}</span>
                 <span class="product-size">Size/Dimmensions : {size}</span>
                 <span class="Stock">Stock:{stock}[Units]</span>
                 <span class="aboutProduct">About The Product</span>
@@ -108,12 +127,10 @@
                 </div>
 
                 <div class="LiDescription">
-
                     {#each arrayInfo as element}
                         <li class="listDesc">
-                        {element}
+                            {element}
                         </li>
-
                     {/each}
                 </div>
                 <span class="product-price">Price: {price}$</span>
@@ -161,7 +178,7 @@
         display: block;
     }
 
-    .listDesc{
+    .listDesc {
         font-family: "Roboto", sans-serif;
     }
     .main-wrapper {
@@ -232,7 +249,7 @@
         opacity: 0.9;
     }
 
-    .aboutProduct{
+    .aboutProduct {
         font-size: 23px;
         margin-bottom: 10px;
         font-weight: 700;

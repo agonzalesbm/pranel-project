@@ -1,4 +1,6 @@
 <script>
+    // @ts-nocheck
+
     import "bootstrap-icons/font/bootstrap-icons.css";
     import ProductImage from "./ProductImage.svelte";
     import { productsCart } from "../services/store";
@@ -6,7 +8,8 @@
     import { goto } from "$app/navigation";
     import Noty from "noty";
     import "noty/lib/themes/nest.css";
-    import 'noty/lib/noty.css'
+    import "noty/lib/noty.css";
+    import { browser } from "$app/environment";
 
     export let handBag = "";
     export let handBagPerson = "";
@@ -19,14 +22,22 @@
 
     let redirectCategory = category === "rings" ? "jewelry" : category;
     let path = `/${redirectCategory}/${productId}`;
-    let changeState = $productsCart.find((product) => product.id === productId);
+    let changeState = false;
+    if (browser) {
+        let cartStorage = window.localStorage.getItem("cart");
+        let cart = JSON.parse(cartStorage);
+        changeState = cart.find((product) => product.id === productId);
+    }
     $: changeState;
 
     const addProductInCart = () => {
-        let exist = $productsCart.find((product) => product.id === productId);
+        if (!browser) return;
+        let cartStorage = window.localStorage.getItem("cart");
+        let cart = JSON.parse(cartStorage);
+        let exist = cart.find((product) => product.id === productId);
         if (!exist) {
-            $productsCart = [
-                ...$productsCart,
+            cart = [
+                ...cart,
                 {
                     id: productId,
                     image: handBag,
@@ -35,15 +46,19 @@
                     price,
                     stock,
                     description,
-                    category
+                    category,
+                    quantity: 1
                 },
             ];
+            productsCart.set(cart)
+            window.localStorage.setItem("cart", JSON.stringify(cart));
+
             new Noty({
                 theme: "nest",
                 text: "Product added to cart",
-                type: 'alert',
-                layout: 'bottomRight',
-                timeout: 1500
+                type: "alert",
+                layout: "bottomRight",
+                timeout: 1500,
             }).show();
             changeState = true;
         } else {
