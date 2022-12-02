@@ -1,6 +1,14 @@
 <script>
+    // @ts-nocheck
+
+    import { browser } from "$app/environment";
+
     import "bootswatch/dist/lux/bootstrap.min.css";
-    import { totalPriceCart, deleteElement } from "../services/store";
+    import {
+        totalPriceCart,
+        deleteElement,
+        productsCart,
+    } from "../services/store";
 
     export let image = "";
     export let productName = "";
@@ -9,24 +17,41 @@
     export let stock = 0;
     export let total = 0;
     export let id = "";
+    export let quantity = 1;
     export let category = "";
 
     let path = category + "/" + id;
 
-    let quantity = 1;
     let priceChange = 0.0;
+
+    const changeQuantity = (newValue) => {
+        if (browser) {
+            let cartStorage = window.localStorage.getItem("cart");
+            let cartProducts = JSON.parse(cartStorage);
+            const index = cartProducts.findIndex(
+                (product) => product.id === id
+            );
+            cartProducts[index].quantity = newValue;
+            window.localStorage.setItem("cart", JSON.stringify(cartProducts));
+            cartStorage = window.localStorage.getItem("cart");
+            cartProducts = JSON.parse(cartStorage);
+            productsCart.update((value) => (value = cartProducts));
+        }
+    };
 
     $: priceChange = price * quantity;
     $: quantity;
     const increment = () => {
         if (quantity <= stock - 1) {
             quantity += 1;
+            changeQuantity(quantity);
             totalPriceCart.update((value) => (value = value + price));
         }
     };
     const decrease = () => {
         if (quantity !== 1) {
             quantity -= 1;
+            changeQuantity(quantity);
             totalPriceCart.update((value) => (value = value - price));
         }
     };

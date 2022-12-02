@@ -27,19 +27,27 @@
     };
 
     let products = [];
+    let cartProducts = [];
     let total = 0;
 
     $: products;
     $: total;
-    $: console.log(total);
-    productsCart.subscribe((value) => {
-        products = value;
-        total = 0;
-        products.forEach((e) => (total += e.price));
-        totalPriceCart.update((value) => (value = total));
-    });
+    $: cartProducts;
+
+    if (browser) {
+        let cartStorage = window.localStorage.getItem("cart");
+        cartProducts = JSON.parse(cartStorage);
+        let total = 0;
+        cartProducts.forEach((e) => (total += e.price * e.quantity));
+        console.log(total);
+        totalPriceCart.set(total);
+        productsCart.set(cartProducts)
+    }
+    totalPriceCart.subscribe((value) => (total = value));
+    productsCart.subscribe(value => products = value)
 
     import { clickBags, clickShoes, clickJewelry } from "$lib/services/store";
+    import { browser } from "$app/environment";
 
     function clickBagsButton() {
         clickBags.update((value) => (value = true));
@@ -110,13 +118,14 @@
                     </div>
                     <div class="popover-body">
                         {#if total !== 0}
-                            {#each products as product}
+                            {#each products as product (product.id)}
                                 <WindowsCart
                                     name={product.name}
                                     price={product.price}
                                     image={product.image}
                                     category={product.category}
                                     id={product.id}
+                                    quantity={product.quantity}
                                 />
                             {/each}
                             <div class="gradient " />
@@ -132,7 +141,7 @@
                             <h5>Total:</h5>
                             <h5 style="right: 1em;position:absolute;">
                                 <!-- {$totalPriceCart.toFixed(2)} $ -->
-                                0.00 $
+                                {total.toFixed(2)} $
                             </h5>
                         </div>
                         <div class="btn-view">
