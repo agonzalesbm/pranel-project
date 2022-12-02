@@ -20,7 +20,7 @@
             <h5 class="name-pr">{name}</h5>
         </a>
         <h6 class="label"><b>x</b>{quantity}</h6>
-        <h5 class="price-pr">{price} $</h5>
+        <h5 class="price-pr">{price*quantity} $</h5>
     </div>
 </div>
 
