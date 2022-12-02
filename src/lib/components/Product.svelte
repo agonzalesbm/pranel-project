@@ -3,7 +3,7 @@
 
     import "bootstrap-icons/font/bootstrap-icons.css";
     import ProductImage from "./ProductImage.svelte";
-    import { productsCart } from "../services/store";
+    import { productsCart, totalPriceCart } from "../services/store";
     import { tick } from "svelte";
     import { goto } from "$app/navigation";
     import Noty from "noty";
@@ -52,6 +52,9 @@
                 },
             ];
             window.localStorage.setItem("cart", JSON.stringify(cart));
+            let total = 0
+            cart.forEach((e) => (total += e.price * e.quantity));
+            totalPriceCart.set(total)
             productsCart.set(cart);
 
             showNoty("Product added to cart", "alert");

@@ -2,7 +2,7 @@
     // @ts-nocheck
     import "bootswatch/dist/lux/bootstrap.min.css";
     import "animate.css";
-    import { productsCart } from "../services/store";
+    import { productsCart, totalPriceCart } from "../services/store";
     import { goto } from "$app/navigation";
     import Noty from "noty";
     import "noty/lib/themes/nest.css";
@@ -67,13 +67,16 @@
                     stock,
                     description,
                     category,
-                    quantity: 1
+                    quantity: 1,
                 },
             ];
             window.localStorage.setItem("cart", JSON.stringify(cart));
-            productsCart.set(cart)
+            let total = 0
+            cart.forEach((e) => (total += e.price * e.quantity));
+            totalPriceCart.set(total)
+            productsCart.set(cart);
             changeState = true;
-            showNoty("Product added to cart", "alert")
+            showNoty("Product added to cart", "alert");
         } else {
             changeState = false;
         }
