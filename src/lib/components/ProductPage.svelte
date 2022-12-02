@@ -9,6 +9,7 @@
     import "noty/lib/noty.css";
     import SuggestedProduct from "./SuggestedProduct.svelte";
     import { browser } from "$app/environment";
+    import { showNoty } from "$lib/services/noty";
 
     export let data;
     export let arrayInfo = [];
@@ -72,13 +73,7 @@
             window.localStorage.setItem("cart", JSON.stringify(cart));
             productsCart.set(cart)
             changeState = true;
-            new Noty({
-                theme: "nest",
-                text: "Product added to cart",
-                type: "alert",
-                layout: "bottomRight",
-                timeout: 1500,
-            }).show();
+            showNoty("Product added to cart", "alert")
         } else {
             changeState = false;
         }

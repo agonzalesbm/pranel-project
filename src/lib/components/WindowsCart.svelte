@@ -3,15 +3,15 @@
     export let price = 0.0;
     export let quantity = 1;
     export let image = "src/lib/img/jewelry/jewelry-1.jpg";
-    export let id = ''
-    export let category = ''
-    category = category === 'rings' ? 'jewelry' : category
-    let path = category + "/" + id
+    export let id = "";
+    export let category = "";
+    category = category === "rings" ? "jewelry" : category;
+    let path = category + "/" + id;
 </script>
 
 <div class="body-product">
     <div class="img-pr">
-        <a href={path}>
+        <a data-sveltekit-reload href={path}>
             <img src={image} alt="img-product" />
         </a>
     </div>
@@ -34,7 +34,8 @@
     .body-product {
         min-width: 100%;
         border-style: solid;
-        border-color: transparent transparent rgba(42, 41, 41, 0.504) transparent;
+        border-color: transparent transparent rgba(42, 41, 41, 0.504)
+            transparent;
         border-radius: 0.3em;
         padding: 0.1em;
         position: relative;
@@ -44,10 +45,10 @@
     }
 
     img {
-    min-width: 100px;
-    max-width: 150px;
-    max-height: 85%;
-    align-items: center;
+        min-width: 100px;
+        max-width: 150px;
+        max-height: 85%;
+        align-items: center;
     }
 
     .name-pr {
@@ -67,8 +68,8 @@
     }
 
     .label {
-        left: 0; 
-        background-color:#ffded7;
+        left: 0;
+        background-color: #ffded7;
         padding: 0.2em;
         border-radius: 1em;
         width: 3em;

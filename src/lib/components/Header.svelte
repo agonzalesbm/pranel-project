@@ -32,7 +32,6 @@
 
     $: products;
     $: total;
-    $: console.log("total listener", total);
     $: cartProducts;
 
     if (browser) {

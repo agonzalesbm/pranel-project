@@ -13,6 +13,7 @@
     import "noty/lib/noty.css";
     import { goto } from "$app/navigation";
     import { browser } from "$app/environment";
+    import { showNoty } from "$lib/services/noty";
 
     isInCart.update((value) => (value = true));
 
@@ -54,13 +55,7 @@
             totalPriceCart.set(total);
             productsCart.set(cartProducts);
             deleteElement.update((value) => (value = ""));
-            new Noty({
-                theme: "nest",
-                text: "Product removed to cart",
-                type: "error",
-                layout: "bottomRight",
-                timeout: 1500,
-            }).show();
+            showNoty("Product removed to cart", "error")
         }
     };
 

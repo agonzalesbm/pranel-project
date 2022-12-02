@@ -10,6 +10,7 @@
     import "noty/lib/themes/nest.css";
     import "noty/lib/noty.css";
     import { browser } from "$app/environment";
+    import { showNoty } from "$lib/services/noty";
 
     export let handBag = "";
     export let handBagPerson = "";
@@ -47,19 +48,13 @@
                     stock,
                     description,
                     category,
-                    quantity: 1
+                    quantity: 1,
                 },
             ];
-            productsCart.set(cart)
             window.localStorage.setItem("cart", JSON.stringify(cart));
+            productsCart.set(cart);
 
-            new Noty({
-                theme: "nest",
-                text: "Product added to cart",
-                type: "alert",
-                layout: "bottomRight",
-                timeout: 1500,
-            }).show();
+            showNoty("Product added to cart", "alert");
             changeState = true;
         } else {
             changeState = false;
