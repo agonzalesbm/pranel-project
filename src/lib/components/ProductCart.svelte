@@ -36,57 +36,51 @@
     };
 </script>
 
-<div class="container">
-    <div class="row align-items-center">
+<div class="container row align-items-center">
         <div class="col-2">
             <!-- svelte-ignore a11y-missing-attribute -->
-            <a href={path}><img class="img-thumbnail" src={image} /></a>
+            <a href={path}><img class="image img-thumbnail" src={image} /></a>
         </div>
         <div class="col-md-4 align-items-center">
             <p><a href={path}>{productName}</a></p>
         </div>
-        <div class="col">
+        <div class="col-2 price">
             <p>{priceChange.toFixed(2)}</p>
         </div>
-        <div class="col">
-            <div class="Quantity">
+        <div class="col Quantity">
                 <div>
                     <button
                         on:click={decrease}
-                        class="btn btn-sm justify-content-center"
+                        class="justify-content-center"
                         >-</button>
                 </div>
-                <div>
-                    <p class="align-text-center">{quantity}</p>
+                <div class="number-box">
+                    <p >{quantity}</p>
                 </div>
                 <div>
                     <button
                         on:click={increment}
-                        class="btn btn-sm justify-content-center">+</button
+                        class="justify-content-center">+</button
                     >
                 </div>
-            </div>
         </div>
-        <div class="col-3">
             <div class="Dump">
                 <!-- svelte-ignore a11y-missing-attribute -->
                 <button
                     on:click={deleteTheElement}
-                    class="btn btn-sm justify-content-center"
+                    class="justify-content-center"
                     type="button"
                 >
                     <img
                         src="src/lib/img/cart/Dump.png"
-                        width="40px"
-                        height="50px"
+                        class="image-dump"
                     /></button
                 >
             </div>
-        </div>
-    </div>
 </div>
 
 <style>
+
     a:link {
         text-decoration: none;
     }
@@ -94,44 +88,103 @@
         text-decoration: none;
     }
     .row {
-        background-color: #fff4f2;
+        --background: #fff4f2;
+        background-color: var(--background);
         margin-bottom: 1rem;
+        border-radius: 5px;
+    }
+
+
+    .row:hover {
+        --background: #ffedea;
+        margin-bottom: 1rem;
+        box-shadow: 0 0 4px black;
     }
 
     .container {
         margin-left: 1%;
         overflow: hidden;
+        position: relative;
+        padding-right: 0%;
     }
 
     .container p {
         margin-left: 0.1%;
-        font-size: 160%;
+        font-size: 1em;
+    }
+
+    .image{
+        height: 7em;
     }
 
     .Dump button {
-        margin: 10%;
-        margin-left: 65%;
+        margin: 0.1em;
+        margin-left: 6em;
+        position: absolute;
+        border: solid 0px;
+        background-color: var(--background);
+        height: 100%;
+        width: 3em;
+        right: -0.1em;
+        top:-0.1em;
     }
 
-    .Quantity div {
-        height: 3.7rem;
-        width: 70%;
-        margin-left: 20%;
-        margin-bottom: 5%;
-        background-color: #a6a6a6;
-        border-radius: 3px;
+    .Dump button:hover {
+        background-color: white;
+        box-shadow: 0 0 2px black;
     }
 
-    .Quantity p {
-        font-size: 250%;
+    .image-dump{
+        width: 26px;
+        height: 35px;
+    }
+    .Quantity{
+        max-width: 10em;
+        min-width: 5em;
+        position: relative;
+        display: flex;
+        color: white;
+        padding: 0.5em;
+        min-height: 2em;
+    }
+
+    .Quantity button{
+        border: solid black 0px;
+        background-color: black;
+        color: beige;
+        font-size: 1.7em;
+        width: 1.5em;
+        border-radius: 5px;
+        margin-right: 0.2em;
+        margin-left: 0.2em;
+    }
+
+    .number-box {
+        color: black;
+        background-color: white;
+        height: 2.5em;
+        border: solid 1px rgba(0, 0, 0, 0.56);
+        padding: 0.5em;
+        border-radius: 5px;
         text-align: center;
+        min-width: 3.3em;
+        font-size: 1.1em;
     }
 
-    .Quantity button {
-        height: 78%;
-        width: 90%;
-        margin: 5%;
-        font-size: 1.5rem;
-        background-color: #fff4f2;
+    .price {
+        font-size: 1.5em;
+        padding: 0em;
+        padding-top: 0.4em;
+        color: black;
+        margin: 0.5em;
+    }
+
+    @media (max-width: 958px) {
+        .Dump button{
+            width: 2em;
+        }
+        .image-dump{
+            transform: scale(0.7);
+        }
     }
 </style>
