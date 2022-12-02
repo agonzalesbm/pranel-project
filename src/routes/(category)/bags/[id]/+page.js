@@ -3,8 +3,8 @@ import { error } from '@sveltejs/kit';
 import { getProducts, getSuggestions } from "$lib/services/endpoint";
 
 const MESSAGE_404 = 'Page not found'
-export const prerender = true;
-/** @type {import('./$types').PageServerLoad} */
+
+/** @type {import('./$types').PageLoad} */
 export async function load({ url }) {
     const sliceTexted = url.pathname.split("/");
     const [, table, id] = sliceTexted;

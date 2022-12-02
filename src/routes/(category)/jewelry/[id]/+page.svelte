@@ -9,6 +9,9 @@
     onDestroy(() => {
             isInProduct.update((value) => (value = false));
     });
-    export let data
+    export let data;
+        const { image,specifiedBulletText, imagep } = data.product;
 </script>
-<ProductPage {data} firstImg = {data.image} secondImg = {data.imagep}/>
+
+
+<ProductPage {data} firstImg={data.image} secondImg={imagep} arrayInfo={specifiedBulletText.split("*").splice(1)}/>

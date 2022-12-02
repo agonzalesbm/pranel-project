@@ -4,6 +4,7 @@
     import Product from "./Product.svelte";
 
     export let array = [];
+    let noFuncionality = true;
 </script>
 
 <div class="container ml-5 text-center">
@@ -19,6 +20,7 @@
                     {price}
                     {stock}
                     {description}
+                    {noFuncionality}
                 />
             </div>
         {/each}

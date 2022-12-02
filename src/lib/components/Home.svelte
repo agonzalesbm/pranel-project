@@ -1,6 +1,25 @@
 <script>
     // @ts-nocheck
     import "bootswatch/dist/lux/bootstrap.min.css";
+    import { clickBags, clickShoes, clickJewelry } from "$lib/services/store";
+
+    function clickBagsButton() {
+        clickBags.update(value => value = true);
+        clickShoes.update(value => value = false);
+        clickJewelry.update(value => value = false);
+    }
+
+    function clickJewelryButton() {
+        clickBags.update(value => value = false);
+        clickShoes.update(value => value = false);
+        clickJewelry.update(value => value = true);
+    }
+
+    function clickShoesButton() {
+        clickBags.update(value => value = false);
+        clickShoes.update(value => value = true);
+        clickJewelry.update(value => value = false);
+    }
 </script>
 
 <div>
@@ -40,7 +59,7 @@
                     alt="Bags"
                 />
 
-                <button class="svg-wrapper">
+                <button class="svg-wrapper" on:click={clickBagsButton}>
                     <a href="/bags">
                         <svg height="90" width="600">
                             <rect class="shape" height="73" width="280" />
@@ -58,14 +77,14 @@
                     class="d-block w-100"
                     alt="Ring"
                 />
-                <div class="svg-wrapper text-align-center">
+                <button class="svg-wrapper text-align-center" on:click={clickJewelryButton}>
                     <a href="/jewelry">
                         <svg height="90" width="600">
                             <rect class="shape" height="73" width="280" />
                         </svg>
-                        <div class="slide-title">See more Rings</div>
+                        <div class="slide-title">See more Jewelry</div>
                     </a>
-                </div>
+                </button>
             </div>
             <div
                 class="carousel-item "
@@ -76,14 +95,14 @@
                     class="d-block w-100"
                     alt="Shoes"
                 />
-                <div class="svg-wrapper">
+                <button class="svg-wrapper" on:click={clickShoesButton}>
                     <a href="/shoes">
                         <svg height="90" width="600">
                             <rect class="shape" height="73" width="280" />
                         </svg>
                         <div class="slide-title">See more Shoes</div>
                     </a>
-                </div>
+                </button>
             </div>
         </div>
 

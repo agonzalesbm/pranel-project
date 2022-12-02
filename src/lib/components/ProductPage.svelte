@@ -1,18 +1,89 @@
 <script>
     // @ts-nocheck
     import "bootswatch/dist/lux/bootstrap.min.css";
-    import 'animate.css'
+    import "animate.css";
+    import { productsCart, totalPriceCart } from "../services/store";
+    import { goto } from "$app/navigation";
+    import Noty from "noty";
+    import "noty/lib/themes/nest.css";
+    import "noty/lib/noty.css";
+    import SuggestedProduct from "./SuggestedProduct.svelte";
+    import { browser } from "$app/environment";
+    import { showNoty } from "$lib/services/noty";
 
     export let data;
-    let imgSourc = data.image;
-    $: imgSourc
-    export let firstImg = "";
-    export let secondImg = "";
+    export let arrayInfo = [];
+
+    const { product, suggested } = data;
+    const {
+        image,
+        imagep,
+        id,
+        name,
+        size,
+        price,
+        stock,
+        description,
+        category,
+    } = product;
+    const [first, second, third, forth] = suggested;
+
+    let changeState = false;
+    if (browser) {
+        let cartStorage = window.localStorage.getItem("cart");
+        let cart = JSON.parse(cartStorage);
+        changeState = cart.find((product) => product.id === id);
+    }
+    let imgSourc = image;
+    export let secondImg = imagep;
+    export let firstImg = image;
+
+    $: imgSourc;
+    $: changeState;
+
+    $: imgSourc;
+
     const chnageOverHoverFirstImg = () => {
-        imgSourc = firstImg
+        imgSourc = firstImg;
     };
     const chnageOverHoverSecondImg = () => {
-        imgSourc = secondImg
+        imgSourc = secondImg;
+    };
+
+    const addProductInCart = () => {
+        if (!browser) return;
+        let cartStorage = window.localStorage.getItem("cart");
+        let cart = JSON.parse(cartStorage);
+        let exist = cart.find((product) => product.id === id);
+        if (!exist) {
+            cart = [
+                ...cart,
+                {
+                    id,
+                    image,
+                    imagePerson: imagep,
+                    name,
+                    price,
+                    stock,
+                    description,
+                    category,
+                    quantity: 1,
+                },
+            ];
+            window.localStorage.setItem("cart", JSON.stringify(cart));
+            let total = 0
+            cart.forEach((e) => (total += e.price * e.quantity));
+            totalPriceCart.set(total)
+            productsCart.set(cart);
+            changeState = true;
+            showNoty("Product added to cart", "alert");
+        } else {
+            changeState = false;
+        }
+    };
+
+    const goTo = () => {
+        goto("/cart");
     };
 </script>
 
@@ -35,26 +106,57 @@
                     <div>
                         <!-- svelte-ignore a11y-missing-attribute -->
                         <!-- svelte-ignore a11y-mouse-events-have-key-events -->
-                        <img src={firstImg} on:mouseover={chnageOverHoverFirstImg} />
+                        <img
+                            src={firstImg}
+                            on:mouseover={chnageOverHoverFirstImg}
+                        />
                     </div>
                 </div>
             </div>
             <div class="product-div-right">
-                <span class="product-name">{data.name}</span>
-                <span class="product-refrence"
-                    >Product Reference : {data.id}</span
-                >
-                <span class="product-size">Product Size : {data.size}</span>
-                <p class="product-description">{data.description}</p>
-                <span class="product-price">Price: {data.price}$</span>
+                <span class="product-name">{name}</span>
+                <span class="product-refrence">Product Reference : {id}</span>
+                <span class="product-size">Size/Dimmensions : {size}</span>
+                <span class="Stock">Stock:{stock}[Units]</span>
+                <span class="aboutProduct">About The Product</span>
+
+                <div class="Description">
+                    {description}
+                </div>
+
+                <div class="LiDescription">
+                    {#each arrayInfo as element}
+                        <li class="listDesc">
+                            {element}
+                        </li>
+                    {/each}
+                </div>
+                <span class="product-price">Price: {price}$</span>
                 <div class="btn-groups">
-                    <button type="button" class="add-cart-btn">
-                        <i class="fas fa-shopping-cart" />add to cart</button
-                    >
+                    {#if changeState}
+                        <button
+                            on:click={goTo}
+                            type="button"
+                            class="add-cart-btn"
+                        >
+                            <i class="fas fa-shopping-cart" />Go cart</button
+                        >
+                    {:else}
+                        <button
+                            on:click={addProductInCart}
+                            type="button"
+                            class="add-cart-btn"
+                        >
+                            <i class="fas fa-shopping-cart" />add to cart</button
+                        >
+                    {/if}
                 </div>
             </div>
         </div>
     </div>
+</div>
+<div class="container">
+    <SuggestedProduct array={[first, second, third, forth]} />
 </div>
 
 <style>
@@ -74,6 +176,9 @@
         display: block;
     }
 
+    .listDesc {
+        font-family: "Roboto", sans-serif;
+    }
     .main-wrapper {
         min-height: 100vh;
         background-color: whitesmoke;
@@ -142,6 +247,13 @@
         opacity: 0.9;
     }
 
+    .aboutProduct {
+        font-size: 23px;
+        margin-bottom: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        opacity: 1;
+    }
     .product-price {
         font-weight: 700;
         font-size: 25px;
@@ -150,11 +262,14 @@
     }
 
     .product-description {
+        display: flex;
+        word-wrap: break-word;
         font-weight: 18px;
         line-height: 1.6;
         font-weight: 300;
         opacity: 0.9;
-        margin-top: 22px;
+        margin-top: 0px;
+        margin-left: 0px;
     }
     .btn-groups {
         margin-top: 22px;
