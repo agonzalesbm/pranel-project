@@ -121,7 +121,7 @@
 
 
     .row:hover {
-        --background: #ffedea;
+        --background: #ffded7cf;
         margin-bottom: 1rem;
         box-shadow: 0 0 4px black;
     }

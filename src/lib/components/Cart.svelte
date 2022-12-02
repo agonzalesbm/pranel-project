@@ -72,7 +72,7 @@
     <p>My Cart</p>
 </div>
 
-<div class="">
+<div class="body-cart">
     {#if cartProducts.length === 0}
         <div class="container ml-5 text-center">
             <div class="row justify-content-center">
@@ -141,6 +141,9 @@
         margin-left: 90px;
         font-size: 40px;
         font-family: "Bree Serif";
+    }
+    .body-cart{
+        min-height: 50vh;
     }
 
     .label {
