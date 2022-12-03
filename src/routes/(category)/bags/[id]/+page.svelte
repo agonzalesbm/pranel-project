@@ -10,8 +10,15 @@
                 isInProduct.update((value) => (value = false));
         });
         export let data;
-        const { image,specifiedBulletText, imagep } = data.product;
+        const { image, specifiedBulletText, imagep } = data.product;
+        $: console.log(data.product);
 </script>
 
-
-<ProductPage {data} firstImg={data.image} secondImg={imagep} arrayInfo={specifiedBulletText.split("*").splice(1)}/>
+{#key data}
+        <ProductPage
+                {data}
+                firstImg={data.product.image}
+                secondImg={data.product.imagep}
+                arrayInfo={data.product.specifiedBulletText.split("*").splice(1)}
+        />
+{/key}
