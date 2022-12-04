@@ -59,4 +59,6 @@
     <Category {array} />
 {/each}
 
-<Pagination {size} {index} category={arrays[0][0].category} />
+{#if arrays[0][0] !== undefined}
+    <Pagination {size} {index} category={arrays[0][0].category} />
+{/if}

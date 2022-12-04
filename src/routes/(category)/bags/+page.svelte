@@ -21,8 +21,8 @@
 
     $: arrays;
 
-    isSortByAscending.update(value => value = false)
-    isSortByDescending.update(value => value = false)
+    isSortByAscending.update((value) => (value = false));
+    isSortByDescending.update((value) => (value = false));
 
     isSortByAscending.subscribe((value) => (isChangeAscending = value));
     isSortByDescending.subscribe((value) => (isChangeDescending = value));
@@ -59,4 +59,6 @@
     <Category {array} />
 {/each}
 
-<Pagination {size} {index} category={arrays[0][0].category} />
+{#if arrays[0][0] !== undefined}
+    <Pagination {size} {index} category={arrays[0][0].category} />
+{/if}

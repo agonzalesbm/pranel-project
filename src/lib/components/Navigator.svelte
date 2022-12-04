@@ -43,7 +43,6 @@
     if (positions.bags) {
       clickBags.update((value) => (value = true));
     } else if (positions.shoes) {
-    clickShoes.update((value) => (value = false));
       clickShoes.update((value) => (value = true));
     } else if (positions.jewelry) {
       clickJewelry.update((value) => (value = true));
@@ -65,6 +64,12 @@
     clickShoes.update((value) => (value = true));
     clickBags.update((value) => (value = false));
     clickJewelry.update((value) => (value = false));
+    let positions = {
+      bags: false,
+      shoes: true,
+      jewelry: false,
+    };
+    window.localStorage.setItem("current", JSON.stringify(positions));
   }
 
   export function bagsMarked() {
@@ -72,6 +77,12 @@
     clickShoes.update((value) => (value = false));
     clickBags.update((value) => (value = true));
     clickJewelry.update((value) => (value = false));
+    let positions = {
+      bags: true,
+      shoes: false,
+      jewelry: false,
+    };
+    window.localStorage.setItem("current", JSON.stringify(positions));
   }
 
   export function jewelryMarked() {
@@ -79,6 +90,12 @@
     clickShoes.update((value) => (value = false));
     clickBags.update((value) => (value = false));
     clickJewelry.update((value) => (value = true));
+    let positions = {
+      bags: false,
+      shoes: false,
+      jewelry: true,
+    };
+    window.localStorage.setItem("current", JSON.stringify(positions));
   }
 
   isInProduct.subscribe((value) => (isHere = value));
@@ -109,7 +126,6 @@
     isSortByAscending.update((value) => (value = false));
     sortedByDescendingOrder();
   };
-
 </script>
 
 <nav class="container-fluid">
@@ -238,7 +254,7 @@
             fifthColor="white"
           />
           <RowColors
-            firstColor="orange"
+            firstColor="gold"
             secondColor="brown"
             thirdColor="yellow"
             forthColor="red"
