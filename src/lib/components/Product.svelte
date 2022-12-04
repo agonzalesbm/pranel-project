@@ -69,7 +69,7 @@
     };
 </script>
 
-<div class="category_container card m-3">
+<div class="category_container card m-3 box">
     <a data-sveltekit-reload href={path}>
         <ProductImage {handBag} {handBagPerson} />
     </a>
@@ -94,4 +94,7 @@
 </div>
 
 <style>
+    .box:hover{
+        box-shadow: 0 0 1em rgb(161, 159, 159);
+    }
 </style>
