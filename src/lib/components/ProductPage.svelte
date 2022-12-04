@@ -226,7 +226,8 @@
         color: #fff;
     }
     .img-container img {
-        width: 40vh;
+        height: 41em;
+        padding: 0.5em;
         margin: 0 auto;
         border-radius: 5px;
     }
@@ -251,7 +252,7 @@
     }
 
     .hover-container div:hover {
-        border-color: rgb(0, 0, 0);
+        border-color: rgba(0, 0, 0, 0.681);
     }
     .hover-container div img {
         width: 60px;
