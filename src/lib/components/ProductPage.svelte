@@ -210,20 +210,24 @@
         background-color: #fff;
         border-radius: 3px;
         column-gap: 10px;
+        --bg-product: #ffded7cd;
     }
+
     .product-div-left {
         min-width: 30%;
         display: flex;
     }
     .product-div-right {
         padding: 1em 2em;
-        background-color: black;
+        background-color: var(--bg-product);
         margin: 10px;
         border-radius: 5px;
         min-width: 60%;
     }
-    span, .Description, .LiDescription, .listDesc{
-        color: #fff;
+
+    .product-div:hover {
+        --bg-product: #ffded7;
+        box-shadow: 0 0 1em gray;
     }
     .img-container img {
         height: 41em;
