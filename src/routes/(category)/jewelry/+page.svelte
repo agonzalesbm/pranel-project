@@ -56,4 +56,4 @@
 {#each arrays as array}
     <Category {array} />
 {/each}
-<Pagination {size} {index} category={result.category} />
+<Pagination {size} {index} category={arrays[0][0].category} />

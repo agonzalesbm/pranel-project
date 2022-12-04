@@ -1,4 +1,6 @@
 <script>
+  // @ts-nocheck
+
   import "bootswatch/dist/lux/bootstrap.min.css";
   import {
     isInProduct,
@@ -19,6 +21,7 @@
     isSortByDescending,
   } from "../services/store";
   import RowColors from "./RowColors.svelte";
+  import { browser } from "$app/environment";
 
   let checkShoes = false;
   let checkBags = false;
@@ -30,6 +33,22 @@
   $: isCheck;
   $: if (isHere) isCheck = "";
   isInProduct.subscribe((value) => (isHere = value));
+
+  if (browser) {
+    let current = window.localStorage.getItem("current");
+    let positions = JSON.parse(current);
+    clickShoes.update((value) => (value = false));
+    clickBags.update((value) => (value = false));
+    clickJewelry.update((value) => (value = false));
+    if (positions.bags) {
+      clickBags.update((value) => (value = true));
+    } else if (positions.shoes) {
+    clickShoes.update((value) => (value = false));
+      clickShoes.update((value) => (value = true));
+    } else if (positions.jewelry) {
+      clickJewelry.update((value) => (value = true));
+    }
+  }
 
   clickBags.subscribe((value) => {
     checkBags = value;
@@ -91,14 +110,6 @@
     sortedByDescendingOrder();
   };
 
-  const changeByDefualt = () => {
-    let isInShoes = false;
-    let isInBags = false;
-    let isInJewelry = false;
-    clickShoes.subscribe((value) => (isInShoes = value));
-    clickBags.subscribe((value) => (isInBags = value));
-    clickJewelry.subscribe((value) => (isInJewelry = value));
-  };
 </script>
 
 <nav class="container-fluid">

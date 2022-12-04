@@ -6,7 +6,7 @@ export const filesLoader = async (/** @type {string} */ table,
                                 /** @type {number} */ end) => {
     const q = query(collection(db, table), where('pos', '>=', first), where('pos', '<=', end))
     const querySnapshot = await getDocs(q)
-    const elements = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id, category: table}))
+    const elements = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id, category: table === 'rings' ? 'jewelry' : table }))
 
     return elements
 }
@@ -15,7 +15,7 @@ export const filesByColorLoader = async (/** @type {string} */ table,
                                 /** @type {string} */ color) => {
     const q = query(collection(db, table), where('color', '==', color))
     const querySnapshot = await getDocs(q)
-    const elements = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id, category: table}))
+    const elements = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id, category: table === 'rings' ? 'jewelry' : table }))
 
     return elements
 }
@@ -23,7 +23,7 @@ export const filesByColorLoader = async (/** @type {string} */ table,
 export const filesByPriceLoader = async (/** @type {string} */ table, /** @type {number} */ first, /** @type {number} */ end) => {
     const q = query(collection(db, table), where('price', '>=', first), where('price', '<=', end))
     const querySnapshot = await getDocs(q)
-    const elements = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id, category: table}))
+    const elements = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id, category: table === 'rings' ? 'jewelry' : table }))
 
     return elements
 }
