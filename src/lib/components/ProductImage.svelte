@@ -24,7 +24,6 @@
         on:mouseout={mouseOut}
         src={handBag}
         alt="hola"
-        height="275"
     />
     <!-- svelte-ignore a11y-mouse-events-have-key-events -->
     <img
@@ -37,6 +36,11 @@
         on:mouseout={mouseOut}
         src={handBagPerson}
         alt="hola"
-        height="275"
     />
 </div>
+
+<style>
+    img{
+        height: 21em;
+    }
+</style>
