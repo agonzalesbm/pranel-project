@@ -29,7 +29,10 @@ export const getSuggestions = async (/** @type {string} */ table, /** @type {str
     if (jsonSuggestedProducts.length < 4) {
         const productsByPrice = await fetch(`http://localhost:5173/api/get-products-by-price?p=${table}&price=${json.price}`)
         let jsonByPrice = await productsByPrice.json()
-        jsonByPrice = jsonByPrice.filter(element => element.id !== id).reverse()
+        jsonByPrice = jsonByPrice.filter(element => element.id !== id)
+        jsonSuggestedProducts.forEach(element => {
+            jsonByPrice = jsonByPrice.filter(product => product.id !== element.id)
+        });
         return [...jsonSuggestedProducts, ...jsonByPrice]
     }
     return [...jsonSuggestedProducts]
