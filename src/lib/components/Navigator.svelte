@@ -6,8 +6,6 @@
     clickJewelry,
     clickShoes,
   } from "../services/store";
-  let isHere = false;
-  isInProduct.subscribe((value) => (isHere = value));
 
   import {
     sortedByAscendingOrder,
@@ -21,15 +19,17 @@
     isSortByDescending,
   } from "../services/store";
   import RowColors from "./RowColors.svelte";
-  import { goto } from "$app/navigation";
 
   let checkShoes = false;
   let checkBags = false;
   let checkJewelry = false;
   let path = "/";
   let isCheck = "";
+  let isHere = false;
 
   $: isCheck;
+  $: if (isHere) isCheck = "";
+  isInProduct.subscribe((value) => (isHere = value));
 
   clickBags.subscribe((value) => {
     checkBags = value;
@@ -84,7 +84,7 @@
     isSortByDescending.update((value) => (value = false));
     sortedByAscendingOrder();
   };
-  
+
   const orderByDescending = () => {
     isSortByDescending.update((value) => (value = true));
     isSortByAscending.update((value) => (value = false));
