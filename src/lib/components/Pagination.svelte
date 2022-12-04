@@ -9,10 +9,15 @@
     export let size = 0;
     export let category = "";
     export let index = 1;
+    export let color = "";
 
     let total = ~~(size / 12);
     $: total;
-    total = size % 12 > 0 ? total + 1 : total;
+    if (color === "") {
+        total = size % 12 > 0 ? total + 1 : total;
+    } else {
+        total = 1;
+    }
 
     let array = new Array(total);
 

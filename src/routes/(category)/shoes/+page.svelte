@@ -10,7 +10,7 @@
     } from "$lib/services/store";
 
     export let data;
-    const { result, size, index } = data;
+    const { result, size, index, color } = data;
 
     $currentProducts = result;
 
@@ -60,5 +60,10 @@
 {/each}
 
 {#if arrays[0][0] !== undefined}
-    <Pagination {size} {index} category={arrays[0][0].category} />
+    <Pagination
+        {size}
+        {index}
+        category={arrays[0][0].category}
+        color={color === undefined ? "" : color}
+    />
 {/if}
