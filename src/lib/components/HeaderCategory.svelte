@@ -2,85 +2,49 @@
     import "animate.css";
 
     export let category = "default";
-    export let pathImage = "";
+    export let pathIcon = "";
 </script>
 
 <section
     class="img-fluid img-format-container animate__animated animate__fadeIn">
-    <img src={pathImage} alt="jewelry-head" />
-    <p>{category}</p>
+    <div class="title">
+        <img src={pathIcon} alt="" class="icon">
+        <p>{category}</p>
+    </div>
+
 </section>
 
 <style>
+    section{
+        margin: 0.5em 0em;
+        box-shadow: 0 0 0.2em #8f8e8e;
+        border: solid 0.2em;
+        border-color: black transparent;
+    }
+
+    .title{
+        display: flex;
+        margin-left:20%;
+    }
+
+    .title img {
+        height: 4em;
+        margin: 1.5em 1em;
+        transform: scaleX(-1);
+    }
+
     .img-format-container {
-        width: 120rem;
-        height: 8rem;
-        overflow: hidden;
+        width: 100%;
+        height: 7rem;
         position: relative;
-        background-color: black;
-        margin-top: 1%;
+        background-color: white;
+        align-items: center;
+        justify-content: center;
+        color: black;
     }
 
-    .img-format-container img {
-        width: 25%;
-        height: 100%;
+    p{
+        font-size: 5em;
     }
 
-    .img-format-container p {
-        font-size: 5rem;
-        color: white;
-        position: absolute;
-        top: 5%;
-        left: 75%;
-    }
-
-    @media screen and (max-width: 1025px) {
-        .img-format-container p {
-            font-size: 5rem;
-            color: white;
-            position: absolute;
-            top: 5%;
-            left: 65%;
-        }
-    }
-
-    @media screen and (max-width: 769px) {
-        .img-format-container p {
-            font-size: 5rem;
-            color: white;
-            position: absolute;
-            top: 5%;
-            left: 55%;
-        }
-    }
-
-    @media screen and (max-width: 726px) {
-        .img-format-container p {
-            font-size: 3rem;
-            color: white;
-            position: absolute;
-            top: 20%;
-            left: 55%;
-        }
-
-        .img-format-container img {
-            width: 45%;
-            height: 100%;
-        }
-    }
-
-    @media screen and (max-width: 321px) {
-        .img-format-container p {
-            font-size: 3rem;
-            color: white;
-            position: absolute;
-            top: 20%;
-            left: 40%;
-        }
-
-        .img-format-container img {
-            width: 45%;
-            height: 100%;
-        }
-    }
 </style>

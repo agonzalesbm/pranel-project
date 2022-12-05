@@ -42,25 +42,38 @@
     fillFields();
 </script>
 
-<HeaderCategory
-    category="Jewelry"
-    pathImage="/src/lib/img/cover/jewelry-head.jpg"
-/>
-<p class="visually-hidden">
-    {#if isChangeAscending}
-        {fillFields()}
-    {:else if isChangeDescending}
-        {fillFields()}
-    {/if}
-</p>
-{#each arrays as array}
-    <Category {array} />
-{/each}
-{#if arrays[0][0] !== undefined}
-    <Pagination
-        {size}
-        {index}
-        category={arrays[0][0].category}
-        color={color === undefined ? "" : color}
-    />
-{/if}
+<head>
+    <link rel="stylesheet" href="src/lib/styles/bg_categories.css" />
+</head>
+
+<div class="body">
+    <HeaderCategory category="Jewelry" pathIcon="src/lib/img/icons/joya.png"/>
+    <p class="visually-hidden">
+        {#if isChangeAscending}
+            {fillFields()}
+        {:else if isChangeDescending}
+            {fillFields()}
+        {/if}
+    </p>
+    <div class="bg-img">
+        <div class="catalogue">
+            {#each arrays as array}
+                <Category {array} />
+            {/each}
+            {#if arrays[0][0] !== undefined}
+                <Pagination
+                    {size}
+                    {index}
+                    category={arrays[0][0].category}
+                    color={color === undefined ? "" : color}
+                />
+            {/if}
+        </div>
+    </div>
+</div>
+
+<style>
+    .bg-img {
+        background-image: url("src/lib/img/cover/rings-header1.jpg");
+    }
+</style>

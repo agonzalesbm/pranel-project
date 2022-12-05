@@ -13,6 +13,12 @@
     } from "../services/store";
     import Product from "./Product.svelte";
     import WindowsCart from "./WindowsCart.svelte";
+    import { browser } from "$app/environment";
+    import {
+        clickBagsButton,
+        clickJewelryButton,
+        clickShoesButton,
+    } from "$lib/services/clickStates";
 
     let cart = false;
     isInCart.subscribe((value) => (cart = value));
@@ -46,36 +52,25 @@
     totalPriceCart.subscribe((value) => (total = value));
     productsCart.subscribe((value) => (products = value));
 
-    import { clickBags, clickShoes, clickJewelry } from "$lib/services/store";
-    import { browser } from "$app/environment";
-
-    function clickBagsButton() {
-        clickBags.update((value) => (value = true));
-        clickShoes.update((value) => (value = false));
-        clickJewelry.update((value) => (value = false));
-    }
-
-    function clickJewelryButton() {
-        clickBags.update((value) => (value = false));
-        clickShoes.update((value) => (value = false));
-        clickJewelry.update((value) => (value = true));
-    }
-
-    function clickShoesButton() {
-        clickBags.update((value) => (value = false));
-        clickShoes.update((value) => (value = true));
-        clickJewelry.update((value) => (value = false));
-    }
+    const clickTheBagsButton = () => {
+        clickBagsButton();
+    };
+    const clickTheJewelryButton = () => {
+        clickJewelryButton();
+    };
+    const clickTheShoesButton = () => {
+        clickShoesButton();
+    };
 </script>
 
 <header class:visually-hidden={$isAnError}>
     <div class="wrapper">
         <div class="logoHeader">
-            <a href="/"><img src={logo} width="300" height="70" /></a>
+            <a href="/"><img src={logo} height="70" /></a>
         </div>
 
         <nav>
-            <a href="#" class="icon-header"
+            <a href="#" class="disabled"
                 ><span style="color: black">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +87,7 @@
             <span class="icon-cart">
                 <a
                     on:click={onClick}
-                    class={cart ? "visually-hidden" : " icon-header"}
+                    class={cart ? "visually-hidden" : ""}
                     href="/cart"
                 >
                     <span style="color: black">
@@ -151,7 +146,7 @@
                 </div>
             </span>
 
-            <a href="#" class="icon-header"
+            <a href="#" class="disabled"
                 ><span style="color: black"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -165,7 +160,7 @@
                     </svg></span
                 >
             </a>
-            <a href="#" class:visually-hidden={isHidden} class="icon-header">
+            <a href="#" class:visually-hidden={isHidden}>
                 <div class="category">
                     <span style="color: black"
                         ><svg
@@ -185,7 +180,7 @@
 
                 <ul class="menu">
                     <li>
-                        <a href="/shoes" on:click={clickShoesButton}>
+                        <a href="/shoes" on:click={clickTheShoesButton}>
                             <img
                                 src="src/lib/img/icons/tacones.png"
                                 alt=""
@@ -194,7 +189,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/bags" on:click={clickBagsButton}>
+                        <a href="/bags" on:click={clickTheBagsButton}>
                             <img
                                 src="src/lib/img/icons/bag.png"
                                 alt=""
@@ -203,7 +198,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/jewelry" on:click={clickJewelryButton}>
+                        <a href="/jewelry" on:click={clickTheJewelryButton}>
                             <img
                                 src="src/lib/img/icons/joya.png"
                                 alt=""
@@ -240,8 +235,8 @@
         background-color: white;
         padding: 15px;
         position: absolute;
-        margin-left: -18em;
-        margin-top: -20px;
+        margin-left: -17.2em;
+        margin-top: -1em;
         height: auto;
         max-width: 25em;
         min-width: 25em;
@@ -442,7 +437,7 @@
         border-color: transparent transparent black transparent;
         position: absolute;
         top: -10px;
-        right: 15px;
+        right: 10px;
     }
 
     li {
@@ -478,7 +473,14 @@
     .category h5 {
         margin: 0.3em;
     }
+    .disabled {
+        opacity: 0.5;
+    }
 
+    .disabled:hover {
+        background-color: #ffd7d7;
+        cursor: default;
+    }
     @media screen and (max-width: 700px) {
         .category h5 {
             display: none;
