@@ -29,4 +29,5 @@
     .col-md-3 {
         width: 18rem;
     }
+
 </style>

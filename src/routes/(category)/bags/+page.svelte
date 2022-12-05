@@ -47,23 +47,38 @@
     fillFields();
 </script>
 
-<HeaderCategory category="Bags" pathImage="/src/lib/img/cover/bag-head.png" />
-<p class="visually-hidden">
-    {#if isChangeAscending}
-        {fillFields()}
-    {:else if isChangeDescending}
-        {fillFields()}
-    {/if}
-</p>
-{#each arrays as array}
-    <Category {array} />
-{/each}
+<head>
+    <link rel="stylesheet" href="src/lib/styles/bg_categories.css" />
+</head>
 
-{#if arrays[0][0] !== undefined}
-    <Pagination
-        {size}
-        {index}
-        category={arrays[0][0].category}
-        color={color === undefined ? "" : color}
-    />
-{/if}
+<div class="body">
+    <HeaderCategory category="Bags" pathIcon="src/lib/img/icons/bag.png"/>
+    <p class="visually-hidden">
+        {#if isChangeAscending}
+            {fillFields()}
+        {:else if isChangeDescending}
+            {fillFields()}
+        {/if}
+    </p>
+    <div class="bg-img">
+        <div class="catalogue">
+            {#each arrays as array}
+                <Category {array} />
+            {/each}
+            {#if arrays[0][0] !== undefined}
+                <Pagination
+                    {size}
+                    {index}
+                    category={arrays[0][0].category}
+                    color={color === undefined ? "" : color}
+                />
+            {/if}
+        </div>
+    </div>
+</div>
+
+<style>
+    .bg-img {
+        background-image: url("src/lib/img/cover/bag-header.jpg");
+    }
+</style>
