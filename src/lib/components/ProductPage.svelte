@@ -1,5 +1,11 @@
 <script>
-    // @ts-nocheck
+// @ts-nocheck
+
+    /**
+     * TODO: create bug report to suggested products when there is no suggestions
+     * TODO: add creation the cart in localstorage if there is no when the app runs
+     * * important: Solved
+     */
     import "bootswatch/dist/lux/bootstrap.min.css";
     import "animate.css";
     import { productsCart, totalPriceCart } from "../services/store";
@@ -71,9 +77,9 @@
                 },
             ];
             window.localStorage.setItem("cart", JSON.stringify(cart));
-            let total = 0
+            let total = 0;
             cart.forEach((e) => (total += e.price * e.quantity));
-            totalPriceCart.set(total)
+            totalPriceCart.set(total);
             productsCart.set(cart);
             changeState = true;
             showNoty("Product added to cart", "alert");
@@ -156,7 +162,9 @@
     </div>
 </div>
 <div class="container">
-    <SuggestedProduct array={[first, second, third, forth]} />
+    {#if suggested.length >= 4}
+        <SuggestedProduct array={[first, second, third, forth]} />
+    {/if}
 </div>
 
 <style>
