@@ -9,14 +9,13 @@
         window.localStorage.getItem("cart") === null
             ? window.localStorage.setItem("cart", JSON.stringify([]))
             : "";
-        window.localStorage.setItem(
-            "current",
-            JSON.stringify({
-                bags: false,
-                shoes: false,
-                jewelry: false,
-            })
-        );
+        window.localStorage.getItem("current") === null
+            ? window.localStorage.setItem("current", JSON.stringify({ 
+                bags: false, 
+                shoes: false, 
+                jewelry: false 
+            }))
+            : "";
     }
 </script>
 

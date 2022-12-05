@@ -22,6 +22,7 @@
   } from "../services/store";
   import RowColors from "./RowColors.svelte";
   import { browser } from "$app/environment";
+  import { goto } from "$app/navigation";
 
   let checkShoes = false;
   let checkBags = false;
@@ -70,6 +71,7 @@
       jewelry: false,
     };
     window.localStorage.setItem("current", JSON.stringify(positions));
+    path = "/shoes";
   }
 
   export function bagsMarked() {
@@ -82,6 +84,7 @@
       shoes: false,
       jewelry: false,
     };
+    path = "/bags";
     window.localStorage.setItem("current", JSON.stringify(positions));
   }
 
@@ -95,6 +98,7 @@
       shoes: false,
       jewelry: true,
     };
+    path = "/jewelry";
     window.localStorage.setItem("current", JSON.stringify(positions));
   }
 
@@ -103,17 +107,22 @@
     path = value;
   });
 
-  $: path;
+  const changePath = () => {
+    if (browser) {
+      let current = window.localStorage.getItem("current");
+      let positions = JSON.parse(current);
+      if (positions.bags) {
+        path = "/bags";
+      } else if (positions.shoes) {
+        path = "/shoes";
+      } else if (positions.jewelry) {
+        path = "/jewelry";
+      }
+    }
+  };
 
-  const clickOnBags = () => {
-    path = "/bags";
-  };
-  const clickOnShoes = () => {
-    path = "/shoes";
-  };
-  const clickOnJewelry = () => {
-    path = "/jewelry";
-  };
+  $: path;
+  $: changePath();
 
   const orderByAscending = () => {
     isSortByAscending.update((value) => (value = true));
@@ -260,13 +269,13 @@
             forthColor="red"
             fifthColor="pink"
           />
-          <!-- <div class="container mt-4">
-            <div class="row">
-              <button on:click={changeByDefualt} class="btn btn-outline-danger"
-                >By default</button
-              >
-            </div>
-          </div> -->
+          <div class="container mt-4">
+            <a data-sveltekit-reload href={path}>
+              <div class="row">
+                <button class="btn btn-outline-danger">By default</button>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -298,5 +307,9 @@
 
   .color-disabled {
     color: #949494;
+  }
+
+  a {
+    text-decoration: none;
   }
 </style>
