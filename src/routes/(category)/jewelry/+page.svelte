@@ -5,6 +5,7 @@
     import HeaderCategory from "$lib/components/HeaderCategory.svelte";
     import {
         currentProducts,
+        existColor,
         isSortByAscending,
         isSortByDescending,
     } from "$lib/services/store";
@@ -19,8 +20,13 @@
     let isChangeAscending = false;
     let isChangeDescending = false;
 
+    existColor.update(
+        (value) => (value = color !== undefined ? color : "default")
+    );
+
     isSortByAscending.update((value) => (value = false));
     isSortByDescending.update((value) => (value = false));
+
     isSortByAscending.subscribe((value) => (isChangeAscending = value));
     isSortByDescending.subscribe((value) => (isChangeDescending = value));
     const fillFields = () => {
@@ -47,7 +53,7 @@
 </head>
 
 <div class="body">
-    <HeaderCategory category="Jewelry" pathIcon="src/lib/img/icons/joya.png"/>
+    <HeaderCategory category="Jewelry" pathIcon="src/lib/img/icons/joya.png" />
     <p class="visually-hidden">
         {#if isChangeAscending}
             {fillFields()}
