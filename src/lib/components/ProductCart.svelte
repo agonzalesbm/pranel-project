@@ -42,17 +42,26 @@
     $: priceChange = price * quantity;
     $: quantity;
     const increment = () => {
+        const btnIncrement = document.getElementById('increment');
+        const btnDecrement = document.getElementById('decrement');
+
         if (quantity <= stock - 1) {
             quantity += 1;
             changeQuantity(quantity);
             totalPriceCart.update((value) => (value = value + price));
+            btnIncrement.disabled = quantity === stock;
+            btnDecrement.disabled = quantity == 1;
         }
     };
     const decrease = () => {
+        const btnIncrement = document.getElementById('increment');
+        const btnDecrement = document.getElementById('decrement');
         if (quantity !== 1) {
             quantity -= 1;
             changeQuantity(quantity);
             totalPriceCart.update((value) => (value = value - price));
+            btnIncrement.disabled = quantity === stock;
+            btnDecrement.disabled = quantity == 1;
         }
     };
 
@@ -62,50 +71,48 @@
 </script>
 
 <div class="container row align-items-center">
-        <div class="col-2">
-            <!-- svelte-ignore a11y-missing-attribute -->
-            <a href={path}><img class="image img-thumbnail" src={image} /></a>
+    <div class="col-2">
+        <!-- svelte-ignore a11y-missing-attribute -->
+        <a href={path}><img class="image img-thumbnail" src={image} /></a>
+    </div>
+    <div class="col-md-4 align-items-center">
+        <p><a href={path}>{productName}</a></p>
+    </div>
+    <div class="col-2 price">
+        <p>{priceChange.toFixed(2)}</p>
+    </div>
+    <div class="col Quantity">
+        <div>
+            <button
+                on:click={decrease}
+                class="justify-content-center"
+                id="decrement" disabled>-</button
+            >
         </div>
-        <div class="col-md-4 align-items-center">
-            <p><a href={path}>{productName}</a></p>
+        <div class="number-box">
+            <p>{quantity}</p>
         </div>
-        <div class="col-2 price">
-            <p>{priceChange.toFixed(2)}</p>
+        <div>
+            <button
+                on:click={increment}
+                class="justify-content-center"
+                id="increment">+</button
+            >
         </div>
-        <div class="col Quantity">
-                <div>
-                    <button
-                        on:click={decrease}
-                        class="justify-content-center"
-                        >-</button>
-                </div>
-                <div class="number-box">
-                    <p >{quantity}</p>
-                </div>
-                <div>
-                    <button
-                        on:click={increment}
-                        class="justify-content-center">+</button
-                    >
-                </div>
-        </div>
-            <div class="Dump">
-                <!-- svelte-ignore a11y-missing-attribute -->
-                <button
-                    on:click={deleteTheElement}
-                    class="justify-content-center"
-                    type="button"
-                >
-                    <img
-                        src="src/lib/img/cart/Dump.png"
-                        class="image-dump"
-                    /></button
-                >
-            </div>
+    </div>
+    <div class="Dump">
+        <!-- svelte-ignore a11y-missing-attribute -->
+        <button
+            on:click={deleteTheElement}
+            class="justify-content-center"
+            type="button"
+        >
+            <img src="src/lib/img/cart/Dump.png" class="image-dump" /></button
+        >
+    </div>
 </div>
 
 <style>
-
     a:link {
         text-decoration: none;
     }
@@ -118,7 +125,6 @@
         margin-bottom: 1rem;
         border-radius: 5px;
     }
-
 
     .row:hover {
         --background: #ffded7cf;
@@ -138,7 +144,7 @@
         font-size: 1em;
     }
 
-    .image{
+    .image {
         height: 7em;
     }
 
@@ -151,7 +157,7 @@
         height: 100%;
         width: 3em;
         right: -0.1em;
-        top:-0.1em;
+        top: -0.1em;
     }
 
     .Dump button:hover {
@@ -159,11 +165,11 @@
         box-shadow: 0 0 2px black;
     }
 
-    .image-dump{
+    .image-dump {
         width: 26px;
         height: 35px;
     }
-    .Quantity{
+    .Quantity {
         max-width: 10em;
         min-width: 5em;
         position: relative;
@@ -173,7 +179,7 @@
         min-height: 2em;
     }
 
-    .Quantity button{
+    .Quantity button {
         border: solid black 0px;
         background-color: black;
         color: beige;
@@ -204,11 +210,16 @@
         margin: 0.5em;
     }
 
+    button:disabled {
+        background-color: rgba(140, 140, 140, 0.661);
+        color: rgba(128, 128, 128, 0.8);
+    }
+
     @media (max-width: 958px) {
-        .Dump button{
+        .Dump button {
             width: 2em;
         }
-        .image-dump{
+        .image-dump {
             transform: scale(0.7);
         }
     }
