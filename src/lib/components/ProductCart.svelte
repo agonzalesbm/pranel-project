@@ -21,7 +21,8 @@
     export let category = "";
 
     let path = category + "/" + id;
-
+    let isDisableIncrease = false;
+    let isDisableDecrease = false;
     let priceChange = 0.0;
 
     const changeQuantity = (newValue) => {
@@ -41,27 +42,32 @@
 
     $: priceChange = price * quantity;
     $: quantity;
-    const increment = () => {
-        const btnIncrement = document.getElementById('increment');
-        const btnDecrement = document.getElementById('decrement');
+    $: isDisableIncrease;
+    $: isDisableDecrease;
+    $: console.log("hello", stock);
 
-        if (quantity <= stock - 1) {
+    const increment = () => {
+        if (quantity < stock) {
             quantity += 1;
             changeQuantity(quantity);
             totalPriceCart.update((value) => (value = value + price));
-            btnIncrement.disabled = quantity === stock;
-            btnDecrement.disabled = quantity == 1;
+            isDisableIncrease = false;
+            isDisableDecrease = false;
+        }
+        if (quantity === stock) {
+            isDisableIncrease = true;
         }
     };
     const decrease = () => {
-        const btnIncrement = document.getElementById('increment');
-        const btnDecrement = document.getElementById('decrement');
         if (quantity !== 1) {
             quantity -= 1;
             changeQuantity(quantity);
             totalPriceCart.update((value) => (value = value - price));
-            btnIncrement.disabled = quantity === stock;
-            btnDecrement.disabled = quantity == 1;
+            isDisableIncrease = false;
+            isDisableDecrease = false
+        }
+        if (quantity === 1) {
+            isDisableDecrease = true;
         }
     };
 
@@ -86,7 +92,7 @@
             <button
                 on:click={decrease}
                 class="justify-content-center"
-                id="decrement" disabled>-</button
+                id="decrement" disabled={isDisableDecrease}>-</button
             >
         </div>
         <div class="number-box">
@@ -96,7 +102,8 @@
             <button
                 on:click={increment}
                 class="justify-content-center"
-                id="increment">+</button
+                id="increment"
+                disabled={isDisableIncrease}>+</button
             >
         </div>
     </div>
