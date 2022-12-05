@@ -44,38 +44,32 @@
     fillFields();
 </script>
 
-<HeaderCategory
-    category="Shoes"
-    pathImage="/src/lib/img/cover/shoes-head.jpg"
-/>
-<p class="visually-hidden">
-    {#if isChangeAscending}
-        {fillFields()}
-    {:else if isChangeDescending}
-        {fillFields()}
-    {/if}
-</p>
-<div class="bg-img">
-    <div class="catalogue">
-        {#each arrays as array}
-            <Category {array} />
-        {/each}
-        <Pagination {size} {index} category={result.category} />
+<head>
+    <link rel='stylesheet' href='src/lib/styles/bg_categories.css'>
+</head>
+<div class="body">
+    <HeaderCategory
+        category="Shoes"
+    />
+    <p class="visually-hidden">
+        {#if isChangeAscending}
+            {fillFields()}
+        {:else if isChangeDescending}
+            {fillFields()}
+        {/if}
+    </p>
+    <div class="bg-img">
+        <div class="catalogue">
+            {#each arrays as array}
+                <Category {array} />
+            {/each}
+            <Pagination {size} {index} category={result.category} />
+        </div>
     </div>
 </div>
 
 <style>
-    .catalogue {
-        background-color: white;
-        width: fit-content;
-        box-shadow: 0 0 1em black;
-    }
-    .bg-img {
-        display: flex;
-        justify-content: center;
-        background-image: linear-gradient(rgba(219, 219, 219, 0.763), rgba(0, 0, 0, 0.278)),  url("/src/lib/img/cover/shoes-head.jpg");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
+.bg-img {
+    background-image: url("/src/lib/img/cover/shoes-header.jpg");
+}
 </style>

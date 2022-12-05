@@ -2,12 +2,10 @@
     import "animate.css";
 
     export let category = "default";
-    export let pathImage = "";
 </script>
 
 <section
     class="img-fluid img-format-container animate__animated animate__fadeIn">
-    <img src={pathImage} alt="head" />
     <p>{category}</p>
 </section>
 
@@ -15,16 +13,7 @@
     section{
         margin: 10px;
     }
-    
-    img{
-        visibility: hidden;
-        position: fixed;
-        height: 100vh;
-        width: 100%;
-        object-fit: cover;
-        object-position: center;
-        overflow: hidden;
-    }
+
 
     .img-format-container {
         width: 100%;
