@@ -1,12 +1,16 @@
 <script>
+    // @ts-nocheck
+
     import "bootstrap-icons/font/bootstrap-icons.css";
     import ProductImage from "./ProductImage.svelte";
-    import { productsCart } from "../services/store";
+    import { productsCart, totalPriceCart } from "../services/store";
     import { tick } from "svelte";
     import { goto } from "$app/navigation";
     import Noty from "noty";
     import "noty/lib/themes/nest.css";
-    import 'noty/lib/noty.css'
+    import "noty/lib/noty.css";
+    import { browser } from "$app/environment";
+    import { showNoty } from "$lib/services/noty";
 
     export let handBag = "";
     export let handBagPerson = "";
@@ -19,14 +23,22 @@
 
     let redirectCategory = category === "rings" ? "jewelry" : category;
     let path = `/${redirectCategory}/${productId}`;
-    let changeState = $productsCart.find((product) => product.id === productId);
+    let changeState = false;
+    if (browser) {
+        let cartStorage = window.localStorage.getItem("cart");
+        let cart = JSON.parse(cartStorage);
+        changeState = cart.find((product) => product.id === productId);
+    }
     $: changeState;
 
     const addProductInCart = () => {
-        let exist = $productsCart.find((product) => product.id === productId);
+        if (!browser) return;
+        let cartStorage = window.localStorage.getItem("cart");
+        let cart = JSON.parse(cartStorage);
+        let exist = cart.find((product) => product.id === productId);
         if (!exist) {
-            $productsCart = [
-                ...$productsCart,
+            cart = [
+                ...cart,
                 {
                     id: productId,
                     image: handBag,
@@ -35,16 +47,17 @@
                     price,
                     stock,
                     description,
-                    category
+                    category,
+                    quantity: 1,
                 },
             ];
-            new Noty({
-                theme: "nest",
-                text: "Product added to cart",
-                type: 'alert',
-                layout: 'bottomRight',
-                timeout: 1500
-            }).show();
+            window.localStorage.setItem("cart", JSON.stringify(cart));
+            let total = 0
+            cart.forEach((e) => (total += e.price * e.quantity));
+            totalPriceCart.set(total)
+            productsCart.set(cart);
+
+            showNoty("Product added to cart", "alert");
             changeState = true;
         } else {
             changeState = false;
@@ -57,7 +70,7 @@
 </script>
 
 <div class="category_container card m-3">
-    <a data-sveltekit-reload href={path}>
+    <a href={path}>
         <ProductImage {handBag} {handBagPerson} />
     </a>
     <p class="card-text"><span class="text-align-center">{price} $</span></p>
@@ -81,4 +94,7 @@
 </div>
 
 <style>
+    .box:hover{
+        box-shadow: 0 0 1em rgb(161, 159, 159);
+    }
 </style>

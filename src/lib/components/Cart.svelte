@@ -12,47 +12,56 @@
     import "noty/lib/themes/nest.css";
     import "noty/lib/noty.css";
     import { goto } from "$app/navigation";
+    import { browser } from "$app/environment";
+    import { showNoty } from "$lib/services/noty";
 
     isInCart.update((value) => (value = true));
 
     let pathCart = "src/img/cart/";
 
     let products = [];
+    let cartProducts = [];
     let total = 0;
     let deleteId = "";
 
     $: total;
     $: products;
-    $: console.log(products)
+    $: cartProducts;
+    $: console.log("cart", total);
 
-    deleteElement.subscribe((value) => (deleteId = value));
-    productsCart.subscribe((value) => {
-        products = value;
-        total = 0;
-        products.forEach((e) => (total += e.price));
-        totalPriceCart.update((value) => (value = total));
-    });
+    if (browser) {
+        let cartStorage = window.localStorage.getItem("cart");
+        cartProducts = JSON.parse(cartStorage);
+        let total = 0;
+        cartProducts.forEach((e) => (total += e.price * e.quantity));
+        totalPriceCart.set(total);
+        productsCart.set(cartProducts);
+    }
 
     totalPriceCart.subscribe((value) => (total = value));
+    productsCart.subscribe((value) => (products = value));
+    deleteElement.subscribe((value) => (deleteId = value));
 
     $: deleteId != "" ? deleteProductCart() : "";
     const deleteProductCart = () => {
-        const index = $productsCart.findIndex((e) => e.id === deleteId);
-        $productsCart.splice(index, 1);
-        productsCart.update((value) => (value = $productsCart));
-        deleteElement.update((value) => (value = ""));
-        new Noty({
-            theme: "nest",
-            text: "Product removed to cart",
-            type: "error",
-            layout: "bottomRight",
-            timeout: 1500,
-        }).show();
+        const index = cartProducts.findIndex((e) => e.id === deleteId);
+        cartProducts.splice(index, 1);
+        if (browser) {
+            window.localStorage.setItem("cart", JSON.stringify(cartProducts));
+            let cartStorage = window.localStorage.getItem("cart");
+            cartProducts = JSON.parse(cartStorage);
+            total = 0;
+            cartProducts.forEach((e) => (total += e.price * e.quantity));
+            totalPriceCart.set(total);
+            productsCart.set(cartProducts);
+            deleteElement.update((value) => (value = ""));
+            showNoty("Product removed to cart", "error")
+        }
     };
 
     const goTo = () => {
-        goto('/')
-    }
+        goto("/");
+    };
 
     onDestroy(() => {
         isInCart.update((value) => (value = false));
@@ -63,8 +72,8 @@
     <p>My Cart</p>
 </div>
 
-<div class="">
-    {#if $productsCart.length === 0}
+<div class="body-cart">
+    {#if cartProducts.length === 0}
         <div class="container ml-5 text-center">
             <div class="row justify-content-center">
                 <div class="emptyCart">
@@ -86,17 +95,18 @@
             <div class="row">
                 <div class="col-9">
                     <div class="row">
-                    <div class="col-2">
+                    <div class="col">
                         <p>Product</p>
                     </div>
-                    <div class="col-3">
-
+                    <div class="col">
+                    </div>
+                    <div class="col" style="margin-left: 10vh; max-width:28vh">
+                        <p  class="price">Price</p>
                     </div>
                     <div class="col">
-                        <p class="price">Price</p>
-                    </div>
-                    <div class="col-5">
                         <p class="quantity">Quantity</p>
+                    </div>
+                    <div style="width: 20vh;">
                     </div>
                 </div>
                 </div>
@@ -104,7 +114,7 @@
         </div>
         <div class="row">
             <div class="col-md-9">
-                {#each $productsCart as { image, name, description, price, stock, id, category } (id)}
+                {#each products as { image, name, description, price, stock, id, category, quantity } (id)}
                     <ProductCart
                         {image}
                         productName={name}
@@ -114,10 +124,11 @@
                         {total}
                         {id}
                         {category}
+                        {quantity}
                     />
                 {/each}
             </div>
-            <div class="col">
+            <div class=" col total">
                 <TotalPrice totalPrice={$totalPriceCart.toFixed(2)} $ />
             </div>
         </div>
@@ -131,14 +142,13 @@
         font-size: 40px;
         font-family: "Bree Serif";
     }
-
-    .col {
-        width: 100%;
+    .body-cart{
+        min-height: 50vh;
     }
 
     .label {
         margin-top: 5%;
-        font-size: 200%;
+        font-size: 00%;
         font-family: "Bree Serif";
         color: #545454;
     }
@@ -162,11 +172,15 @@
         margin-left: 1%;
     }
 
-    .price {
-        margin-left: 26%;
-    }
 
     .Principal div {
         background-color: #fff;
+    }
+
+    @media (max-width: 958px) {
+        .total{
+            transform: scale(1);
+        }
+        
     }
 </style>

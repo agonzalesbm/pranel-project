@@ -10,7 +10,7 @@
     } from "$lib/services/store";
 
     export let data;
-    const { result, size, index } = data;
+    const { result, size, index, color } = data;
 
     $currentProducts = result;
 
@@ -45,11 +45,9 @@
 <head>
     <link rel="stylesheet" href="src/lib/styles/bg_categories.css" />
 </head>
+
 <div class="body">
-    <HeaderCategory
-        category="Jewelry"
-        pathImage="/src/lib/img/cover/jewelry-head.jpg"
-    />
+    <HeaderCategory category="Jewelry" />
     <p class="visually-hidden">
         {#if isChangeAscending}
             {fillFields()}
@@ -62,13 +60,20 @@
             {#each arrays as array}
                 <Category {array} />
             {/each}
-            <Pagination {size} {index} category={result.category} />
+            {#if arrays[0][0] !== undefined}
+                <Pagination
+                    {size}
+                    {index}
+                    category={arrays[0][0].category}
+                    color={color === undefined ? "" : color}
+                />
+            {/if}
         </div>
     </div>
 </div>
 
 <style>
-.bg-img {
-    background-image: url("src/lib/img/cover/rings-header1.jpg");
-}
+    .bg-img {
+        background-image: url("src/lib/img/cover/rings-header1.jpg");
+    }
 </style>

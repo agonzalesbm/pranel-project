@@ -27,19 +27,27 @@
     };
 
     let products = [];
+    let cartProducts = [];
     let total = 0;
 
     $: products;
     $: total;
-    $: console.log(total);
-    productsCart.subscribe((value) => {
-        products = value;
-        total = 0;
-        products.forEach((e) => (total += e.price));
-        totalPriceCart.update((value) => (value = total));
-    });
+    $: cartProducts;
+
+    if (browser) {
+        let cartStorage = window.localStorage.getItem("cart");
+        cartProducts = JSON.parse(cartStorage);
+        let total = 0;
+        cartProducts.forEach((e) => (total += e.price * e.quantity));
+        console.log(total);
+        totalPriceCart.set(total);
+        productsCart.set(cartProducts)
+    }
+    totalPriceCart.subscribe((value) => (total = value));
+    productsCart.subscribe(value => products = value)
 
     import { clickBags, clickShoes, clickJewelry } from "$lib/services/store";
+    import { browser } from "$app/environment";
 
     function clickBagsButton() {
         clickBags.update((value) => (value = true));
@@ -110,13 +118,14 @@
                     </div>
                     <div class="popover-body">
                         {#if total !== 0}
-                            {#each products as product}
+                            {#each products as product (product.id)}
                                 <WindowsCart
                                     name={product.name}
                                     price={product.price}
                                     image={product.image}
                                     category={product.category}
                                     id={product.id}
+                                    quantity={product.quantity}
                                 />
                             {/each}
                             <div class="gradient " />
@@ -132,7 +141,7 @@
                             <h5>Total:</h5>
                             <h5 style="right: 1em;position:absolute;">
                                 <!-- {$totalPriceCart.toFixed(2)} $ -->
-                                0.00 $
+                                {total.toFixed(2)} $
                             </h5>
                         </div>
                         <div class="btn-view">
@@ -162,8 +171,8 @@
                     </svg></span
                 >
             </a>
-            <a href="#" class:visually-hidden={isHidden}
-                ><span style="color: black"
+            <a href="#" class:visually-hidden={isHidden}>
+                <span style="color: black"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -176,18 +185,19 @@
                             fill-rule="evenodd"
                             d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
                         />
-                    </svg></span
-                >
+                    </svg>
+                </span>
+
                 <ul class="menu">
-                    <li>
-                        <a href="/shoes" on:click={clickShoesButton}>Shoes</a>
-                    </li>
-                    <li><a href="/bags" on:click={clickBagsButton}>Bags</a></li>
-                    <li>
-                        <a href="/jewelry" on:click={clickJewelryButton}
-                            >Jewelry</a
-                        >
-                    </li>
+                    <li><a href="/shoes" on:click={clickShoesButton}>
+                        <img src="src/lib/img/icons/tacones.png" alt="" class="icon"> Shoes
+                    </a></li>
+                    <li><a href="/bags" on:click={clickBagsButton}>
+                        <img src="src/lib/img/icons/bag.png" alt="" class="icon"> Bags
+                    </a></li>
+                    <li><a href="/jewelry" on:click={clickJewelryButton}>
+                        <img src="src/lib/img/icons/joya.png" alt="" class="icon"> Jewelry
+                    </a></li>
                 </ul>
             </a>
         </nav>
@@ -248,7 +258,6 @@
         min-height: 0.5em;
         position: relative;
         box-shadow: inset;
-
         scrollbar-width: thin;
         scrollbar-color: #ffd7d7 rgb(255, 255, 255);
     }
@@ -385,8 +394,9 @@
         text-decoration: none;
         padding: 10px 20px;
         line-height: normal;
-        font-size: 30px;
+        font-size: 1.1em;
         font-weight: bold;
+        text-transform: uppercase;
     }
 
     header nav a:hover {
@@ -394,31 +404,51 @@
         border-radius: 30px;
     }
 
-    .wrapper a ul {
+    a ul {
         display: none;
-        z-index: 1000;
-        -moz-box-shadow: 0.7px 1px 1px #777777;
-        -webkit-box-shadow: 0.7px 1px 1px #777777;
-        box-shadow: 0.7px 1px 1px #777777;
+        z-index: 10;
+        -moz-box-shadow: 0 0 2px #777777;
+        -webkit-box-shadow: 0 0 2px #777777;
+        box-shadow: 0 0 2px #777777;
+        margin-top: 0.5em;
+        border-radius: 5px;
+        border: solid 3px;
+        border-color: black white;
+    } 
+
+    .menu::before {
+        content: "";
+        border-style: solid;
+        border-width: 0px 10px 10px 10px;
+        border-color: transparent transparent black transparent;
+        position: absolute;
+        top: -10px;
+        right: 15px;
     }
 
-    .wrapper a ul li {
-        background-color: #ffded7;
-        color: #ffff;
+    li {
+        background-color: white;
         display: block;
+        flex: left;
+    }
+
+    li a img{
+        height: 1em;
+        position: relative;
+        transform: scaleX(-1);
+        margin: 0.1em 0.5em;
     }
 
     .wrapper a:hover > ul {
         display: block;
-        right: 1%;
+        margin-left: -8.4em;
         position: absolute;
-        border-radius: 0px;
     }
 
     .menu li :hover {
-        background: white;
+        background: #ffded7;
         color: black;
-        border-radius: 0%;
+        border-radius: 5px;
         width: 100%;
     }
 </style>

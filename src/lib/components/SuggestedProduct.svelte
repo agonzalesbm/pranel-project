@@ -14,6 +14,11 @@
 
 <style>
     .suggested {
+        background-color: #ffded7cd;
+        border-radius: 5px;
+    }
+
+    .suggested:hover{
         background-color: #ffded7;
     }
 </style>
