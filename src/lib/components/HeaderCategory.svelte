@@ -7,80 +7,39 @@
 
 <section
     class="img-fluid img-format-container animate__animated animate__fadeIn">
-    <img src={pathImage} alt="jewelry-head" />
+    <img src={pathImage} alt="head" />
     <p>{category}</p>
 </section>
 
 <style>
-    .img-format-container {
-        width: 120rem;
-        height: 8rem;
+    section{
+        margin: 10px;
+    }
+    
+    img{
+        visibility: hidden;
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
         overflow: hidden;
+    }
+
+    .img-format-container {
+        width: 100%;
+        height: 8rem;
         position: relative;
-        background-color: black;
-        margin-top: 1%;
-    }
-
-    .img-format-container img {
-        width: 25%;
-        height: 100%;
-    }
-
-    .img-format-container p {
-        font-size: 5rem;
+        background-color: rgba(0, 0, 0);
+        align-items: center;
+        justify-content: center;
         color: white;
-        position: absolute;
-        top: 5%;
-        left: 75%;
     }
 
-    @media screen and (max-width: 1025px) {
-        .img-format-container p {
-            font-size: 5rem;
-            color: white;
-            position: absolute;
-            top: 5%;
-            left: 65%;
-        }
+    p{
+        width: 100%;
+        font-size: 5em;
+        margin-left:20%;
     }
 
-    @media screen and (max-width: 769px) {
-        .img-format-container p {
-            font-size: 5rem;
-            color: white;
-            position: absolute;
-            top: 5%;
-            left: 55%;
-        }
-    }
-
-    @media screen and (max-width: 726px) {
-        .img-format-container p {
-            font-size: 3rem;
-            color: white;
-            position: absolute;
-            top: 20%;
-            left: 55%;
-        }
-
-        .img-format-container img {
-            width: 45%;
-            height: 100%;
-        }
-    }
-
-    @media screen and (max-width: 321px) {
-        .img-format-container p {
-            font-size: 3rem;
-            color: white;
-            position: absolute;
-            top: 20%;
-            left: 40%;
-        }
-
-        .img-format-container img {
-            width: 45%;
-            height: 100%;
-        }
-    }
 </style>
