@@ -210,7 +210,7 @@
         aria-labelledby="offcanvasRightLabel"
       >
         <div class="offcanvas-header">
-          <h5 id="offcanvasRightLabel " class="text">Filter by</h5>
+          <h5 id="offcanvasRightLabel ">Filter by</h5>
           <button
             type="button"
             class="btn-close text-reset"
@@ -333,22 +333,25 @@
     position: relative;
     transform: scaleX(-1);
     margin: 0em 0.5em;
+    visibility: visible;
   }
 
   @media screen and (max-width: 750px) {
     .icon {
-      height: 1em;
+      height: 2em;
     }
 
     .nav-item {
       font-size: small;
       margin: 0.2em;
+      visibility: hidden;
+      margin-left: -3em;
     }
 
     .btn-filter {
       font-size: 10px;
       padding: 0.3em 0.7em;
-      margin-top: -0.5em;
+      margin-top: -1em;
     }
   }
 </style>
