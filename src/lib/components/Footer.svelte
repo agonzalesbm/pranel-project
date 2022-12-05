@@ -1,42 +1,20 @@
 <script>
     import { isAnError } from "../services/store";
-    import { clickBags, clickShoes, clickJewelry } from "$lib/services/store";
+    import {
+        clickBagsButton,
+        clickJewelryButton,
+        clickShoesButton,
+    } from "$lib/services/clickStates";
 
-    function clickBagsButton() {
-        clickBags.update((value) => (value = true));
-        clickShoes.update((value) => (value = false));
-        clickJewelry.update((value) => (value = false));
-        let positions = {
-            bags: true,
-            shoes: false,
-            jewelry: false,
-        };
-        window.localStorage.setItem("current", JSON.stringify(positions));
-    }
-
-    function clickJewelryButton() {
-        let positions = {
-            bags: false,
-            shoes: false,
-            jewelry: true,
-        };
-        window.localStorage.setItem("current", JSON.stringify(positions));
-        clickBags.update((value) => (value = false));
-        clickShoes.update((value) => (value = false));
-        clickJewelry.update((value) => (value = true));
-    }
-
-    function clickShoesButton() {
-        let positions = {
-            bags: false,
-            shoes: true,
-            jewelry: false,
-        };
-        window.localStorage.setItem("current", JSON.stringify(positions));
-        clickBags.update((value) => (value = false));
-        clickShoes.update((value) => (value = true));
-        clickJewelry.update((value) => (value = false));
-    }
+    const clickTheBagsButton = () => {
+        clickBagsButton();
+    };
+    const clickTheJewelryButton = () => {
+        clickJewelryButton();
+    };
+    const clickTheShoesButton = () => {
+        clickShoesButton();
+    };
 </script>
 
 <footer class:visually-hidden={$isAnError} class="footer" role="navigation">
@@ -76,11 +54,11 @@
                 <h4>online shopping subpages</h4>
                 <ul>
                     <li>
-                        <a href="/shoes" on:click={clickShoesButton}>Shoes</a>
+                        <a href="/shoes" on:click={clickTheShoesButton}>Shoes</a>
                     </li>
-                    <li><a href="/bags" on:click={clickBagsButton}>Bags</a></li>
+                    <li><a href="/bags" on:click={clickTheBagsButton}>Bags</a></li>
                     <li>
-                        <a href="/jewelry" on:click={clickJewelryButton}
+                        <a href="/jewelry" on:click={clickTheJewelryButton}
                             >Jewelry</a
                         >
                     </li>

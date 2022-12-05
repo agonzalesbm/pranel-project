@@ -13,6 +13,12 @@
     } from "../services/store";
     import Product from "./Product.svelte";
     import WindowsCart from "./WindowsCart.svelte";
+    import { browser } from "$app/environment";
+    import {
+        clickBagsButton,
+        clickJewelryButton,
+        clickShoesButton,
+    } from "$lib/services/clickStates";
 
     let cart = false;
     isInCart.subscribe((value) => (cart = value));
@@ -41,31 +47,20 @@
         cartProducts.forEach((e) => (total += e.price * e.quantity));
         console.log(total);
         totalPriceCart.set(total);
-        productsCart.set(cartProducts)
+        productsCart.set(cartProducts);
     }
     totalPriceCart.subscribe((value) => (total = value));
-    productsCart.subscribe(value => products = value)
+    productsCart.subscribe((value) => (products = value));
 
-    import { clickBags, clickShoes, clickJewelry } from "$lib/services/store";
-    import { browser } from "$app/environment";
-
-    function clickBagsButton() {
-        clickBags.update((value) => (value = true));
-        clickShoes.update((value) => (value = false));
-        clickJewelry.update((value) => (value = false));
-    }
-
-    function clickJewelryButton() {
-        clickBags.update((value) => (value = false));
-        clickShoes.update((value) => (value = false));
-        clickJewelry.update((value) => (value = true));
-    }
-
-    function clickShoesButton() {
-        clickBags.update((value) => (value = false));
-        clickShoes.update((value) => (value = true));
-        clickJewelry.update((value) => (value = false));
-    }
+    const clickTheBagsButton = () => {
+        clickBagsButton();
+    };
+    const clickTheJewelryButton = () => {
+        clickJewelryButton();
+    };
+    const clickTheShoesButton = () => {
+        clickShoesButton();
+    };
 </script>
 
 <header class:visually-hidden={$isAnError}>
@@ -189,15 +184,33 @@
                 </span>
 
                 <ul class="menu">
-                    <li><a href="/shoes" on:click={clickShoesButton}>
-                        <img src="src/lib/img/icons/tacones.png" alt="" class="icon"> Shoes
-                    </a></li>
-                    <li><a href="/bags" on:click={clickBagsButton}>
-                        <img src="src/lib/img/icons/bag.png" alt="" class="icon"> Bags
-                    </a></li>
-                    <li><a href="/jewelry" on:click={clickJewelryButton}>
-                        <img src="src/lib/img/icons/joya.png" alt="" class="icon"> Jewelry
-                    </a></li>
+                    <li>
+                        <a href="/shoes" on:click={clickTheShoesButton}>
+                            <img
+                                src="src/lib/img/icons/tacones.png"
+                                alt=""
+                                class="icon"
+                            /> Shoes
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/bags" on:click={clickTheBagsButton}>
+                            <img
+                                src="src/lib/img/icons/bag.png"
+                                alt=""
+                                class="icon"
+                            /> Bags
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/jewelry" on:click={clickTheJewelryButton}>
+                            <img
+                                src="src/lib/img/icons/joya.png"
+                                alt=""
+                                class="icon"
+                            /> Jewelry
+                        </a>
+                    </li>
                 </ul>
             </a>
         </nav>
@@ -414,7 +427,7 @@
         border-radius: 5px;
         border: solid 3px;
         border-color: black white;
-    } 
+    }
 
     .menu::before {
         content: "";
@@ -432,7 +445,7 @@
         flex: left;
     }
 
-    li a img{
+    li a img {
         height: 1em;
         position: relative;
         transform: scaleX(-1);
