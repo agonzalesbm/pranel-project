@@ -140,30 +140,40 @@
             on:click={shoesMarked}
           >
             {#if checkShoes}
-              <u><img src="src/lib/img/icons/tacones.png" alt="" class="icon"> Shoes</u>
+              <u
+                ><img src="src/lib/img/icons/tacones.png" alt="" class="icon" />
+                Shoes</u
+              >
             {:else}
               <p class="color-disabled">
-                <img src="src/lib/img/icons/tacones.png" alt="" class="icon"> Shoes</p>
+                <img src="src/lib/img/icons/tacones.png" alt="" class="icon" /> Shoes
+              </p>
             {/if}
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/bags" on:click={bagsMarked}>
             {#if checkBags}
-              <u> <img src="src/lib/img/icons/bag.png" alt="" class="icon"> Bags</u>
+              <u>
+                <img src="src/lib/img/icons/bag.png" alt="" class="icon" /> Bags</u
+              >
             {:else}
               <p class="color-disabled">
-                <img src="src/lib/img/icons/bag.png" alt="" class="icon"> Bags</p>
+                <img src="src/lib/img/icons/bag.png" alt="" class="icon" /> Bags
+              </p>
             {/if}
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/jewelry" on:click={jewelryMarked}>
             {#if checkJewelry}
-              <u> <img src="src/lib/img/icons/joya.png" alt="" class="icon"> Jewelry</u>
+              <u>
+                <img src="src/lib/img/icons/joya.png" alt="" class="icon" /> Jewelry</u
+              >
             {:else}
               <p class="color-disabled">
-                <img src="src/lib/img/icons/joya.png" alt="" class="icon"> Jewelry</p>
+                <img src="src/lib/img/icons/joya.png" alt="" class="icon" /> Jewelry
+              </p>
             {/if}
           </a>
         </li>
@@ -200,7 +210,7 @@
         aria-labelledby="offcanvasRightLabel"
       >
         <div class="offcanvas-header">
-          <h5 id="offcanvasRightLabel">Filter by</h5>
+          <h5 id="offcanvasRightLabel " class="text">Filter by</h5>
           <button
             type="button"
             class="btn-close text-reset"
@@ -277,13 +287,13 @@
 </nav>
 
 <style>
-  nav{
+  nav {
     height: 5em;
     padding: 1em;
     margin-top: -0.5em;
   }
 
-  .nav-item{
+  .nav-item {
     font-size: medium;
   }
 
@@ -318,10 +328,27 @@
     opacity: 1;
   }
 
-  .icon{
+  .icon {
     height: 1.5em;
     position: relative;
     transform: scaleX(-1);
     margin: 0em 0.5em;
+  }
+
+  @media screen and (max-width: 750px) {
+    .icon {
+      height: 1em;
+    }
+
+    .nav-item {
+      font-size: small;
+      margin: 0.2em;
+    }
+
+    .btn-filter {
+      font-size: 10px;
+      padding: 0.3em 0.7em;
+      margin-top: -0.5em;
+    }
   }
 </style>
