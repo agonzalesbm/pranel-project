@@ -3,14 +3,14 @@
 }
 
 .catalogue {
-    background-color: rgba(255, 255, 255, 0.64);
+    background-color: rgba(255, 255, 255, 0.8);
     width: fit-content;
     box-shadow: 0 0 1em black;
 }
 .bg-img {
     display: flex;
     justify-content: center;
-    background-position: bottom;
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

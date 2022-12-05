@@ -71,5 +71,6 @@
 <style>
 .bg-img {
     background-image: url("/src/lib/img/cover/shoes-header.jpg");
+    background-position: bottom;
 }
 </style>
