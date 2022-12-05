@@ -140,27 +140,30 @@
             on:click={shoesMarked}
           >
             {#if checkShoes}
-              <u>Shoes</u>
+              <u><img src="src/lib/img/icons/tacones.png" alt="" class="icon"> Shoes</u>
             {:else}
-              <p class="color-disabled">Shoes</p>
+              <p class="color-disabled">
+                <img src="src/lib/img/icons/tacones.png" alt="" class="icon"> Shoes</p>
             {/if}
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/bags" on:click={bagsMarked}>
             {#if checkBags}
-              <u>Bags</u>
+              <u> <img src="src/lib/img/icons/bag.png" alt="" class="icon"> Bags</u>
             {:else}
-              <p class="color-disabled">Bags</p>
+              <p class="color-disabled">
+                <img src="src/lib/img/icons/bag.png" alt="" class="icon"> Bags</p>
             {/if}
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/jewelry" on:click={jewelryMarked}>
             {#if checkJewelry}
-              <u>Jewelry</u>
+              <u> <img src="src/lib/img/icons/joya.png" alt="" class="icon"> Jewelry</u>
             {:else}
-              <p class="color-disabled">Jewelry</p>
+              <p class="color-disabled">
+                <img src="src/lib/img/icons/joya.png" alt="" class="icon"> Jewelry</p>
             {/if}
           </a>
         </li>
@@ -274,6 +277,16 @@
 </nav>
 
 <style>
+  nav{
+    height: 5em;
+    padding: 1em;
+    margin-top: -0.5em;
+  }
+
+  .nav-item{
+    font-size: medium;
+  }
+
   .btn-filter {
     background: #ffded7;
     background-image: -webkit-linear-gradient(top, #ffded7, #ffded7);
@@ -286,8 +299,9 @@
     border-radius: 27px;
     color: black;
     font-size: 20px;
-    padding: 2px 15px 2px 15px;
+    padding: 0.5em 1em;
     text-decoration: none;
+    margin-top: -0.5em;
   }
 
   .btn-filter:hover {
@@ -297,6 +311,17 @@
   }
 
   .color-disabled {
-    color: #949494;
+    opacity: 0.4;
+  }
+
+  .color-disabled:hover {
+    opacity: 1;
+  }
+
+  .icon{
+    height: 1.5em;
+    position: relative;
+    transform: scaleX(-1);
+    margin: 0em 0.5em;
   }
 </style>
