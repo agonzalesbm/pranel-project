@@ -70,7 +70,7 @@
         </div>
 
         <nav>
-            <a href="#"
+            <a href="#" class="disabled"
                 ><span style="color: black">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -150,7 +150,7 @@
                 </div>
             </span>
 
-            <a href="#"
+            <a href="#" class="disabled"
                 ><span style="color: black"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -463,5 +463,14 @@
         color: black;
         border-radius: 5px;
         width: 100%;
+    }
+
+    .disabled {
+        opacity: 0.5;
+    }
+
+    .disabled:hover{
+        background-color: #ffd7d7;
+        cursor: default;
     }
 </style>
