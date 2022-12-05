@@ -46,6 +46,13 @@
     $: isDisableDecrease;
     $: console.log("hello", stock);
 
+    if (quantity === stock) {
+        isDisableIncrease = true;
+    }
+    if (quantity === 1) {
+        isDisableDecrease = true;
+    }
+
     const increment = () => {
         if (quantity < stock) {
             quantity += 1;
@@ -64,7 +71,7 @@
             changeQuantity(quantity);
             totalPriceCart.update((value) => (value = value - price));
             isDisableIncrease = false;
-            isDisableDecrease = false
+            isDisableDecrease = false;
         }
         if (quantity === 1) {
             isDisableDecrease = true;
@@ -92,7 +99,8 @@
             <button
                 on:click={decrease}
                 class="justify-content-center"
-                id="decrement" disabled={isDisableDecrease}>-</button
+                id="decrement"
+                disabled={isDisableDecrease}>-</button
             >
         </div>
         <div class="number-box">
