@@ -49,7 +49,7 @@
 </head>
 
 <div class="body">
-    <HeaderCategory category="Shoes" />
+    <HeaderCategory category="Shoes" pathIcon="src/lib/img/icons/tacones.png"/>
     <p class="visually-hidden">
         {#if isChangeAscending}
             {fillFields()}
