@@ -10,7 +10,7 @@
     } from "$lib/services/store";
 
     export let data;
-    const { result, size, index } = data;
+    const { result, size, index, color } = data;
 
     $currentProducts = result;
 
@@ -44,18 +44,39 @@
     fillFields();
 </script>
 
-<HeaderCategory
-    category="Shoes"
-    pathImage="/src/lib/img/cover/shoes-head.jpg"
-/>
-<p class="visually-hidden">
-    {#if isChangeAscending}
-        {fillFields()}
-    {:else if isChangeDescending}
-        {fillFields()}
-    {/if}
-</p>
-{#each arrays as array}
-    <Category {array} />
-{/each}
-<Pagination {size} {index} category={result.category} />
+<head>
+    <link rel="stylesheet" href="src/lib/styles/bg_categories.css" />
+</head>
+
+<div class="body">
+    <HeaderCategory category="Shoes" pathIcon="src/lib/img/icons/tacones.png"/>
+    <p class="visually-hidden">
+        {#if isChangeAscending}
+            {fillFields()}
+        {:else if isChangeDescending}
+            {fillFields()}
+        {/if}
+    </p>
+    <div class="bg-img">
+        <div class="catalogue">
+            {#each arrays as array}
+                <Category {array} />
+            {/each}
+            {#if arrays[0][0] !== undefined}
+                <Pagination
+                    {size}
+                    {index}
+                    category={arrays[0][0].category}
+                    color={color === undefined ? "" : color}
+                />
+            {/if}
+        </div>
+    </div>
+</div>
+
+<style>
+    .bg-img {
+        background-image: url("/src/lib/img/cover/shoes-header.jpg");
+        background-position: bottom;
+    }
+</style>

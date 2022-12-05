@@ -1,25 +1,21 @@
 <script>
     // @ts-nocheck
     import "bootswatch/dist/lux/bootstrap.min.css";
-    import { clickBags, clickShoes, clickJewelry } from "$lib/services/store";
+    import {
+        clickBagsButton,
+        clickJewelryButton,
+        clickShoesButton,
+    } from "$lib/services/clickStates";
 
-    function clickBagsButton() {
-        clickBags.update(value => value = true);
-        clickShoes.update(value => value = false);
-        clickJewelry.update(value => value = false);
-    }
-
-    function clickJewelryButton() {
-        clickBags.update(value => value = false);
-        clickShoes.update(value => value = false);
-        clickJewelry.update(value => value = true);
-    }
-
-    function clickShoesButton() {
-        clickBags.update(value => value = false);
-        clickShoes.update(value => value = true);
-        clickJewelry.update(value => value = false);
-    }
+    const clickTheBagsButton = () => {
+        clickBagsButton();
+    };
+    const clickTheJewelryButton = () => {
+        clickJewelryButton();
+    };
+    const clickTheShoesButton = () => {
+        clickShoesButton();
+    };
 </script>
 
 <div>
@@ -59,7 +55,7 @@
                     alt="Bags"
                 />
 
-                <button class="svg-wrapper" on:click={clickBagsButton}>
+                <button class="svg-wrapper" on:click={clickTheBagsButton}>
                     <a href="/bags">
                         <svg height="90" width="600">
                             <rect class="shape" height="73" width="280" />
@@ -77,7 +73,10 @@
                     class="d-block w-100"
                     alt="Ring"
                 />
-                <button class="svg-wrapper text-align-center" on:click={clickJewelryButton}>
+                <button
+                    class="svg-wrapper text-align-center"
+                    on:click={clickTheJewelryButton}
+                >
                     <a href="/jewelry">
                         <svg height="90" width="600">
                             <rect class="shape" height="73" width="280" />
@@ -95,7 +94,7 @@
                     class="d-block w-100"
                     alt="Shoes"
                 />
-                <button class="svg-wrapper" on:click={clickShoesButton}>
+                <button class="svg-wrapper" on:click={clickTheShoesButton}>
                     <a href="/shoes">
                         <svg height="90" width="600">
                             <rect class="shape" height="73" width="280" />

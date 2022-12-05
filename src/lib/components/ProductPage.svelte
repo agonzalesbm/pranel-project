@@ -1,5 +1,11 @@
 <script>
-    // @ts-nocheck
+// @ts-nocheck
+
+    /**
+     * TODO: create bug report to suggested products when there is no suggestions
+     * TODO: add creation the cart in localstorage if there is no when the app runs
+     * * important: Solved
+     */
     import "bootswatch/dist/lux/bootstrap.min.css";
     import "animate.css";
     import { productsCart, totalPriceCart } from "../services/store";
@@ -45,11 +51,18 @@
 
     const chnageOverHoverFirstImg = () => {
         imgSourc = firstImg;
+
+        document.getElementById('first-image').classList.add('active');
+        document.getElementById('second-image').classList.remove('active');
     };
     const chnageOverHoverSecondImg = () => {
         imgSourc = secondImg;
+
+        document.getElementById('second-image').classList.add('active');
+        document.getElementById('first-image').classList.remove('active');
     };
 
+    
     const addProductInCart = () => {
         if (!browser) return;
         let cartStorage = window.localStorage.getItem("cart");
@@ -71,9 +84,9 @@
                 },
             ];
             window.localStorage.setItem("cart", JSON.stringify(cart));
-            let total = 0
+            let total = 0;
             cart.forEach((e) => (total += e.price * e.quantity));
-            totalPriceCart.set(total)
+            totalPriceCart.set(total);
             productsCart.set(cart);
             changeState = true;
             showNoty("Product added to cart", "alert");
@@ -91,19 +104,8 @@
     <div class="container">
         <div class="product-div">
             <div class="product-div-left">
-                <div class="img-container">
-                    <img src={imgSourc} id="actImg" />
-                </div>
                 <div class="hover-container">
-                    <div>
-                        <!-- svelte-ignore a11y-missing-attribute -->
-                        <!-- svelte-ignore a11y-mouse-events-have-key-events -->
-                        <img
-                            src={secondImg}
-                            on:mouseover={chnageOverHoverSecondImg}
-                        />
-                    </div>
-                    <div>
+                    <div id="first-image" class="active">
                         <!-- svelte-ignore a11y-missing-attribute -->
                         <!-- svelte-ignore a11y-mouse-events-have-key-events -->
                         <img
@@ -111,13 +113,24 @@
                             on:mouseover={chnageOverHoverFirstImg}
                         />
                     </div>
+                    <div id="second-image">
+                        <!-- svelte-ignore a11y-missing-attribute -->
+                        <!-- svelte-ignore a11y-mouse-events-have-key-events -->
+                        <img
+                            src={secondImg}
+                            on:mouseover={chnageOverHoverSecondImg}
+                        />
+                    </div>
+                </div>
+                <div class="img-container">
+                    <img src={imgSourc} id="actImg" />
                 </div>
             </div>
             <div class="product-div-right">
                 <span class="product-name">{name}</span>
                 <span class="product-refrence">Product Reference : {id}</span>
                 <span class="product-size">Size/Dimmensions : {size}</span>
-                <span class="Stock">Stock:{stock}[Units]</span>
+                <span class="Stock">Stock:{stock}[Units]</span> <br>
                 <span class="aboutProduct">About The Product</span>
 
                 <div class="Description">
@@ -130,7 +143,8 @@
                             {element}
                         </li>
                     {/each}
-                </div>
+                </div><br>
+                
                 <span class="product-price">Price: {price}$</span>
                 <div class="btn-groups">
                     {#if changeState}
@@ -156,7 +170,9 @@
     </div>
 </div>
 <div class="container">
-    <SuggestedProduct array={[first, second, third, forth]} />
+    {#if suggested.length >= 4}
+        <SuggestedProduct array={[first, second, third, forth]} />
+    {/if}
 </div>
 
 <style>
@@ -180,8 +196,8 @@
         font-family: "Roboto", sans-serif;
     }
     .main-wrapper {
-        min-height: 100vh;
-        background-color: whitesmoke;
+        min-height: 60vh;
+        background-color: white;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -190,35 +206,52 @@
         max-width: 1200px;
         padding: 0 1rem;
         margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .product-div {
         margin: 1rem 0;
-        padding: 2rem 0;
+        padding: 2rem 1em;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        background-color: #ffded7;
+        background-color: #fff;
         border-radius: 3px;
         column-gap: 10px;
+        --bg-product: #ffded7cd;
     }
+
     .product-div-left {
-        padding: 20px;
+        min-width: 30%;
+        display: flex;
     }
     .product-div-right {
-        padding: 20px;
+        padding: 1em 2em;
+        background-color: var(--bg-product);
+        margin: 10px;
+        border-radius: 5px;
+        min-width: 60%;
+    }
+
+    .product-div:hover {
+        --bg-product: #ffded7;
+        box-shadow: 0 0 1em gray;
     }
     .img-container img {
-        width: 250px;
+        height: 41em;
+        padding: 0.5em;
         margin: 0 auto;
+        border-radius: 5px;
     }
     .hover-container {
-        display: flex;
-        flex-wrap: wrap;
+        display: block;
+        margin-right: 1em;
         align-items: center;
-        justify-content: center;
-        margin-top: 32px;
+        justify-content: start;
+        margin-top: 0.1em;
     }
     .hover-container div {
-        border: 2px solid rgba(252, 160, 175, 0.7);
+        border: 2px solid rgba(126, 126, 126, 0.416);
         padding: 1rem;
         border-radius: 3px;
         margin: 0 4px 8px 4px;
@@ -227,10 +260,11 @@
         justify-content: center;
     }
     .active {
-        border-color: rgb(255, 145, 163) !important;
+        border-color: #000000 !important;
     }
+
     .hover-container div:hover {
-        border-color: rgb(255, 145, 163);
+        border-color: rgba(0, 0, 0, 0.681);
     }
     .hover-container div img {
         width: 60px;
@@ -240,11 +274,12 @@
         display: block;
     }
     .product-name {
-        font-size: 26px;
+        font-size: 2em;
         margin-bottom: 22px;
         font-weight: 700;
         letter-spacing: 1px;
         opacity: 0.9;
+        min-height: 2em;
     }
 
     .aboutProduct {
@@ -256,30 +291,22 @@
     }
     .product-price {
         font-weight: 700;
-        font-size: 25px;
+        font-size: 1.8em;
         opacity: 1;
-        font-weight: 500;
+        font-weight: 900;
     }
 
-    .product-description {
-        display: flex;
-        word-wrap: break-word;
-        font-weight: 18px;
-        line-height: 1.6;
-        font-weight: 300;
-        opacity: 0.9;
-        margin-top: 0px;
-        margin-left: 0px;
-    }
     .btn-groups {
-        margin-top: 22px;
+        margin: 1em;
+        display: flex;
+        justify-content: center;
     }
     .btn-groups button {
         display: inline-block;
-        font-size: 16px;
+        font-size: 1em;
         font-family: inherit;
         text-transform: uppercase;
-        padding: 15px 16px;
+        padding: 0.6em;
         cursor: pointer;
         transition: all 0.3s ease;
     }
@@ -288,7 +315,7 @@
     }
     .add-cart-btn {
         border-radius: 15px;
-        background: pink;
+        background: #ffded7;
         padding: 20px;
         width: 200px;
         height: 50px;
@@ -303,15 +330,12 @@
             grid-template-columns: 100%;
         }
         .product-div-right {
+            text-align: left;
+            padding: 2em 3em;
+        }
+
+        .product-name {
             text-align: center;
-        }
-        .product-rating {
-            justify-content: center;
-        }
-        .product-description {
-            max-width: 400px;
-            margin-right: auto;
-            margin-left: auto;
         }
     }
 
@@ -319,6 +343,10 @@
         .btn-groups button {
             width: 100%;
             margin-bottom: 10px;
+        }
+
+        .img-container img {
+            width: 20vh;
         }
     }
 </style>

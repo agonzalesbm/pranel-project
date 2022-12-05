@@ -9,11 +9,11 @@ export const getProducts = async (/** @type {string} */ pathname, /** @type {num
     return json
 }
 
-export const getProductsByColor = async (/** @type {string} */ pathname, /** @type {string} */ color) => {
+export const getProductsByColor = async (/** @type {string} */ pathname, /** @type {string} */ color, /** @type {number} */ index) => {
     if (pathname === 'jewelry') {
         pathname = 'rings'
     }
-    const obj = await fetch(`http://localhost:5173/api/get-products-by-color?p=${pathname}&c=${color}`)
+    const obj = await fetch(`http://localhost:5173/api/get-products-by-color?p=${pathname}&c=${color}&i=${index}`)
     const json =  await obj.json()
     return json
 }
