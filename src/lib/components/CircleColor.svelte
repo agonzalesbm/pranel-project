@@ -9,7 +9,7 @@
 </script>
 
 <label class="color-box">
-    <input type="checkbox" name="" id="" />
+    <input type="checkbox" name="" id="" checked />
     <a data-sveltekit-reload href={`${path}?color=${color}`}>
         <div
             class={currentColor === color ? "border border-5" : ""}
@@ -35,8 +35,9 @@
     .color-box input {
         display: none;
     }
-    .color-box input:checked + div {
-        border: solid 0.3em #000000;
+    
+    .border {
+        --bs-border-color : rgb(53, 53, 53);
         box-shadow: 0px 0px 0.6em rgba(0, 0, 0, 0.9);
     }
 </style>

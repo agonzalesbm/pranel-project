@@ -285,7 +285,7 @@
           <div class="container mt-4">
             <a data-sveltekit-reload href={path}>
               <div class="row">
-                <button class="btn btn-outline-danger">By default</button>
+                <button class="btn btn-outline-dark">By default</button>
               </div>
             </a>
           </div>
