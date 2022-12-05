@@ -69,8 +69,8 @@
     };
 </script>
 
-<div class="category_container card m-3 box">
-    <a data-sveltekit-reload href={path}>
+<div class="category_container card m-3">
+    <a href={path}>
         <ProductImage {handBag} {handBagPerson} />
     </a>
     <p class="card-text"><span class="text-align-center">{price} $</span></p>

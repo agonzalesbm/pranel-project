@@ -1,4 +1,6 @@
 <script>
+  // @ts-nocheck
+
   import "bootswatch/dist/lux/bootstrap.min.css";
   import {
     isInProduct,
@@ -6,8 +8,6 @@
     clickJewelry,
     clickShoes,
   } from "../services/store";
-  let isHere = false;
-  isInProduct.subscribe((value) => (isHere = value));
 
   import {
     sortedByAscendingOrder,
@@ -21,15 +21,33 @@
     isSortByDescending,
   } from "../services/store";
   import RowColors from "./RowColors.svelte";
-  import { goto } from "$app/navigation";
+  import { browser } from "$app/environment";
 
   let checkShoes = false;
   let checkBags = false;
   let checkJewelry = false;
   let path = "/";
   let isCheck = "";
+  let isHere = false;
 
   $: isCheck;
+  $: if (isHere) isCheck = "";
+  isInProduct.subscribe((value) => (isHere = value));
+
+  if (browser) {
+    let current = window.localStorage.getItem("current");
+    let positions = JSON.parse(current);
+    clickShoes.update((value) => (value = false));
+    clickBags.update((value) => (value = false));
+    clickJewelry.update((value) => (value = false));
+    if (positions.bags) {
+      clickBags.update((value) => (value = true));
+    } else if (positions.shoes) {
+      clickShoes.update((value) => (value = true));
+    } else if (positions.jewelry) {
+      clickJewelry.update((value) => (value = true));
+    }
+  }
 
   clickBags.subscribe((value) => {
     checkBags = value;
@@ -46,6 +64,12 @@
     clickShoes.update((value) => (value = true));
     clickBags.update((value) => (value = false));
     clickJewelry.update((value) => (value = false));
+    let positions = {
+      bags: false,
+      shoes: true,
+      jewelry: false,
+    };
+    window.localStorage.setItem("current", JSON.stringify(positions));
   }
 
   export function bagsMarked() {
@@ -53,6 +77,12 @@
     clickShoes.update((value) => (value = false));
     clickBags.update((value) => (value = true));
     clickJewelry.update((value) => (value = false));
+    let positions = {
+      bags: true,
+      shoes: false,
+      jewelry: false,
+    };
+    window.localStorage.setItem("current", JSON.stringify(positions));
   }
 
   export function jewelryMarked() {
@@ -60,6 +90,12 @@
     clickShoes.update((value) => (value = false));
     clickBags.update((value) => (value = false));
     clickJewelry.update((value) => (value = true));
+    let positions = {
+      bags: false,
+      shoes: false,
+      jewelry: true,
+    };
+    window.localStorage.setItem("current", JSON.stringify(positions));
   }
 
   isInProduct.subscribe((value) => (isHere = value));
@@ -84,20 +120,11 @@
     isSortByDescending.update((value) => (value = false));
     sortedByAscendingOrder();
   };
-  
+
   const orderByDescending = () => {
     isSortByDescending.update((value) => (value = true));
     isSortByAscending.update((value) => (value = false));
     sortedByDescendingOrder();
-  };
-
-  const changeByDefualt = () => {
-    let isInShoes = false;
-    let isInBags = false;
-    let isInJewelry = false;
-    clickShoes.subscribe((value) => (isInShoes = value));
-    clickBags.subscribe((value) => (isInBags = value));
-    clickJewelry.subscribe((value) => (isInJewelry = value));
   };
 </script>
 
@@ -227,7 +254,7 @@
             fifthColor="white"
           />
           <RowColors
-            firstColor="orange"
+            firstColor="gold"
             secondColor="brown"
             thirdColor="yellow"
             forthColor="red"

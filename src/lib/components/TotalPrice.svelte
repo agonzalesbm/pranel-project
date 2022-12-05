@@ -20,6 +20,7 @@
     .container div{
       background-color: #fff4f2;
       border-color: none;
+      border-radius: 5px;
     }
 
     .total_price {
@@ -31,5 +32,13 @@
         width: 100%;
         font-size: 150%;
         background-color: #a6a6a6;
+        border-radius: 5px;
+        cursor: default;
+    }
+
+    @media (max-width: 958px) {
+        .total_price{
+            font-size: 2em;
+        }
     }
   </style>
