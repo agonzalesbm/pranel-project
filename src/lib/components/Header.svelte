@@ -41,10 +41,10 @@
         cartProducts.forEach((e) => (total += e.price * e.quantity));
         console.log(total);
         totalPriceCart.set(total);
-        productsCart.set(cartProducts)
+        productsCart.set(cartProducts);
     }
     totalPriceCart.subscribe((value) => (total = value));
-    productsCart.subscribe(value => products = value)
+    productsCart.subscribe((value) => (products = value));
 
     import { clickBags, clickShoes, clickJewelry } from "$lib/services/store";
     import { browser } from "$app/environment";
@@ -71,16 +71,14 @@
 <header class:visually-hidden={$isAnError}>
     <div class="wrapper">
         <div class="logoHeader">
-            <a href="/"><img src={logo} width="300" height="90" /></a>
+            <a href="/"><img src={logo} width="300" height="70" /></a>
         </div>
 
         <nav>
-            <a href="#"
+            <a href="#" class="icon-header"
                 ><span style="color: black">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
                         fill="currentColor"
                         class="bi bi-search"
                         viewBox="0 0 16 16"
@@ -94,14 +92,12 @@
             <span class="icon-cart">
                 <a
                     on:click={onClick}
-                    class={cart ? "visually-hidden" : ""}
+                    class={cart ? "visually-hidden" : " icon-header"}
                     href="/cart"
                 >
                     <span style="color: black">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
                             fill="currentColor"
                             class="bi bi-cart-fill"
                             viewBox="0 0 16 16"
@@ -155,12 +151,10 @@
                 </div>
             </span>
 
-            <a href="#"
+            <a href="#" class="icon-header"
                 ><span style="color: black"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
                         fill="currentColor"
                         class="bi bi-person-fill"
                         viewBox="0 0 16 16"
@@ -171,33 +165,52 @@
                     </svg></span
                 >
             </a>
-            <a href="#" class:visually-hidden={isHidden}>
-                <span style="color: black"
-                    ><svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        class="bi bi-list"
-                        viewBox="0 0 16 16"
-                    >
-                        <path
-                            fill-rule="evenodd"
-                            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
-                        />
-                    </svg>
-                </span>
+            <a href="#" class:visually-hidden={isHidden} class="icon-header">
+                <div class="category">
+                    <span style="color: black"
+                        ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor"
+                            class="bi bi-list"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+                            />
+                        </svg>
+                    </span>
+                    <h5 class="text">Category</h5>
+                </div>
 
                 <ul class="menu">
-                    <li><a href="/shoes" on:click={clickShoesButton}>
-                        <img src="src/lib/img/icons/tacones.png" alt="" class="icon"> Shoes
-                    </a></li>
-                    <li><a href="/bags" on:click={clickBagsButton}>
-                        <img src="src/lib/img/icons/bag.png" alt="" class="icon"> Bags
-                    </a></li>
-                    <li><a href="/jewelry" on:click={clickJewelryButton}>
-                        <img src="src/lib/img/icons/joya.png" alt="" class="icon"> Jewelry
-                    </a></li>
+                    <li>
+                        <a href="/shoes" on:click={clickShoesButton}>
+                            <img
+                                src="src/lib/img/icons/tacones.png"
+                                alt=""
+                                class="icon"
+                            /> Shoes
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/bags" on:click={clickBagsButton}>
+                            <img
+                                src="src/lib/img/icons/bag.png"
+                                alt=""
+                                class="icon"
+                            /> Bags
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/jewelry" on:click={clickJewelryButton}>
+                            <img
+                                src="src/lib/img/icons/joya.png"
+                                alt=""
+                                class="icon"
+                            /> Jewelry
+                        </a>
+                    </li>
                 </ul>
             </a>
         </nav>
@@ -381,6 +394,7 @@
         font-size: 50px;
         line-height: 0px;
         float: left;
+        margin: 0.2em;
     }
 
     header nav {
@@ -399,6 +413,11 @@
         text-transform: uppercase;
     }
 
+    svg {
+        width: 25px;
+        height: 25px;
+    }
+
     header nav a:hover {
         background: white;
         border-radius: 30px;
@@ -414,7 +433,7 @@
         border-radius: 5px;
         border: solid 3px;
         border-color: black white;
-    } 
+    }
 
     .menu::before {
         content: "";
@@ -432,7 +451,7 @@
         flex: left;
     }
 
-    li a img{
+    li a img {
         height: 1em;
         position: relative;
         transform: scaleX(-1);
@@ -450,5 +469,19 @@
         color: black;
         border-radius: 5px;
         width: 100%;
+    }
+
+    .category {
+        display: flex;
+    }
+
+    .category h5 {
+        margin: 0.3em;
+    }
+
+    @media screen and (max-width: 700px) {
+        .category h5 {
+            display: none;
+        }
     }
 </style>
