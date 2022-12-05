@@ -72,7 +72,7 @@
     <p>My Cart</p>
 </div>
 
-<div class="">
+<div class="body-cart">
     {#if cartProducts.length === 0}
         <div class="container ml-5 text-center">
             <div class="row justify-content-center">
@@ -95,17 +95,20 @@
             <div class="row">
                 <div class="col-9">
                     <div class="row">
-                        <div class="col-2">
-                            <p>Product</p>
-                        </div>
-                        <div class="col-3" />
-                        <div class="col">
-                            <p class="price">Price</p>
-                        </div>
-                        <div class="col-5">
-                            <p class="quantity">Quantity</p>
-                        </div>
+                    <div class="col">
+                        <p>Product</p>
                     </div>
+                    <div class="col">
+                    </div>
+                    <div class="col" style="margin-left: 10vh; max-width:28vh">
+                        <p  class="price">Price</p>
+                    </div>
+                    <div class="col">
+                        <p class="quantity">Quantity</p>
+                    </div>
+                    <div style="width: 20vh;">
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -125,8 +128,8 @@
                     />
                 {/each}
             </div>
-            <div class="col">
-                <TotalPrice totalPrice={total.toFixed(2)} $ />
+            <div class=" col total">
+                <TotalPrice totalPrice={$totalPriceCart.toFixed(2)} $ />
             </div>
         </div>
     {/if}
@@ -139,14 +142,13 @@
         font-size: 40px;
         font-family: "Bree Serif";
     }
-
-    .col {
-        width: 100%;
+    .body-cart{
+        min-height: 50vh;
     }
 
     .label {
         margin-top: 5%;
-        font-size: 200%;
+        font-size: 00%;
         font-family: "Bree Serif";
         color: #545454;
     }
@@ -170,11 +172,15 @@
         margin-left: 1%;
     }
 
-    .price {
-        margin-left: 26%;
-    }
 
     .Principal div {
         background-color: #fff;
+    }
+
+    @media (max-width: 958px) {
+        .total{
+            transform: scale(1);
+        }
+        
     }
 </style>
