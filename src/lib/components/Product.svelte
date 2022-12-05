@@ -94,4 +94,7 @@
 </div>
 
 <style>
+    .box:hover{
+        box-shadow: 0 0 1em rgb(161, 159, 159);
+    }
 </style>
