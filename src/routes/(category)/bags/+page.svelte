@@ -10,7 +10,7 @@
     } from "$lib/services/store";
 
     export let data;
-    const { result, size, index } = data;
+    const { result, size, index, color } = data;
 
     $currentProducts = result;
 
@@ -21,8 +21,8 @@
 
     $: arrays;
 
-    isSortByAscending.update(value => value = false)
-    isSortByDescending.update(value => value = false)
+    isSortByAscending.update((value) => (value = false));
+    isSortByDescending.update((value) => (value = false));
 
     isSortByAscending.subscribe((value) => (isChangeAscending = value));
     isSortByDescending.subscribe((value) => (isChangeDescending = value));
@@ -58,4 +58,12 @@
 {#each arrays as array}
     <Category {array} />
 {/each}
-<Pagination {size} {index} category={result.category} />
+
+{#if arrays[0][0] !== undefined}
+    <Pagination
+        {size}
+        {index}
+        category={arrays[0][0].category}
+        color={color === undefined ? "" : color}
+    />
+{/if}

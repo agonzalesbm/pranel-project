@@ -4,21 +4,39 @@
     import { clickBags, clickShoes, clickJewelry } from "$lib/services/store";
 
     function clickBagsButton() {
-        clickBags.update(value => value = true);
-        clickShoes.update(value => value = false);
-        clickJewelry.update(value => value = false);
+        let positions = {
+            bags: true,
+            shoes: false,
+            jewelry: false,
+        };
+        window.localStorage.setItem("current", JSON.stringify(positions));
+        clickBags.update((value) => (value = true));
+        clickShoes.update((value) => (value = false));
+        clickJewelry.update((value) => (value = false));
     }
 
     function clickJewelryButton() {
-        clickBags.update(value => value = false);
-        clickShoes.update(value => value = false);
-        clickJewelry.update(value => value = true);
+        let positions = {
+            bags: false,
+            shoes: false,
+            jewelry: true,
+        };
+        window.localStorage.setItem("current", JSON.stringify(positions));
+        clickBags.update((value) => (value = false));
+        clickShoes.update((value) => (value = false));
+        clickJewelry.update((value) => (value = true));
     }
 
     function clickShoesButton() {
-        clickBags.update(value => value = false);
-        clickShoes.update(value => value = true);
-        clickJewelry.update(value => value = false);
+        let positions = {
+            bags: false,
+            shoes: true,
+            jewelry: false,
+        };
+        window.localStorage.setItem("current", JSON.stringify(positions));
+        clickBags.update((value) => (value = false));
+        clickShoes.update((value) => (value = true));
+        clickJewelry.update((value) => (value = false));
     }
 </script>
 
@@ -77,7 +95,10 @@
                     class="d-block w-100"
                     alt="Ring"
                 />
-                <button class="svg-wrapper text-align-center" on:click={clickJewelryButton}>
+                <button
+                    class="svg-wrapper text-align-center"
+                    on:click={clickJewelryButton}
+                >
                     <a href="/jewelry">
                         <svg height="90" width="600">
                             <rect class="shape" height="73" width="280" />

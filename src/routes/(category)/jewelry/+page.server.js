@@ -13,7 +13,7 @@ export const load = async ({ url }) => {
     const [, path] = pathname.split('/')
     if (color !== '') {
         const json = await getProductsByColor(path, color)
-        return { result: json, size: json.length, index }
+        return { result: json, size: json.length, index, color }
     }
     const json = await getProducts(path, index)
     const size = await getSize(path)
