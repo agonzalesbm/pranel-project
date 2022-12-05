@@ -47,7 +47,7 @@
 </head>
 
 <div class="body">
-    <HeaderCategory category="Jewelry" />
+    <HeaderCategory category="Jewelry" pathIcon="src/lib/img/icons/joya.png"/>
     <p class="visually-hidden">
         {#if isChangeAscending}
             {fillFields()}
