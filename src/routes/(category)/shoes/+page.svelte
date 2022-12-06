@@ -78,10 +78,10 @@
                     color={color === undefined ? "" : color}
                 />
             {:else}
-                <Message 
-                category="Shoes"
+                <Message
+                text= {color !== undefined ? "with this filter" : "on this page that are off limits"}
                 path="/shoes"
-                ></Message>
+                />
             {/if}
         </div>
     </div>

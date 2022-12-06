@@ -1,10 +1,10 @@
 <script>
-    export let category = "default";
+    export let text = "There are no products";
     export let path = "/";
 </script>
 
 <div class="message">
-    <h1>There are no products on {category} page</h1>
+    <h1>There are no products {text}</h1>
     <a data-sveltekit-reload href={path} class="btn btn-dark">Restore page</a>
 </div>
 
