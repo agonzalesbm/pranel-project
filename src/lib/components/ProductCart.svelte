@@ -92,7 +92,7 @@
         <p><a href={path}>{productName}</a></p>
     </div>
     <div class="col-2 price">
-        <p>{priceChange.toFixed(2)}</p>
+        <p>{priceChange.toFixed(2)}$</p>
     </div>
     <div class="col Quantity">
         <div>
@@ -174,6 +174,8 @@
         right: -0.1em;
         top: -0.1em;
     }
+
+
 
     .Dump button:hover {
         background-color: white;
