@@ -33,7 +33,7 @@ export const fileLoader = async (/** @type {string} */ table, /** @type {string}
     const docSnap = await getDoc(docRef)
 
     if (docSnap.exists()) {
-        return ({ ...docSnap.data(), id: docSnap.id })
+        return ({ ...docSnap.data(), id: docSnap.id, category: table === 'rings' ? 'jewelry' : table })
     } else {
         const data = {}
         console.log("No such document")

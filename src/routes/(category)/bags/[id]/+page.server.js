@@ -1,5 +1,4 @@
 // @ts-nocheck
-import { error } from '@sveltejs/kit';
 import { getProducts, getSuggestions } from "$lib/services/endpoint";
 import { isInProduct } from '$lib/services/store';
 

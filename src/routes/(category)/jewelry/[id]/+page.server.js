@@ -1,7 +1,6 @@
 // @ts-nocheck
 import { getProducts, getSuggestions } from '$lib/services/endpoint';
 import { isInProduct } from '$lib/services/store';
-import { error } from '@sveltejs/kit';
 
 const MESSAGE_404 = 'Page not found'
 
