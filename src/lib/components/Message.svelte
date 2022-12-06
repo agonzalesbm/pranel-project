@@ -5,7 +5,7 @@
 
 <div class="message">
     <h1>There are no products on {category} page</h1>
-    <a href={path} class="btn btn-dark">Restore page</a>
+    <a data-sveltekit-reload href={path} class="btn btn-dark">Restore page</a>
 </div>
 
 <style>

@@ -78,7 +78,7 @@
             {:else}
                 <Message
                 category="Jewelry"
-                path="/"
+                path="/jewelry"
                 />
             {/if}
         </div>
