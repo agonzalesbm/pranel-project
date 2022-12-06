@@ -9,6 +9,9 @@
     clickShoes,
   } from "../services/store";
 
+  import iconShoes from "$lib/img/icons/tacones-altos.svg";
+  import iconBag from "$lib/img/icons/bag.svg";
+  import iconDiamod from "$lib/img/icons/joya.svg";
   import {
     sortedByAscendingOrder,
     sortedByDescendingOrder,
@@ -150,12 +153,12 @@
           >
             {#if checkShoes}
               <u
-                ><img src="src/lib/img/icons/tacones.png" alt="" class="icon" />
+                ><img src={iconShoes} alt="" class="icon" />
                 Shoes</u
               >
             {:else}
               <p class="color-disabled">
-                <img src="src/lib/img/icons/tacones.png" alt="" class="icon" /> Shoes
+                <img src={iconShoes} alt="" class="icon" /> Shoes
               </p>
             {/if}
           </a>
@@ -164,11 +167,11 @@
           <a class="nav-link" href="/bags" on:click={bagsMarked}>
             {#if checkBags}
               <u>
-                <img src="src/lib/img/icons/bag.png" alt="" class="icon" /> Bags</u
+                <img src={iconBag} alt="" class="icon" /> Bags</u
               >
             {:else}
               <p class="color-disabled">
-                <img src="src/lib/img/icons/bag.png" alt="" class="icon" /> Bags
+                <img src={iconBag} alt="" class="icon" /> Bags
               </p>
             {/if}
           </a>
@@ -177,11 +180,11 @@
           <a class="nav-link" href="/jewelry" on:click={jewelryMarked}>
             {#if checkJewelry}
               <u>
-                <img src="src/lib/img/icons/joya.png" alt="" class="icon" /> Jewelry</u
+                <img src={iconDiamod} alt="" class="icon" /> Jewelry</u
               >
             {:else}
               <p class="color-disabled">
-                <img src="src/lib/img/icons/joya.png" alt="" class="icon" /> Jewelry
+                <img src={iconDiamod} alt="" class="icon" /> Jewelry
               </p>
             {/if}
           </a>

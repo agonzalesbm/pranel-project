@@ -3,6 +3,9 @@
 
     import "animate.css";
     import logo from "../img/LogoPranel.svg";
+    import iconShoes from "$lib/img/icons/tacones-altos.svg";
+    import iconBag from "$lib/img/icons/bag.svg";
+    import iconDiamod from "$lib/img/icons/joya.svg";
     import {
         isAnError,
         isInCart,
@@ -66,7 +69,7 @@
 <header class:visually-hidden={$isAnError}>
     <div class="wrapper">
         <div class="logoHeader">
-            <a href="/"><img src={logo} width="300" height="90" /></a>
+            <a href="/"><img src={logo} height="70" /></a>
         </div>
 
         <nav>
@@ -74,8 +77,6 @@
                 ><span style="color: black">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
                         fill="currentColor"
                         class="bi bi-search"
                         viewBox="0 0 16 16"
@@ -95,8 +96,6 @@
                     <span style="color: black">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
                             fill="currentColor"
                             class="bi bi-cart-fill"
                             viewBox="0 0 16 16"
@@ -154,8 +153,6 @@
                 ><span style="color: black"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
                         fill="currentColor"
                         class="bi bi-person-fill"
                         viewBox="0 0 16 16"
@@ -167,48 +164,37 @@
                 >
             </a>
             <a href="#" class:visually-hidden={isHidden}>
-                <span style="color: black"
-                    ><svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        class="bi bi-list"
-                        viewBox="0 0 16 16"
-                    >
-                        <path
-                            fill-rule="evenodd"
-                            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
-                        />
-                    </svg>
-                </span>
+                <div class="category">
+                    <span style="color: black"
+                        ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor"
+                            class="bi bi-list"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+                            />
+                        </svg>
+                    </span>
+                    <h5 class="text">Category</h5>
+                </div>
 
                 <ul class="menu">
                     <li>
                         <a href="/shoes" on:click={clickTheShoesButton}>
-                            <img
-                                src="src/lib/img/icons/tacones.png"
-                                alt=""
-                                class="icon"
-                            /> Shoes
+                            <img src={iconShoes} /> Shoes
                         </a>
                     </li>
                     <li>
                         <a href="/bags" on:click={clickTheBagsButton}>
-                            <img
-                                src="src/lib/img/icons/bag.png"
-                                alt=""
-                                class="icon"
-                            /> Bags
+                            <img src={iconBag} /> Bags
                         </a>
                     </li>
                     <li>
                         <a href="/jewelry" on:click={clickTheJewelryButton}>
-                            <img
-                                src="src/lib/img/icons/joya.png"
-                                alt=""
-                                class="icon"
-                            /> Jewelry
+                            <img src={iconDiamod} /> Jewelry
                         </a>
                     </li>
                 </ul>
@@ -240,8 +226,8 @@
         background-color: white;
         padding: 15px;
         position: absolute;
-        margin-left: -18em;
-        margin-top: -20px;
+        margin-left: -17.2em;
+        margin-top: -1em;
         height: auto;
         max-width: 25em;
         min-width: 25em;
@@ -394,6 +380,7 @@
         font-size: 50px;
         line-height: 0px;
         float: left;
+        margin: 0.2em;
     }
 
     header nav {
@@ -410,6 +397,11 @@
         font-size: 1.1em;
         font-weight: bold;
         text-transform: uppercase;
+    }
+
+    svg {
+        width: 25px;
+        height: 25px;
     }
 
     header nav a:hover {
@@ -436,7 +428,7 @@
         border-color: transparent transparent black transparent;
         position: absolute;
         top: -10px;
-        right: 15px;
+        right: 10px;
     }
 
     li {
@@ -465,12 +457,24 @@
         width: 100%;
     }
 
+    .category {
+        display: flex;
+    }
+
+    .category h5 {
+        margin: 0.3em;
+    }
     .disabled {
         opacity: 0.5;
     }
 
-    .disabled:hover{
+    .disabled:hover {
         background-color: #ffd7d7;
         cursor: default;
+    }
+    @media screen and (max-width: 700px) {
+        .category h5 {
+            display: none;
+        }
     }
 </style>

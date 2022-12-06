@@ -3,6 +3,7 @@
     import Pagination from "$lib/components/Pagination.svelte";
     import Category from "$lib/components/Category.svelte";
     import HeaderCategory from "$lib/components/HeaderCategory.svelte";
+    import iconBag from "$lib/img/icons/bag.svg";
     import {
         currentProducts,
         existColor,
@@ -56,7 +57,7 @@
 </head>
 
 <div class="body">
-    <HeaderCategory category="Bags" pathIcon="src/lib/img/icons/bag.png" />
+    <HeaderCategory category="Bags" pathIcon={iconBag} />
     <p class="visually-hidden">
         {#if isChangeAscending}
             {fillFields()}
