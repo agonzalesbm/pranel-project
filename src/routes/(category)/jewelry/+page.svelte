@@ -75,10 +75,15 @@
                     category={arrays[0][0].category}
                     color={color === undefined ? "" : color}
                 />
+            {:else if color !== undefined}
+                <Message
+                text= "with this filter";
+                path="/bags"
+                />
             {:else}
                 <Message
-                category="Jewelry"
-                path="/"
+                text= {color !== undefined ? "with this filter" : "on this page that are off limits"}
+                path="/bags"
                 />
             {/if}
         </div>
