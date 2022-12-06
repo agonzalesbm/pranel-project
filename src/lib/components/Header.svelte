@@ -3,6 +3,9 @@
 
     import "animate.css";
     import logo from "../img/LogoPranel.svg";
+    import iconShoes from "$lib/img/icons/tacones-altos.svg";
+    import iconBag from "$lib/img/icons/bag.svg";
+    import iconDiamod from "$lib/img/icons/joya.svg";
     import {
         isAnError,
         isInCart,
@@ -186,29 +189,17 @@
                 <ul class="menu">
                     <li>
                         <a href="/shoes" on:click={clickTheShoesButton}>
-                            <img
-                                src="src/lib/img/icons/tacones.png"
-                                alt=""
-                                class="icon"
-                            /> Shoes
+                            <img src={iconShoes} /> Shoes
                         </a>
                     </li>
                     <li>
                         <a href="/bags" on:click={clickTheBagsButton}>
-                            <img
-                                src="src/lib/img/icons/bag.png"
-                                alt=""
-                                class="icon"
-                            /> Bags
+                            <img src={iconBag} /> Bags
                         </a>
                     </li>
                     <li>
                         <a href="/jewelry" on:click={clickTheJewelryButton}>
-                            <img
-                                src="src/lib/img/icons/joya.png"
-                                alt=""
-                                class="icon"
-                            /> Jewelry
+                            <img src={iconDiamod} /> Jewelry
                         </a>
                     </li>
                 </ul>
@@ -469,7 +460,7 @@
         opacity: 0.5;
     }
 
-    .disabled:hover{
+    .disabled:hover {
         background-color: #ffd7d7;
         cursor: default;
     }
