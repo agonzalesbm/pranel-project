@@ -91,8 +91,8 @@
     <div class="col-md-4 align-items-center">
         <p><a href={path}>{productName}</a></p>
     </div>
-    <div class="col-2 price">
-        <p>{priceChange.toFixed(2)}</p>
+    <div class="col-2Price">
+        <p>Price:{priceChange.toFixed(2)}</p>
     </div>
     <div class="col Quantity">
         <div>
@@ -174,6 +174,8 @@
         right: -0.1em;
         top: -0.1em;
     }
+
+
 
     .Dump button:hover {
         background-color: white;
