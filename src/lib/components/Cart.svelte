@@ -96,15 +96,12 @@
                 <div class="col-9">
                     <div class="row">
                     <div class="col">
-                        <p>Product</p>
                     </div>
                     <div class="col">
                     </div>
                     <div class="col" style="margin-left: 10vh; max-width:28vh">
-                        <p  class="price">Price</p>
                     </div>
                     <div class="col">
-                        <p class="quantity">Quantity</p>
                     </div>
                     <div style="width: 20vh;">
                     </div>
