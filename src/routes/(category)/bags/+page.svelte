@@ -4,6 +4,7 @@
     import Category from "$lib/components/Category.svelte";
     import HeaderCategory from "$lib/components/HeaderCategory.svelte";
     import iconBag from "$lib/img/icons/bag.svg";
+    import Message from "$lib/components/Message.svelte";
     import {
         currentProducts,
         existColor,
@@ -76,6 +77,11 @@
                     {index}
                     category={arrays[0][0].category}
                     color={color === undefined ? "" : color}
+                />
+            {:else}
+                <Message
+                category="Bags"
+                path="/bags"
                 />
             {/if}
         </div>
