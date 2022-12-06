@@ -49,7 +49,11 @@
                     class="page-link"
                     data-sveltekit-reload
                     on:click={changeState}
-                    href={`${category}?i=${i + 1}`}>{i + 1}</a
+                    href={`${
+                        color === ""
+                            ? `${category}?i=${i + 1}`
+                            : `?color=${color}`
+                    }`}>{i + 1}</a
                 >
             </li>
         {/each}
