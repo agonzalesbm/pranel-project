@@ -80,7 +80,7 @@
             {:else}
                 <Message
                 text= {color !== undefined ? "with this filter" : "on this page that are off limits"}
-                path="/bags"
+                path="/shoes"
                 />
             {/if}
         </div>
