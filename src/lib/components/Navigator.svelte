@@ -222,7 +222,7 @@
         aria-labelledby="offcanvasRightLabel"
       >
         <div class="offcanvas-header">
-          <h5 id="offcanvasRightLabel ">Filter by</h5>
+          <h4 id="offcanvasRightLabel ">Filter by</h4>
           <button
             type="button"
             class="btn-close text-reset"
@@ -232,6 +232,7 @@
         </div>
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <div class="offcanvas-body">
+          <label class="form-check-label">Order by Price</label> <br> <br>
           <div class="form-check form-check-inline">
             <input
               bind:group={isCheck}
@@ -288,7 +289,7 @@
           <div class="container mt-4">
             <a data-sveltekit-reload href={path}>
               <div class="row">
-                <button class="btn btn-outline-dark">By default</button>
+                <button class="btn btn-outline-dark">clean the filter</button>
               </div>
             </a>
           </div>
@@ -309,6 +310,10 @@
     font-size: medium;
   }
 
+  h4{
+    margin: 0.5em;
+    margin-bottom: 0;
+  }
   .btn-filter {
     background: #ffded7;
     background-image: -webkit-linear-gradient(top, #ffded7, #ffded7);
