@@ -10,6 +10,7 @@
         isSortByAscending,
         isSortByDescending,
     } from "$lib/services/store";
+    import Message from "$lib/components/Message.svelte";
 
     export let data;
     const { result, size, index, color } = data;
@@ -76,6 +77,11 @@
                     category={arrays[0][0].category}
                     color={color === undefined ? "" : color}
                 />
+            {:else}
+                <Message 
+                category="Shoes"
+                path="/shoes"
+                ></Message>
             {/if}
         </div>
     </div>
