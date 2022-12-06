@@ -144,7 +144,7 @@
 
     .label {
         margin-top: 5%;
-        font-size: 00%;
+        font-size: 200%;
         font-family: "Bree Serif";
         color: #545454;
     }
