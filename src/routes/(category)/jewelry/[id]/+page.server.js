@@ -1,6 +1,5 @@
 // @ts-nocheck
 import { getProducts, getSuggestions } from '$lib/services/endpoint';
-import { error } from '@sveltejs/kit';
 
 const MESSAGE_404 = 'Page not found'
 
@@ -8,7 +7,6 @@ const MESSAGE_404 = 'Page not found'
 export async function load({ url }) {
     const sliceTexted = url.pathname.split("/");
     const [, table, id] = sliceTexted;
-    console.log(table, id)
     try {
         return { product: getProducts(table, id), suggested: getSuggestions(table, id) }
     } catch (error) {
