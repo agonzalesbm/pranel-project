@@ -11,6 +11,7 @@
         isSortByDescending,
     } from "$lib/services/store";
     import Message from "$lib/components/Message.svelte";
+    import { clickShoesButton } from "$lib/services/clickStates";
 
     export let data;
     const { result, size, index, color } = data;
@@ -50,6 +51,7 @@
         }
     };
     fillFields();
+    clickShoesButton()
 </script>
 
 <head>

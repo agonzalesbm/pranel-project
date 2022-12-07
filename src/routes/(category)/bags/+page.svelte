@@ -11,6 +11,7 @@
         isSortByAscending,
         isSortByDescending,
     } from "$lib/services/store";
+    import { clickBagsButton } from "$lib/services/clickStates";
 
     export let data;
     const { result, size, index, color } = data;
@@ -51,6 +52,7 @@
         }
     };
     fillFields();
+    clickBagsButton()
 </script>
 
 <head>
