@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { getProducts, getProductsByColor, getSize } from '$lib/services/endpointCategory';
-import { error } from '@sveltejs/kit';
 import { currentPage } from "$lib/services/store";
+import { clickShoesButton } from '$lib/services/clickStates';
 
 /** @type {import('../../../../.svelte-kit/types/src/routes/(category)/shoes/$types').PageLoad} */
 export const load = async ({ url }) => {
@@ -11,6 +11,7 @@ export const load = async ({ url }) => {
     index = searchParams.get('i') === null ? 1 : parseInt(searchParams.get('i'))
     let color = searchParams.get('color') === null ? '' : searchParams.get('color')
     const [, path] = pathname.split('/')
+    clickShoesButton()
     if (color !== '') {
         const json = await getProductsByColor(path, color)
         return { result: json, size: json.length, index, color }

@@ -38,14 +38,15 @@
         productsCart.set(cartProducts);
     }
 
+    $: console.log(products);
+
     totalPriceCart.subscribe((value) => (total = value));
     productsCart.subscribe((value) => (products = value));
     deleteElement.subscribe((value) => (deleteId = value));
 
-    $: deleteId != "" ? deleteProductCart() : "";
+    $: deleteId !== "" ? deleteProductCart() : "";
     const deleteProductCart = () => {
-        const index = cartProducts.findIndex((e) => e.id === deleteId);
-        cartProducts.splice(index, 1);
+        cartProducts = products.filter((e) => e.id !== deleteId);
         if (browser) {
             window.localStorage.setItem("cart", JSON.stringify(cartProducts));
             let cartStorage = window.localStorage.getItem("cart");
@@ -55,7 +56,7 @@
             totalPriceCart.set(total);
             productsCart.set(cartProducts);
             deleteElement.update((value) => (value = ""));
-            showNoty("Product removed to cart", "error")
+            showNoty("Product removed to cart", "error");
         }
     };
 
@@ -95,20 +96,15 @@
             <div class="row">
                 <div class="col-9">
                     <div class="row">
-                    <div class="col">
-                        <p>Product</p>
+                        <div class="col" />
+                        <div class="col" />
+                        <div
+                            class="col"
+                            style="margin-left: 10vh; max-width:28vh"
+                        />
+                        <div class="col" />
+                        <div style="width: 20vh;" />
                     </div>
-                    <div class="col">
-                    </div>
-                    <div class="col" style="margin-left: 10vh; max-width:28vh">
-                        <p  class="price">Price</p>
-                    </div>
-                    <div class="col">
-                        <p class="quantity">Quantity</p>
-                    </div>
-                    <div style="width: 20vh;">
-                    </div>
-                </div>
                 </div>
             </div>
         </div>
@@ -142,13 +138,13 @@
         font-size: 40px;
         font-family: "Bree Serif";
     }
-    .body-cart{
+    .body-cart {
         min-height: 50vh;
     }
 
     .label {
         margin-top: 5%;
-        font-size: 00%;
+        font-size: 200%;
         font-family: "Bree Serif";
         color: #545454;
     }
@@ -172,15 +168,13 @@
         margin-left: 1%;
     }
 
-
     .Principal div {
         background-color: #fff;
     }
 
     @media (max-width: 958px) {
-        .total{
+        .total {
             transform: scale(1);
         }
-        
     }
 </style>

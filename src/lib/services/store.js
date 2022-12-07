@@ -15,7 +15,7 @@ export let clickBags = writable(false);
 export let clickJewelry = writable(false);
 
 export let currentPage = writable('')
-
+export let existColor = writable('')
 
 export let currentProducts = writable([])
 export let isSortByAscending = writable(false)

@@ -1,20 +1,8 @@
 // @ts-nocheck
 import { getProducts, getProductsByColor, getSize } from '$lib/services/endpointCategory';
-import { error } from '@sveltejs/kit';
-import { clickBags, clickJewelry, clickShoes, currentPage } from "$lib/services/store";
+import { currentPage } from "$lib/services/store";
+import { clickBagsButton } from '$lib/services/clickStates';
 
-const updateTheClick = (path) => {
-    clickShoes.update(value => value = false)
-    clickBags.update(value => value = false)
-    clickJewelry.update(value => value = false)
-    if (path === 'shoes') {
-        clickShoes.update(value => value = true)
-    } else if (path === 'bags') {
-        clickBags.update(value => value = true)
-    } else if (path === 'jewelry') {
-        clickJewelry.update(value => value = true)
-    }
-}
 
 /** @type {import('../../../../.svelte-kit/types/src/routes/(category)/bags/$types').PageLoad} */
 export const load = async ({ url }) => {
@@ -24,7 +12,7 @@ export const load = async ({ url }) => {
     index = searchParams.get('i') === null ? 1 : parseInt(searchParams.get('i'))
     let color = searchParams.get('color') === null ? '' : searchParams.get('color')
     const [, path] = pathname.split('/')
-    updateTheClick(path)
+    clickBagsButton()
     if (color !== '') {
         const json = await getProductsByColor(path, color)
         return { result: json, size: json.length, index, color }

@@ -3,8 +3,11 @@
     import Pagination from "$lib/components/Pagination.svelte";
     import Category from "$lib/components/Category.svelte";
     import HeaderCategory from "$lib/components/HeaderCategory.svelte";
+    import iconBag from "$lib/img/icons/bag.svg";
+    import Message from "$lib/components/Message.svelte";
     import {
         currentProducts,
+        existColor,
         isSortByAscending,
         isSortByDescending,
     } from "$lib/services/store";
@@ -20,6 +23,9 @@
     let isChangeDescending = false;
 
     $: arrays;
+    existColor.update(
+        (value) => (value = color !== undefined ? color : "default")
+    );
 
     isSortByAscending.update((value) => (value = false));
     isSortByDescending.update((value) => (value = false));
@@ -52,7 +58,7 @@
 </head>
 
 <div class="body">
-    <HeaderCategory category="Bags" pathIcon="src/lib/img/icons/bag.png"/>
+    <HeaderCategory category="Bags" pathIcon={iconBag} />
     <p class="visually-hidden">
         {#if isChangeAscending}
             {fillFields()}
@@ -71,6 +77,11 @@
                     {index}
                     category={arrays[0][0].category}
                     color={color === undefined ? "" : color}
+                />
+            {:else}
+                <Message
+                text= {color !== undefined ? "with this filter" : "on this page that are off limits"}
+                path="/bags"
                 />
             {/if}
         </div>

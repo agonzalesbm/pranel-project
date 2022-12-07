@@ -1,5 +1,5 @@
 <script>
-// @ts-nocheck
+    // @ts-nocheck
 
     /**
      * TODO: create bug report to suggested products when there is no suggestions
@@ -16,6 +16,11 @@
     import SuggestedProduct from "./SuggestedProduct.svelte";
     import { browser } from "$app/environment";
     import { showNoty } from "$lib/services/noty";
+    import {
+        clickBagsButton,
+        clickJewelryButton,
+        clickShoesButton,
+    } from "$lib/services/clickStates";
 
     export let data;
     export let arrayInfo = [];
@@ -33,6 +38,22 @@
         category,
     } = product;
     const [first, second, third, forth] = suggested;
+
+    $: category;
+
+    switch (category) {
+        case "bags":
+            clickBagsButton();
+            break;
+        case "shoes":
+            clickShoesButton();
+            break;
+        case "jewelry":
+            clickJewelryButton();
+            break;
+        default:
+            break;
+    }
 
     let changeState = false;
     if (browser) {
@@ -52,17 +73,16 @@
     const chnageOverHoverFirstImg = () => {
         imgSourc = firstImg;
 
-        document.getElementById('first-image').classList.add('active');
-        document.getElementById('second-image').classList.remove('active');
+        document.getElementById("first-image").classList.add("active");
+        document.getElementById("second-image").classList.remove("active");
     };
     const chnageOverHoverSecondImg = () => {
         imgSourc = secondImg;
 
-        document.getElementById('second-image').classList.add('active');
-        document.getElementById('first-image').classList.remove('active');
+        document.getElementById("second-image").classList.add("active");
+        document.getElementById("first-image").classList.remove("active");
     };
 
-    
     const addProductInCart = () => {
         if (!browser) return;
         let cartStorage = window.localStorage.getItem("cart");
@@ -130,7 +150,7 @@
                 <span class="product-name">{name}</span>
                 <span class="product-refrence">Product Reference : {id}</span>
                 <span class="product-size">Size/Dimmensions : {size}</span>
-                <span class="Stock">Stock:{stock}[Units]</span> <br>
+                <span class="Stock">Stock:{stock}[Units]</span> <br />
                 <span class="aboutProduct">About The Product</span>
 
                 <div class="Description">
@@ -143,8 +163,9 @@
                             {element}
                         </li>
                     {/each}
-                </div><br>
-                
+                </div>
+                <br />
+
                 <span class="product-price">Price: {price}$</span>
                 <div class="btn-groups">
                     {#if changeState}

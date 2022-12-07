@@ -3,11 +3,14 @@
     import Pagination from "$lib/components/Pagination.svelte";
     import Category from "$lib/components/Category.svelte";
     import HeaderCategory from "$lib/components/HeaderCategory.svelte";
+    import iconDiamod from "$lib/img/icons/joya.svg";
     import {
         currentProducts,
+        existColor,
         isSortByAscending,
         isSortByDescending,
     } from "$lib/services/store";
+    import Message from "$lib/components/Message.svelte";
 
     export let data;
     const { result, size, index, color } = data;
@@ -19,8 +22,13 @@
     let isChangeAscending = false;
     let isChangeDescending = false;
 
+    existColor.update(
+        (value) => (value = color !== undefined ? color : "default")
+    );
+
     isSortByAscending.update((value) => (value = false));
     isSortByDescending.update((value) => (value = false));
+
     isSortByAscending.subscribe((value) => (isChangeAscending = value));
     isSortByDescending.subscribe((value) => (isChangeDescending = value));
     const fillFields = () => {
@@ -47,7 +55,7 @@
 </head>
 
 <div class="body">
-    <HeaderCategory category="Jewelry" pathIcon="src/lib/img/icons/joya.png"/>
+    <HeaderCategory category="Jewelry" pathIcon={iconDiamod} />
     <p class="visually-hidden">
         {#if isChangeAscending}
             {fillFields()}
@@ -66,6 +74,16 @@
                     {index}
                     category={arrays[0][0].category}
                     color={color === undefined ? "" : color}
+                />
+            {:else if color !== undefined}
+                <Message
+                text= "with this filter";
+                path="/bags"
+                />
+            {:else}
+                <Message
+                text= {color !== undefined ? "with this filter" : "on this page that are off limits"}
+                path="/jewelry"
                 />
             {/if}
         </div>
