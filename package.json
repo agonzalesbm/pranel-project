@@ -14,14 +14,17 @@
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
 		"@sveltejs/vite-plugin-svelte": "^1.4.0",
+		"@testing-library/jest-dom": "^5.16.5",
 		"@testing-library/svelte": "^3.2.2",
+		"@types/jest": "^29.2.4",
 		"@vitest/ui": "^0.25.4",
 		"jsdom": "^20.0.3",
 		"svelte": "^3.44.0",
 		"svelte-check": "^2.7.1",
 		"typescript": "^4.7.4",
 		"vite": "^3.2.5",
-		"vitest": "^0.25.4"
+		"vitest": "^0.25.5",
+		"vitest-svelte-kit": "^0.0.7"
 	},
 	"type": "module",
 	"dependencies": {
