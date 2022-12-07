@@ -28,6 +28,10 @@
     a:link {
         text-decoration: none;
     }
+    a:hover {
+        text-decoration: underline;
+    }
+
     a:visited {
         text-decoration: none;
     }
@@ -41,14 +45,18 @@
         position: relative;
         display: inline;
         display: flex;
-        height: 6em;
+        min-height: 5em;
+    }
+
+    .body-product:hover {
+        background-color: #ffded7a2;
     }
 
     img {
-        min-width: 100px;
-        max-width: 150px;
-        max-height: 85%;
+        max-width: 4em;
         align-items: center;
+        padding: 0.1em;
+        box-shadow: 0 0 0.1em gray;
     }
 
     .name-pr {
