@@ -149,22 +149,27 @@
 
     .svg-wrapper {
         top: 50vh;
-        left: 40vh;
+        left: 30%;
         position: absolute;
         margin: 0 auto;
-        width: 20em;
-        height: 7em;
+        width: 22em;
+        height: 6.7em;
         background-color: rgba(255, 222, 215, 0.8);
-        padding: 1.2em;
+        padding: 1em;
         display: flex;
         justify-self: center;
         border-width: 0px;
         border-radius: 10px;
     }
 
+    .svg-wrapper:hover{
+        background-color: rgba(255, 222, 215);
+    }
+
     .shape {
-        stroke-dasharray: 90 270;
-        stroke-dashoffset: -600;
+        width: 20em;
+        stroke-dasharray: 12em 13em;
+        stroke-dashoffset: -10em;
         stroke-width: 5px;
         fill: transparent;
         stroke: black;
@@ -186,8 +191,8 @@
 
     div:hover .shape {
         inset: 0;
-        stroke-width: 0.5em;
-        stroke-dasharray: 760;
+        stroke-width: 5px;
+        stroke-dasharray: 50em;
         stroke-dashoffset: 0;
     }
 
