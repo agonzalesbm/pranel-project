@@ -11,6 +11,7 @@
         isSortByDescending,
     } from "$lib/services/store";
     import Message from "$lib/components/Message.svelte";
+    import { clickJewelryButton } from "$lib/services/clickStates";
 
     export let data;
     const { result, size, index, color } = data;
@@ -48,6 +49,7 @@
         arrays.push(array);
     };
     fillFields();
+    clickJewelryButton()
 </script>
 
 <head>
@@ -77,7 +79,7 @@
                 />
             {:else if color !== undefined}
                 <Message
-                text= "with this filter";
+                text= "with this filter"
                 path="/bags"
                 />
             {:else}
