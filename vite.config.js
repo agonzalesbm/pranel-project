@@ -6,6 +6,7 @@ const config = {
 	test: {
 		environment: 'jsdom',
 		globals: true,
+		setupFiles: ['./setupTest.ts'],
 	}
 };
 
