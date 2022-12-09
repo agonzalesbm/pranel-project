@@ -1,4 +1,6 @@
 <script>
+  // @ts-nocheck
+
   import "bootswatch/dist/lux/bootstrap.min.css";
   import {
     isInProduct,
@@ -6,9 +8,10 @@
     clickJewelry,
     clickShoes,
   } from "../services/store";
-  let isHere = false;
-  isInProduct.subscribe((value) => (isHere = value));
 
+  import iconShoes from "$lib/img/icons/tacones-altos.svg";
+  import iconBag from "$lib/img/icons/bag.svg";
+  import iconDiamod from "$lib/img/icons/joya.svg";
   import {
     sortedByAscendingOrder,
     sortedByDescendingOrder,
@@ -21,6 +24,7 @@
     isSortByDescending,
   } from "../services/store";
   import RowColors from "./RowColors.svelte";
+  import { browser } from "$app/environment";
   import { goto } from "$app/navigation";
 
   let checkShoes = false;
@@ -28,8 +32,26 @@
   let checkJewelry = false;
   let path = "/";
   let isCheck = "";
+  let isHere = false;
 
   $: isCheck;
+  $: if (isHere) isCheck = "";
+  isInProduct.subscribe((value) => (isHere = value));
+
+  if (browser) {
+    let current = window.localStorage.getItem("current");
+    let positions = JSON.parse(current);
+    clickShoes.update((value) => (value = false));
+    clickBags.update((value) => (value = false));
+    clickJewelry.update((value) => (value = false));
+    if (positions.bags) {
+      clickBags.update((value) => (value = true));
+    } else if (positions.shoes) {
+      clickShoes.update((value) => (value = true));
+    } else if (positions.jewelry) {
+      clickJewelry.update((value) => (value = true));
+    }
+  }
 
   clickBags.subscribe((value) => {
     checkBags = value;
@@ -46,6 +68,13 @@
     clickShoes.update((value) => (value = true));
     clickBags.update((value) => (value = false));
     clickJewelry.update((value) => (value = false));
+    let positions = {
+      bags: false,
+      shoes: true,
+      jewelry: false,
+    };
+    window.localStorage.setItem("current", JSON.stringify(positions));
+    path = "/shoes";
   }
 
   export function bagsMarked() {
@@ -53,6 +82,13 @@
     clickShoes.update((value) => (value = false));
     clickBags.update((value) => (value = true));
     clickJewelry.update((value) => (value = false));
+    let positions = {
+      bags: true,
+      shoes: false,
+      jewelry: false,
+    };
+    path = "/bags";
+    window.localStorage.setItem("current", JSON.stringify(positions));
   }
 
   export function jewelryMarked() {
@@ -60,6 +96,13 @@
     clickShoes.update((value) => (value = false));
     clickBags.update((value) => (value = false));
     clickJewelry.update((value) => (value = true));
+    let positions = {
+      bags: false,
+      shoes: false,
+      jewelry: true,
+    };
+    path = "/jewelry";
+    window.localStorage.setItem("current", JSON.stringify(positions));
   }
 
   isInProduct.subscribe((value) => (isHere = value));
@@ -67,37 +110,33 @@
     path = value;
   });
 
-  $: path;
+  const changePath = () => {
+    if (browser) {
+      let current = window.localStorage.getItem("current");
+      let positions = JSON.parse(current);
+      if (positions.bags) {
+        path = "/bags";
+      } else if (positions.shoes) {
+        path = "/shoes";
+      } else if (positions.jewelry) {
+        path = "/jewelry";
+      }
+    }
+  };
 
-  const clickOnBags = () => {
-    path = "/bags";
-  };
-  const clickOnShoes = () => {
-    path = "/shoes";
-  };
-  const clickOnJewelry = () => {
-    path = "/jewelry";
-  };
+  $: path;
+  $: changePath();
 
   const orderByAscending = () => {
     isSortByAscending.update((value) => (value = true));
     isSortByDescending.update((value) => (value = false));
     sortedByAscendingOrder();
   };
-  
+
   const orderByDescending = () => {
     isSortByDescending.update((value) => (value = true));
     isSortByAscending.update((value) => (value = false));
     sortedByDescendingOrder();
-  };
-
-  const changeByDefualt = () => {
-    let isInShoes = false;
-    let isInBags = false;
-    let isInJewelry = false;
-    clickShoes.subscribe((value) => (isInShoes = value));
-    clickBags.subscribe((value) => (isInBags = value));
-    clickJewelry.subscribe((value) => (isInJewelry = value));
   };
 </script>
 
@@ -113,27 +152,40 @@
             on:click={shoesMarked}
           >
             {#if checkShoes}
-              <u>Shoes</u>
+              <u
+                ><img src={iconShoes} alt="" class="icon" />
+                Shoes</u
+              >
             {:else}
-              <p class="color-disabled">Shoes</p>
+              <p class="color-disabled">
+                <img src={iconShoes} alt="" class="icon" /> Shoes
+              </p>
             {/if}
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/bags" on:click={bagsMarked}>
             {#if checkBags}
-              <u>Bags</u>
+              <u>
+                <img src={iconBag} alt="" class="icon" /> Bags</u
+              >
             {:else}
-              <p class="color-disabled">Bags</p>
+              <p class="color-disabled">
+                <img src={iconBag} alt="" class="icon" /> Bags
+              </p>
             {/if}
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/jewelry" on:click={jewelryMarked}>
             {#if checkJewelry}
-              <u>Jewelry</u>
+              <u>
+                <img src={iconDiamod} alt="" class="icon" /> Jewelry</u
+              >
             {:else}
-              <p class="color-disabled">Jewelry</p>
+              <p class="color-disabled">
+                <img src={iconDiamod} alt="" class="icon" /> Jewelry
+              </p>
             {/if}
           </a>
         </li>
@@ -170,7 +222,7 @@
         aria-labelledby="offcanvasRightLabel"
       >
         <div class="offcanvas-header">
-          <h5 id="offcanvasRightLabel">Filter by</h5>
+          <h4 id="offcanvasRightLabel ">Filter by</h4>
           <button
             type="button"
             class="btn-close text-reset"
@@ -180,6 +232,7 @@
         </div>
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <div class="offcanvas-body">
+          <label class="form-check-label">Order by Price</label> <br> <br>
           <div class="form-check form-check-inline">
             <input
               bind:group={isCheck}
@@ -227,19 +280,19 @@
             fifthColor="white"
           />
           <RowColors
-            firstColor="orange"
+            firstColor="gold"
             secondColor="brown"
             thirdColor="yellow"
             forthColor="red"
             fifthColor="pink"
           />
-          <!-- <div class="container mt-4">
-            <div class="row">
-              <button on:click={changeByDefualt} class="btn btn-outline-danger"
-                >By default</button
-              >
-            </div>
-          </div> -->
+          <div class="container mt-4">
+            <a data-sveltekit-reload href={path}>
+              <div class="row">
+                <button class="btn btn-outline-dark">clean the filter</button>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -247,6 +300,20 @@
 </nav>
 
 <style>
+  nav {
+    height: 5em;
+    padding: 1em;
+    margin-top: -0.5em;
+  }
+
+  .nav-item {
+    font-size: medium;
+  }
+
+  h4{
+    margin: 0.5em;
+    margin-bottom: 0;
+  }
   .btn-filter {
     background: #ffded7;
     background-image: -webkit-linear-gradient(top, #ffded7, #ffded7);
@@ -259,8 +326,9 @@
     border-radius: 27px;
     color: black;
     font-size: 20px;
-    padding: 2px 15px 2px 15px;
+    padding: 0.5em 1em;
     text-decoration: none;
+    margin-top: -0.5em;
   }
 
   .btn-filter:hover {
@@ -270,6 +338,41 @@
   }
 
   .color-disabled {
-    color: #949494;
+    opacity: 0.4;
+  }
+
+  .color-disabled:hover {
+    opacity: 1;
+  }
+
+  .icon {
+    height: 1.5em;
+    position: relative;
+    transform: scaleX(-1);
+    margin: 0em 0.5em;
+    visibility: visible;
+  }
+
+  @media screen and (max-width: 750px) {
+    .icon {
+      height: 2em;
+    }
+
+    .nav-item {
+      font-size: small;
+      margin: 0.2em;
+      visibility: hidden;
+      margin-left: -3em;
+    }
+
+    .btn-filter {
+      font-size: 10px;
+      padding: 0.3em 0.7em;
+      margin-top: -1em;
+    }
+  }
+
+  a {
+    text-decoration: none;
   }
 </style>

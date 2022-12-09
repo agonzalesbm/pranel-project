@@ -3,6 +3,9 @@
 
     import "animate.css";
     import logo from "../img/LogoPranel.svg";
+    import iconShoes from "$lib/img/icons/tacones-altos.svg";
+    import iconBag from "$lib/img/icons/bag.svg";
+    import iconDiamod from "$lib/img/icons/joya.svg";
     import {
         isAnError,
         isInCart,
@@ -13,6 +16,12 @@
     } from "../services/store";
     import Product from "./Product.svelte";
     import WindowsCart from "./WindowsCart.svelte";
+    import { browser } from "$app/environment";
+    import {
+        clickBagsButton,
+        clickJewelryButton,
+        clickShoesButton,
+    } from "$lib/services/clickStates";
 
     let cart = false;
     isInCart.subscribe((value) => (cart = value));
@@ -41,46 +50,33 @@
         cartProducts.forEach((e) => (total += e.price * e.quantity));
         console.log(total);
         totalPriceCart.set(total);
-        productsCart.set(cartProducts)
+        productsCart.set(cartProducts);
     }
     totalPriceCart.subscribe((value) => (total = value));
-    productsCart.subscribe(value => products = value)
+    productsCart.subscribe((value) => (products = value));
 
-    import { clickBags, clickShoes, clickJewelry } from "$lib/services/store";
-    import { browser } from "$app/environment";
-
-    function clickBagsButton() {
-        clickBags.update((value) => (value = true));
-        clickShoes.update((value) => (value = false));
-        clickJewelry.update((value) => (value = false));
-    }
-
-    function clickJewelryButton() {
-        clickBags.update((value) => (value = false));
-        clickShoes.update((value) => (value = false));
-        clickJewelry.update((value) => (value = true));
-    }
-
-    function clickShoesButton() {
-        clickBags.update((value) => (value = false));
-        clickShoes.update((value) => (value = true));
-        clickJewelry.update((value) => (value = false));
-    }
+    const clickTheBagsButton = () => {
+        clickBagsButton();
+    };
+    const clickTheJewelryButton = () => {
+        clickJewelryButton();
+    };
+    const clickTheShoesButton = () => {
+        clickShoesButton();
+    };
 </script>
 
 <header class:visually-hidden={$isAnError}>
     <div class="wrapper">
         <div class="logoHeader">
-            <a href="/"><img src={logo} width="300" height="90" /></a>
+            <a href="/"><img src={logo} height="70" /></a>
         </div>
 
         <nav>
-            <a href="#"
+            <a href="#" class="disabled"
                 ><span style="color: black">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
                         fill="currentColor"
                         class="bi bi-search"
                         viewBox="0 0 16 16"
@@ -100,8 +96,6 @@
                     <span style="color: black">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
                             fill="currentColor"
                             class="bi bi-cart-fill"
                             viewBox="0 0 16 16"
@@ -155,12 +149,10 @@
                 </div>
             </span>
 
-            <a href="#"
+            <a href="#" class="disabled"
                 ><span style="color: black"
                     ><svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
                         fill="currentColor"
                         class="bi bi-person-fill"
                         viewBox="0 0 16 16"
@@ -171,31 +163,39 @@
                     </svg></span
                 >
             </a>
-            <a href="#" class:visually-hidden={isHidden}
-                ><span style="color: black"
-                    ><svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        class="bi bi-list"
-                        viewBox="0 0 16 16"
-                    >
-                        <path
-                            fill-rule="evenodd"
-                            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
-                        />
-                    </svg></span
-                >
+            <a href="#" class:visually-hidden={isHidden}>
+                <div class="category">
+                    <span style="color: black"
+                        ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor"
+                            class="bi bi-list"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+                            />
+                        </svg>
+                    </span>
+                    <h5 class="text">Category</h5>
+                </div>
+
                 <ul class="menu">
                     <li>
-                        <a href="/shoes" on:click={clickShoesButton}>Shoes</a>
+                        <a href="/shoes" on:click={clickTheShoesButton}>
+                            <img src={iconShoes} /> Shoes
+                        </a>
                     </li>
-                    <li><a href="/bags" on:click={clickBagsButton}>Bags</a></li>
                     <li>
-                        <a href="/jewelry" on:click={clickJewelryButton}
-                            >Jewelry</a
-                        >
+                        <a href="/bags" on:click={clickTheBagsButton}>
+                            <img src={iconBag} /> Bags
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/jewelry" on:click={clickTheJewelryButton}>
+                            <img src={iconDiamod} /> Jewelry
+                        </a>
                     </li>
                 </ul>
             </a>
@@ -226,8 +226,8 @@
         background-color: white;
         padding: 15px;
         position: absolute;
-        margin-left: -18em;
-        margin-top: -20px;
+        margin-left: -17.2em;
+        margin-top: -1em;
         height: auto;
         max-width: 25em;
         min-width: 25em;
@@ -257,7 +257,6 @@
         min-height: 0.5em;
         position: relative;
         box-shadow: inset;
-
         scrollbar-width: thin;
         scrollbar-color: #ffd7d7 rgb(255, 255, 255);
     }
@@ -381,6 +380,7 @@
         font-size: 50px;
         line-height: 0px;
         float: left;
+        margin: 0.2em;
     }
 
     header nav {
@@ -394,8 +394,14 @@
         text-decoration: none;
         padding: 10px 20px;
         line-height: normal;
-        font-size: 30px;
+        font-size: 1.1em;
         font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    svg {
+        width: 25px;
+        height: 25px;
     }
 
     header nav a:hover {
@@ -403,31 +409,72 @@
         border-radius: 30px;
     }
 
-    .wrapper a ul {
+    a ul {
         display: none;
-        z-index: 1000;
-        -moz-box-shadow: 0.7px 1px 1px #777777;
-        -webkit-box-shadow: 0.7px 1px 1px #777777;
-        box-shadow: 0.7px 1px 1px #777777;
+        z-index: 10;
+        -moz-box-shadow: 0 0 2px #777777;
+        -webkit-box-shadow: 0 0 2px #777777;
+        box-shadow: 0 0 2px #777777;
+        margin-top: 0.5em;
+        border-radius: 5px;
+        border: solid 3px;
+        border-color: black white;
     }
 
-    .wrapper a ul li {
-        background-color: #ffded7;
-        color: #ffff;
+    .menu::before {
+        content: "";
+        border-style: solid;
+        border-width: 0px 10px 10px 10px;
+        border-color: transparent transparent black transparent;
+        position: absolute;
+        top: -10px;
+        right: 10px;
+    }
+
+    li {
+        background-color: white;
         display: block;
+        flex: left;
+    }
+
+    li a img {
+        height: 1em;
+        position: relative;
+        transform: scaleX(-1);
+        margin: 0.1em 0.5em;
     }
 
     .wrapper a:hover > ul {
         display: block;
-        right: 1%;
+        margin-left: -8.4em;
         position: absolute;
-        border-radius: 0px;
     }
 
     .menu li :hover {
-        background: white;
+        background: #ffded7;
         color: black;
-        border-radius: 0%;
+        border-radius: 5px;
         width: 100%;
+    }
+
+    .category {
+        display: flex;
+    }
+
+    .category h5 {
+        margin: 0.3em;
+    }
+    .disabled {
+        opacity: 0.5;
+    }
+
+    .disabled:hover {
+        background-color: #ffd7d7;
+        cursor: default;
+    }
+    @media screen and (max-width: 700px) {
+        .category h5 {
+            display: none;
+        }
     }
 </style>

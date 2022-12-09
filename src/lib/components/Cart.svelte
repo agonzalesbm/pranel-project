@@ -38,14 +38,15 @@
         productsCart.set(cartProducts);
     }
 
+    $: console.log(products);
+
     totalPriceCart.subscribe((value) => (total = value));
     productsCart.subscribe((value) => (products = value));
     deleteElement.subscribe((value) => (deleteId = value));
 
-    $: deleteId != "" ? deleteProductCart() : "";
+    $: deleteId !== "" ? deleteProductCart() : "";
     const deleteProductCart = () => {
-        const index = cartProducts.findIndex((e) => e.id === deleteId);
-        cartProducts.splice(index, 1);
+        cartProducts = products.filter((e) => e.id !== deleteId);
         if (browser) {
             window.localStorage.setItem("cart", JSON.stringify(cartProducts));
             let cartStorage = window.localStorage.getItem("cart");
@@ -55,7 +56,7 @@
             totalPriceCart.set(total);
             productsCart.set(cartProducts);
             deleteElement.update((value) => (value = ""));
-            showNoty("Product removed to cart", "error")
+            showNoty("Product removed to cart", "error");
         }
     };
 
@@ -72,7 +73,7 @@
     <p>My Cart</p>
 </div>
 
-<div class="">
+<div class="body-cart">
     {#if cartProducts.length === 0}
         <div class="container ml-5 text-center">
             <div class="row justify-content-center">
@@ -95,16 +96,14 @@
             <div class="row">
                 <div class="col-9">
                     <div class="row">
-                        <div class="col-2">
-                            <p>Product</p>
-                        </div>
-                        <div class="col-3" />
-                        <div class="col">
-                            <p class="price">Price</p>
-                        </div>
-                        <div class="col-5">
-                            <p class="quantity">Quantity</p>
-                        </div>
+                        <div class="col" />
+                        <div class="col" />
+                        <div
+                            class="col"
+                            style="margin-left: 10vh; max-width:28vh"
+                        />
+                        <div class="col" />
+                        <div style="width: 20vh;" />
                     </div>
                 </div>
             </div>
@@ -125,8 +124,8 @@
                     />
                 {/each}
             </div>
-            <div class="col">
-                <TotalPrice totalPrice={total.toFixed(2)} $ />
+            <div class=" col total">
+                <TotalPrice totalPrice={$totalPriceCart.toFixed(2)} $ />
             </div>
         </div>
     {/if}
@@ -139,9 +138,8 @@
         font-size: 40px;
         font-family: "Bree Serif";
     }
-
-    .col {
-        width: 100%;
+    .body-cart {
+        min-height: 50vh;
     }
 
     .label {
@@ -170,11 +168,13 @@
         margin-left: 1%;
     }
 
-    .price {
-        margin-left: 26%;
-    }
-
     .Principal div {
         background-color: #fff;
+    }
+
+    @media (max-width: 958px) {
+        .total {
+            transform: scale(1);
+        }
     }
 </style>

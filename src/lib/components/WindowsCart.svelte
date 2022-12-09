@@ -20,7 +20,7 @@
             <h5 class="name-pr">{name}</h5>
         </a>
         <h6 class="label"><b>x</b>{quantity}</h6>
-        <h5 class="price-pr">{price*quantity} $</h5>
+        <h5 class="price-pr">{(price*quantity).toFixed(2)} $</h5>
     </div>
 </div>
 
@@ -28,6 +28,10 @@
     a:link {
         text-decoration: none;
     }
+    a:hover {
+        text-decoration: underline;
+    }
+
     a:visited {
         text-decoration: none;
     }
@@ -41,14 +45,18 @@
         position: relative;
         display: inline;
         display: flex;
-        height: 6em;
+        min-height: 5em;
+    }
+
+    .body-product:hover {
+        background-color: #ffded7a2;
     }
 
     img {
-        min-width: 100px;
-        max-width: 150px;
-        max-height: 85%;
+        max-width: 4em;
         align-items: center;
+        padding: 0.1em;
+        box-shadow: 0 0 0.1em gray;
     }
 
     .name-pr {

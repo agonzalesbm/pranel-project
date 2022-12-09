@@ -1,0 +1,18 @@
+.body{
+    overflow: hidden;
+}
+
+.catalogue {
+    background-color: rgba(255, 255, 255, 0.8);
+    width: fit-content;
+    box-shadow: 0 0.5em 1em black;
+    min-height: 40vh;
+}
+.bg-img {
+    display: flex;
+    justify-content: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}

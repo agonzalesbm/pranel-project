@@ -52,9 +52,9 @@
                 },
             ];
             window.localStorage.setItem("cart", JSON.stringify(cart));
-            let total = 0
+            let total = 0;
             cart.forEach((e) => (total += e.price * e.quantity));
-            totalPriceCart.set(total)
+            totalPriceCart.set(total);
             productsCart.set(cart);
 
             showNoty("Product added to cart", "alert");
@@ -70,7 +70,7 @@
 </script>
 
 <div class="category_container card m-3">
-    <a data-sveltekit-reload href={path}>
+    <a href={path}>
         <ProductImage {handBag} {handBagPerson} />
     </a>
     <p class="card-text"><span class="text-align-center">{price} $</span></p>
@@ -92,6 +92,3 @@
         >
     {/if}
 </div>
-
-<style>
-</style>
