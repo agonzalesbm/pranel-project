@@ -9,6 +9,9 @@
     clickShoes,
   } from "../services/store";
 
+  import iconShoes from "$lib/img/icons/tacones-altos.svg";
+  import iconBag from "$lib/img/icons/bag.svg";
+  import iconDiamod from "$lib/img/icons/joya.svg";
   import {
     sortedByAscendingOrder,
     sortedByDescendingOrder,
@@ -150,12 +153,12 @@
           >
             {#if checkShoes}
               <u
-                ><img src="src/lib/img/icons/tacones.png" alt="" class="icon" />
+                ><img src={iconShoes} alt="" class="icon" />
                 Shoes</u
               >
             {:else}
               <p class="color-disabled">
-                <img src="src/lib/img/icons/tacones.png" alt="" class="icon" /> Shoes
+                <img src={iconShoes} alt="" class="icon" /> Shoes
               </p>
             {/if}
           </a>
@@ -164,11 +167,11 @@
           <a class="nav-link" href="/bags" on:click={bagsMarked}>
             {#if checkBags}
               <u>
-                <img src="src/lib/img/icons/bag.png" alt="" class="icon" /> Bags</u
+                <img src={iconBag} alt="" class="icon" /> Bags</u
               >
             {:else}
               <p class="color-disabled">
-                <img src="src/lib/img/icons/bag.png" alt="" class="icon" /> Bags
+                <img src={iconBag} alt="" class="icon" /> Bags
               </p>
             {/if}
           </a>
@@ -177,11 +180,11 @@
           <a class="nav-link" href="/jewelry" on:click={jewelryMarked}>
             {#if checkJewelry}
               <u>
-                <img src="src/lib/img/icons/joya.png" alt="" class="icon" /> Jewelry</u
+                <img src={iconDiamod} alt="" class="icon" /> Jewelry</u
               >
             {:else}
               <p class="color-disabled">
-                <img src="src/lib/img/icons/joya.png" alt="" class="icon" /> Jewelry
+                <img src={iconDiamod} alt="" class="icon" /> Jewelry
               </p>
             {/if}
           </a>
@@ -219,7 +222,7 @@
         aria-labelledby="offcanvasRightLabel"
       >
         <div class="offcanvas-header">
-          <h5 id="offcanvasRightLabel ">Filter by</h5>
+          <h4 id="offcanvasRightLabel ">Filter by</h4>
           <button
             type="button"
             class="btn-close text-reset"
@@ -229,6 +232,7 @@
         </div>
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <div class="offcanvas-body">
+          <label class="form-check-label">Order by Price</label> <br> <br>
           <div class="form-check form-check-inline">
             <input
               bind:group={isCheck}
@@ -285,7 +289,7 @@
           <div class="container mt-4">
             <a data-sveltekit-reload href={path}>
               <div class="row">
-                <button class="btn btn-outline-danger">By default</button>
+                <button class="btn btn-outline-dark">clean the filter</button>
               </div>
             </a>
           </div>
@@ -306,6 +310,10 @@
     font-size: medium;
   }
 
+  h4{
+    margin: 0.5em;
+    margin-bottom: 0;
+  }
   .btn-filter {
     background: #ffded7;
     background-image: -webkit-linear-gradient(top, #ffded7, #ffded7);
