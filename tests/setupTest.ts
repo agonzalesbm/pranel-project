@@ -3,35 +3,34 @@ import matchers from '@testing-library/jest-dom/matchers';
 import { expect, vi } from 'vitest';
 import type { Navigation, Page } from '@sveltejs/kit';
 import { readable } from 'svelte/store';
-import * as environment from '$app/environment';
-import * as navigation from '$app/navigation';
+import type * as environment from '$app/environment';
+import type * as navigation from '$app/navigation';
 import type * as stores from '$app/stores';
 
 // Add custom jest matchers
 expect.extend(matchers);
 
 // Mock SvelteKit runtime module $app/environment
-vi.mock('$app/environment', () => ({
+vi.mock('$app/environment', (): typeof environment => ({
     browser: false,
     dev: true,
-    building: false,
-    version: 'any',
-}));
+    prerendering: false,
+}))
 
 // Mock SvelteKit runtime module $app/navigation
-vi.mock('$app/navigation', () => ({
+vi.mock('$app/navigation', (): typeof navigation => ({
     afterNavigate: () => { },
     beforeNavigate: () => { },
     disableScrollHandling: () => { },
     goto: () => Promise.resolve(),
     invalidate: () => Promise.resolve(),
     invalidateAll: () => Promise.resolve(),
-    preloadData: () => Promise.resolve(),
-    preloadCode: () => Promise.resolve()
+    prefetch: () => Promise.resolve(),
+    prefetchRoutes: () => Promise.resolve()
 }));
 
 // Mock SvelteKit runtime module $app/stores
-vi.mock('$app/stores', () => {
+vi.mock('$app/stores', (): typeof stores => {
     const getStores = () => {
         const navigating = readable<Navigation | null>(null);
         const page = readable<Page>({
