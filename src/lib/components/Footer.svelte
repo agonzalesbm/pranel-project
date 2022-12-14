@@ -30,7 +30,7 @@
                 <h4>Information</h4>
                 <ul>
                     <li><a href="">about us</a></li>
-                    <li><a href="">privacy polices</a></li>
+                    <li><a href="">privacy policy</a></li>
                 </ul>
             </div>
 
