@@ -1,24 +1,24 @@
 <script>
-    // @ts-nocheck
+  // @ts-nocheck
 
-    import "bootswatch/dist/lux/bootstrap.min.css";
-    import Category from "./Category.svelte";
+  import "bootswatch/dist/lux/bootstrap.min.css";
+  import Category from "./Category.svelte";
 
-    export let array = [];
+  export let array = [];
 </script>
 
 <div class="suggested">
-    <h2 class="p-4 text-align-center">Suggested Product</h2>
-    <Category {array} />
+  <h2 class="p-4 text-align-center">Suggested Product</h2>
+  <Category {array} />
 </div>
 
 <style>
-    .suggested {
-        background-color: #ffded7cd;
-        border-radius: 5px;
-    }
+  .suggested {
+    background-color: #ffded7cd;
+    border-radius: 5px;
+  }
 
-    .suggested:hover{
-        background-color: #ffded7;
-    }
+  .suggested:hover {
+    background-color: #ffded7;
+  }
 </style>
