@@ -22,7 +22,7 @@ describe('Footer', () => {
 
     test('The titles of the information section should be displayed ',()=>{
         expect(screen.getByText('about us')).toBeDefined()
-        expect(screen.getByText('privacy polices')).toBeDefined()
+        expect(screen.getByText('privacy policy')).toBeDefined()
     })
 
     test('the titles of the Contact Us section should be displayed',()=>{
