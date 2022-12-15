@@ -5,7 +5,7 @@ describe("This test is for the Message component", () => {
   afterEach(() => {
     cleanup();
   });
-  
+
   test("should have the message by default ", () => {
     render(Message);
     expect(screen.getByText(/There are no products/)).toBeInTheDocument();
