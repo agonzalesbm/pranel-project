@@ -2,27 +2,15 @@
   // @ts-nocheck
 
   import "bootswatch/dist/lux/bootstrap.min.css";
-  import {
-    isInProduct,
-    clickBags,
-    clickJewelry,
-    clickShoes,
-  } from "../services/store";
+  import { isInProduct, clickBags, clickJewelry, clickShoes } from "../services/store";
 
   import iconShoes from "$lib/img/icons/tacones-altos.svg";
   import iconBag from "$lib/img/icons/bag.svg";
   import iconDiamod from "$lib/img/icons/joya.svg";
-  import {
-    sortedByAscendingOrder,
-    sortedByDescendingOrder,
-  } from "$lib/services/sorted";
+  import { sortedByAscendingOrder, sortedByDescendingOrder } from "$lib/services/sorted";
 
   import "bootswatch/dist/lux/bootstrap.min.css";
-  import {
-    currentPage,
-    isSortByAscending,
-    isSortByDescending,
-  } from "../services/store";
+  import { currentPage, isSortByAscending, isSortByDescending } from "../services/store";
   import RowColors from "./RowColors.svelte";
   import { browser } from "$app/environment";
   import { goto } from "$app/navigation";
@@ -145,17 +133,11 @@
     <div class="container-fluid">
       <ul class="nav">
         <li class="nav-item">
-          <a
-            class="nav-link"
-            aria-current="page"
-            href="/shoes"
-            on:click={shoesMarked}
-          >
+          <a class="nav-link" aria-current="page" href="/shoes" on:click={shoesMarked}>
             {#if checkShoes}
               <u
                 ><img src={iconShoes} alt="" class="icon" />
-                Shoes</u
-              >
+                Shoes</u>
             {:else}
               <p class="color-disabled">
                 <img src={iconShoes} alt="" class="icon" /> Shoes
@@ -166,9 +148,7 @@
         <li class="nav-item">
           <a class="nav-link" href="/bags" on:click={bagsMarked}>
             {#if checkBags}
-              <u>
-                <img src={iconBag} alt="" class="icon" /> Bags</u
-              >
+              <u> <img src={iconBag} alt="" class="icon" /> Bags</u>
             {:else}
               <p class="color-disabled">
                 <img src={iconBag} alt="" class="icon" /> Bags
@@ -179,9 +159,7 @@
         <li class="nav-item">
           <a class="nav-link" href="/jewelry" on:click={jewelryMarked}>
             {#if checkJewelry}
-              <u>
-                <img src={iconDiamod} alt="" class="icon" /> Jewelry</u
-              >
+              <u> <img src={iconDiamod} alt="" class="icon" /> Jewelry</u>
             {:else}
               <p class="color-disabled">
                 <img src={iconDiamod} alt="" class="icon" /> Jewelry
@@ -196,20 +174,17 @@
           class="btn-filter btn btn-primary"
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasRight"
-          aria-controls="offcanvasRight"
-        >
+          aria-controls="offcanvasRight">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
             height="23"
             fill="currentColor"
             class="bi bi-sliders"
-            viewBox="0 2 19 19"
-          >
+            viewBox="0 2 19 19">
             <path
               fill-rule="evenodd"
-              d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z"
-            />
+              d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z" />
           </svg>
           Filter
         </button>
@@ -219,20 +194,18 @@
         class="offcanvas offcanvas-end"
         tabindex="-1"
         id="offcanvasRight"
-        aria-labelledby="offcanvasRightLabel"
-      >
+        aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
           <h4 id="offcanvasRightLabel ">Filter by</h4>
           <button
             type="button"
             class="btn-close text-reset"
             data-bs-dismiss="offcanvas"
-            aria-label="Close"
-          />
+            aria-label="Close" />
         </div>
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <div class="offcanvas-body">
-          <label class="form-check-label">Order by Price</label> <br> <br>
+          <label class="form-check-label">Order by Price</label> <br /> <br />
           <div class="form-check form-check-inline">
             <input
               bind:group={isCheck}
@@ -241,13 +214,8 @@
               type="radio"
               id="inlineCheckbox2"
               value="option1"
-              name="check"
-            />
-            <label
-              on:click={orderByAscending}
-              class="form-check-label"
-              for="inlineCheckbox2"
-            >
+              name="check" />
+            <label on:click={orderByAscending} class="form-check-label" for="inlineCheckbox2">
               Ascending
             </label>
           </div>
@@ -259,13 +227,8 @@
               type="radio"
               id="inlineCheckbox3"
               value="option2"
-              name="check 2"
-            />
-            <label
-              on:click={orderByDescending}
-              class="form-check-label"
-              for="inlineCheckbox3"
-            >
+              name="check 2" />
+            <label on:click={orderByDescending} class="form-check-label" for="inlineCheckbox3">
               Descending
             </label>
           </div>
@@ -277,15 +240,13 @@
             secondColor="green"
             thirdColor="black"
             forthColor="gray"
-            fifthColor="white"
-          />
+            fifthColor="white" />
           <RowColors
             firstColor="gold"
             secondColor="brown"
             thirdColor="yellow"
             forthColor="red"
-            fifthColor="pink"
-          />
+            fifthColor="pink" />
           <div class="container mt-4">
             <a data-sveltekit-reload href={path}>
               <div class="row">
@@ -310,7 +271,7 @@
     font-size: medium;
   }
 
-  h4{
+  h4 {
     margin: 0.5em;
     margin-bottom: 0;
   }
